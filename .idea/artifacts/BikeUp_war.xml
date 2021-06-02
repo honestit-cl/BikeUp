@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="BikeUp:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>BikeUp</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="BikeUp-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="BikeUp:war exploded" />
+    </root>
+  </artifact>
+</component>
