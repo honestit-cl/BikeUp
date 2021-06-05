@@ -1,8 +1,6 @@
 
 body {
-    background-image: url("../images/jake-blucker-OJX7gIU3E6U-unsplash.jpg");
-    background-size: cover;
-
+    background-image: url("/images/jake-blucker-OJX7gIU3E6U-unsplash.jpg");
 }
 
 label {
