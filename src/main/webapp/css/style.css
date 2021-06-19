@@ -1,6 +1,7 @@
 
 body {
     background-image: url("/images/jake-blucker-OJX7gIU3E6U-unsplash.jpg");
+    background-size: cover;
 }
 
 label {
@@ -35,9 +36,13 @@ label {
 }
 
 .main {
-    padding: 100px;
+    padding: 85px;
     box-sizing: border-box;
     flex-direction: row;
     display: inline-flex;
     align-content: center;
+}
+
+h3{
+    color: gainsboro;
 }

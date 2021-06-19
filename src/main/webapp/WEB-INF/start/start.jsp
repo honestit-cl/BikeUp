@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -10,12 +11,15 @@
 </head>
 <body>
 <div class="logo_start">
-    <img src="<c:url value="/images/193240896_311767273863710_3235863038840980410_n.png"/>" width="350" height="250" alt="logo"/>
+    <img src="<c:url value='/images/193240896_311767273863710_3235863038840980410_n.png'/>" width="350" height="250" alt="logo"/>
 </div>
 <div class="main">
     <div class="container_start">
         <h2>Witaj w BikeUp!</h2> <br>
-        <h2>Znjadziesz tutaj partnerów do wspólych treningów, jak również będziesz mógł śledzić swoje postępy.</h2>
+        <h2>Znajdziesz tutaj partnerów do wspólych treningów, jak również będziesz mógł śledzić swoje postępy.</h2>
+        <br/><br/>
+        <h3> Jest z nami już ${users} użytkowników,
+        którzy stworzyli już ${trips} tras.</h3>
     </div>
 
     <div></div>
