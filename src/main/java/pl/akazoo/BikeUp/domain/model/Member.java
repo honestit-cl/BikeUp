@@ -6,7 +6,7 @@ import pl.akazoo.BikeUp.domain.model.user.User;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "participation_list")
+@Table(name = "participators")
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
