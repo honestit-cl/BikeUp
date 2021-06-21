@@ -16,7 +16,7 @@ public class Converter {
 
     public User userRegistryToUser(UserRegistry userRegistry){
         User user = new User();
-        user.setLogin(userRegistry.getLogin());
+        user.setUsername(userRegistry.getLogin());
         user.setPassword(userRegistry.getPassword());
         user.setProvince(provinceService.findById(userRegistry.getProvince()));
         return user;

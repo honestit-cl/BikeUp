@@ -16,8 +16,9 @@
 
 <div class="mainR">
     <div class="container_start">
-        <ul><h2>Regulamin strony</h2> <br>
-            <li><h3>Będę miły dla wszystkich użytkowników aplikacji.</h3></li>
+        <ul><h2>Regulamin aplikacji</h2> <br>
+            <li><h3>Będę miły i uprzejmy dla wszystkich użytkowników</h3></li>
+            <li><h3>Będę obiektywny, a nie zawistny</h3></li>
     </ul>
     </div>
 
@@ -27,12 +28,12 @@
         <form:form method="post" modelAttribute="userRegistry">
 
             <label>Login:<br/>
-                <form:input path="login"/>
+                <form:input path="login" placeholder="Podaj login"/>
             </label><br/>
             <form:errors path="login"/>
             <br/>
             <label>Hasło:<br/>
-                <form:input path="password"/>
+                <form:input path="password" placeholder="Podaj hasło"/>
             </label><br/>
             <form:errors path="password"/>
             <br/>
@@ -41,7 +42,7 @@
             </label><br/>
             <form:errors path="province"/>
             <br/><br/>
-            <form:checkbox path="loyalty"/> <span>Będę przestrzegał regulaminu korzystania ze strony.</span>
+            <form:checkbox path="loyalty"/> <span>Będę przestrzegał regulaminu korzystania z aplikacji.</span>
             <br/>
             <form:errors path="loyalty"/>
             <br/><br/>

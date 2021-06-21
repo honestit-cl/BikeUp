@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface ProvinceRepository extends JpaRepository<Province,Long> {
 
-    @EntityGraph(type = EntityGraph.EntityGraphType.LOAD,
-            attributePaths = { "cities" }
-    )
-    List<Province> findAll();
+//    @EntityGraph(type = EntityGraph.EntityGraphType.LOAD,
+//            attributePaths = { "cities" }
+//    )
+//    List<Province> findAll();
 }

@@ -19,12 +19,14 @@
     </button>
     <div class="navigation">
         <ul class="navigation__list">
-            <li class="navigation__item"><a href="">Lorem</a></li>
-            <li class="navigation__item"><a href="">Lorem</a></li>
-            <li class="navigation__item"><a href="">Lorem</a></li>
-            <li class="navigation__item"><a href="">Lorem</a></li>
+            <li><img src="<c:url value='/images/193240896_311767273863710_3235863038840980410_n.png'/>" width="180" height="120" alt="logo"/></li>
+            <li class="navigation__item"><a href="">Dodaj nową trasę</a></li>
+            <li class="navigation__item"><a href="">Wyszukaj trasy</a></li>
+            <li class="navigation__item"><a href="">Twoje trasy</a></li>
+            <li class="navigation__item"><a href="">Twój profil</a></li>
+            <li class="navigation__item"><a href="/logout">Wyloguj</a></li>
+            <li class="navigation__item"><span>Copyright BikeUp.pl</span></li>
         </ul>
     </div>
-
 </body>
 </html>

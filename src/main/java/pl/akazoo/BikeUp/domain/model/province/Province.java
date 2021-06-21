@@ -20,5 +20,5 @@ public class Province {
     @Column(nullable = false, unique = true)
     private String name;
     @OneToMany(mappedBy = "province")
-    private List<City> cities = new ArrayList<>();
+    private List<City> cities;
 }

@@ -74,7 +74,7 @@ body {
     transform: translateX(0px);
 }
 .navigation__list{
-    margin-top: 50px;
+    margin-top: 10px;
     list-style: none;
 }
 .navigation__item{
@@ -84,4 +84,7 @@ body {
 a{
     text-decoration: none;
     color: white;
+}
+span{
+    color: gainsboro;
 }

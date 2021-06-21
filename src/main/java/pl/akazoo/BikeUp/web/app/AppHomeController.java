@@ -1,6 +1,8 @@
 package pl.akazoo.BikeUp.web.app;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -9,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AppHomeController {
 
     @GetMapping
-    public String appStartingPage(){
+    public String appStartingPage(Authentication currentUser, Model model){
+        model.addAttribute("currentUser",currentUser.getName());
         return "app/appHome";
     }
 }

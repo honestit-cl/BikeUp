@@ -24,10 +24,10 @@
 
     <div></div>
     <div class="container">
-        <form method="post" >
+        <form method="post" action="/">
             <label>Logowanie</label>
             <div>
-                <input type="text" id="login" name="login" placeholder="Podaj login">
+                <input type="text" id="login" name="username" placeholder="Podaj login">
             </div>
             <br>
             <div>
@@ -38,6 +38,5 @@
         </form>
     </div>
 </div>
-
 </body>
 </html>
