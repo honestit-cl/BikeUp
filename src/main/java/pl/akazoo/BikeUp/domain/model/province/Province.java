@@ -9,7 +9,7 @@ import java.util.List;
 @Table(name = "provinces")
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = {"cities"})
 @Getter
 @Setter
 public class Province {
@@ -17,7 +17,7 @@ public class Province {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
     @OneToMany(mappedBy = "province")
     private List<City> cities = new ArrayList<>();

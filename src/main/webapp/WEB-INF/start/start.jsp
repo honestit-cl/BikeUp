@@ -19,12 +19,12 @@
         <h2>Znajdziesz tutaj partnerów do wspólych treningów, jak również będziesz mógł śledzić swoje postępy.</h2>
         <br/><br/>
         <h3> Jest z nami już ${users} użytkowników,
-        którzy stworzyli już ${trips} tras.</h3>
+        którzy stworzyli już ${tours} tras.</h3>
     </div>
 
     <div></div>
     <div class="container">
-        <form action="/login" method="post" >
+        <form method="post" >
             <label>Logowanie</label>
             <div>
                 <input type="text" id="login" name="login" placeholder="Podaj login">
@@ -34,7 +34,7 @@
                 <input type="password"  id="password" name="password" placeholder="Podaj hasło">
             </div>
             <br>
-            <button type="submit">Zaloguj</button> <input type="button" value="Zarejestruj" onclick="location.href='/registry'">
+            <button type="submit">Zaloguj</button> <input type="button" value="Zarejestruj" onclick="location.href='/register'">
         </form>
     </div>
 </div>
