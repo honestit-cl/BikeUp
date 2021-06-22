@@ -28,7 +28,7 @@
         <form:form method="post" modelAttribute="userRegistry">
 
             <label>Login:<br/>
-                <form:input path="login" placeholder="Podaj login"/>
+                <form:input  path="login" placeholder="Podaj login"/>
             </label><br/>
             <form:errors path="login"/>
             <br/>
@@ -38,7 +38,10 @@
             <form:errors path="password"/>
             <br/>
             <label>Województwo:<br/>
-                <form:select path="province" items="${allProvinces}" itemLabel="name" itemValue="id"/>
+                <form:select path="province" >
+                    <form:option value="0" label="Wybierz"/>
+                            <form:options items="${allProvinces}" itemLabel="name" itemValue="id"/>
+                </form:select>
             </label><br/>
             <form:errors path="province"/>
             <br/><br/>

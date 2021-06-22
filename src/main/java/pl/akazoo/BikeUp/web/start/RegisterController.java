@@ -12,7 +12,6 @@ import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.province.Province;
 import pl.akazoo.BikeUp.service.impl.ProvinceService;
 import pl.akazoo.BikeUp.service.impl.UserService;
-
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;

@@ -5,7 +5,42 @@ body {
     padding: 20px;
 }
 
-.hamburger{
+.mainApp {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
+    position: absolute;
+    left: 260px;
+    right: auto;
+    top: 5%;
+    bottom: 5%;
+    height: 90%;
+    width: 60%;
+    z-index: -1;
+    text-align: center;
+}
+.clock-data{
+    text-align: center;
+    margin-top: 30px;
+    color: gainsboro;
+}
+
+.clock, .weather {
+    position: fixed;
+    right: 2%;
+    text-align: center;
+    height: 20%;
+    width: 20%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
+}
+.clock{
+    top: 5%;
+}
+.weather{
+    top: 30%;
+}
+
+.hamburger {
     padding: 10px;
     display: inline-block;
     cursor: pointer;
@@ -13,55 +48,65 @@ body {
     border: 0;
     margin: 0;
 }
-.hamburger, .navigation{
+
+.hamburger, .navigation {
     transition: transform .3s .1s ease-in-out;
 }
-.hamburger--active{
+
+.hamburger--active {
     transform: translatex(250px);
 }
-.hamburger__box{
+
+.hamburger__box {
     width: 35px;
     height: 24px;
     display: inline-block;
     position: relative;
 }
 
-.hamburger__inner{
-    width:100%;
+.hamburger__inner {
+    width: 100%;
     height: 3px;
     background-color: gainsboro;
     position: absolute;
     left: 0;
-    top:50%;
+    top: 50%;
     transform: translateY(-50%);
     transition: background-color .3s .1s ease-in-out;
 }
+
 .hamburger__inner::before,
-.hamburger__inner::after{
+.hamburger__inner::after {
     content: '';
-    width:100%;
+    width: 100%;
     height: 3px;
     background-color: gainsboro;
     position: absolute;
     left: 0;
     transition: transform .3s .2s ease-in-out;
 }
-.hamburger__inner::before{
+
+.hamburger__inner::before {
     top: -10px;
 }
-.hamburger__inner::after{
+
+.hamburger__inner::after {
     top: 10px;
 }
-.hamburger--active .hamburger__inner{
+
+.hamburger--active .hamburger__inner {
     background-color: transparent;
 }
-.hamburger--active .hamburger__inner::before{
+
+.hamburger--active .hamburger__inner::before {
     transform: translateY(10px) rotate(45deg);
 }
-.hamburger--active .hamburger__inner::after{
+
+.hamburger--active .hamburger__inner::after {
     transform: translateY(-10px) rotate(-45deg);
 }
-.navigation{
+
+.navigation {
     height: 100vh;
     width: 250px;
     background-color: rgba(0, 0, 0, 0.3);
@@ -70,21 +115,25 @@ body {
     left: 0;
     transform: translateX(-250px);
 }
-.navigation--active{
+
+.navigation--active {
     transform: translateX(0px);
 }
-.navigation__list{
+
+.navigation__list {
     margin-top: 10px;
     list-style: none;
 }
-.navigation__item{
+
+.navigation__item {
     margin-bottom: 20px;
 }
 
-a{
+a, h1, h5 {
     text-decoration: none;
     color: white;
 }
-span{
+
+span {
     color: gainsboro;
 }

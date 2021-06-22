@@ -1,11 +1,16 @@
 package pl.akazoo.BikeUp.service.impl;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.akazoo.BikeUp.domain.model.province.Province;
 import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.domain.repository.UserRepository;
+import pl.akazoo.BikeUp.service.CustomUserDetailsService;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -32,5 +37,10 @@ public class UserService {
 
     public List<User> findAll(){
         return userRepository.findAll();
+    }
+
+    public Province findProvinceByLoggedUsername(){
+        Optional<User> user = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        return user.get().getProvince();
     }
 }

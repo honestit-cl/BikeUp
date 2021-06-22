@@ -1,9 +1,10 @@
 package pl.akazoo.BikeUp.domain.dto;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Range;
+
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Data
 public class UserRegistry {
@@ -12,7 +13,7 @@ public class UserRegistry {
     private String login;
     @NotBlank
     private String password;
-    @NotNull
+    @Range(min=1,max = 16)
     private Long province;
     @AssertTrue
     private boolean loyalty;

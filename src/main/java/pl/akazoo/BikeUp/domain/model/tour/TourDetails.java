@@ -23,7 +23,7 @@ public class TourDetails {
     @Column(nullable = false)
     private String description; //  extra description
     @Column(nullable = false)
-    private Long howFar; // how far from city chosen before
+    private String howFar; // how far from city chosen before
     @Column
     private LocalDateTime creationTime;
     @Column
