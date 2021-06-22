@@ -11,5 +11,8 @@
 <div class="weather">
     <div class="clock-data">Miejsce na pogodę.</div><br/>
 </div>
+<div class="anecdote">
+    <div class="clock-data">Miejsce na anegdoty.</div><br/>
+</div>
 </body>
 </html>

@@ -8,30 +8,36 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.akazoo.BikeUp.domain.dto.TourAdd;
-import pl.akazoo.BikeUp.domain.dto.UserRegistry;
+import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.province.City;
+import pl.akazoo.BikeUp.domain.model.tour.Tour;
+import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.service.impl.CityService;
+import pl.akazoo.BikeUp.service.impl.TourDetailsService;
 import pl.akazoo.BikeUp.service.impl.TourService;
 import pl.akazoo.BikeUp.service.impl.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/app/addTour")
 public class AddTourController {
 
     private final TourService tourService;
+    private final TourDetailsService tourDetailsService;
     private final CityService cityService;
     private final UserService userService;
+    private final Converter converter;
 
 
-    public AddTourController(TourService tourService, CityService cityService, UserService userService) {
+    public AddTourController(TourService tourService, TourDetailsService tourDetailsService, CityService cityService, UserService userService, Converter converter) {
         this.tourService = tourService;
+        this.tourDetailsService = tourDetailsService;
         this.cityService = cityService;
         this.userService = userService;
 
+        this.converter = converter;
     }
 
     @GetMapping
@@ -45,7 +51,10 @@ public class AddTourController {
         if (bindingResult.hasErrors()) {
             return "app/addTour";
         }
-        model.addAttribute("added",tourAdd);
+        TourDetails tourDetails = converter.tourAddToTourDetails(tourAdd);
+        Tour tour = converter.tourAddToTour(tourAdd,tourDetails);
+        tourDetailsService.save(tourDetails);
+        tourService.save(tour);
         return "app/tourAdded";
     }
 

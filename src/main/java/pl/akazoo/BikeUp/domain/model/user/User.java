@@ -4,6 +4,8 @@ import lombok.*;
 import org.hibernate.annotations.Formula;
 import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.province.Province;
+import pl.akazoo.BikeUp.domain.model.tour.Tour;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -38,6 +40,8 @@ public class User {
     private String lastName;
     @Column(nullable = false)
     private String role;
+    @OneToMany(mappedBy = "user")
+    private List<Tour> tourList;
 
     @PrePersist
     public void creationDateUpdate(){

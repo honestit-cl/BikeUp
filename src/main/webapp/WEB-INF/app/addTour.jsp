@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="/WEB-INF/app/parties/header.jsp" %>
 <h1>Dodawanie wycieczki</h1><br/>
 <form:form method="post" modelAttribute="tourAdd">
-    <label>Maksymalna ilość uczestników:<br/>
+    <label>Maksymalna ilość dodatkowych uczestników:<br/>
         <form:input type="number" path="participants" placeholder="Liczba uczestników"/>
     </label><br/>
     <form:errors path="participants"/>
@@ -37,12 +38,12 @@
     <br/>
 
     <label>Dodatkowy opis:<br/>
-        <form:input type="textarea" path="description" placeholder="Miejsce docelowe,przystanki,godzina spotkania/wyjazdu oraz wszystkie znaczące informacje"/>
+        <form:textarea rows="5" cols="40" path="description" placeholder="Miejsce docelowe,przystanki,godzina spotkania/wyjazdu oraz wszystkie znaczące informacje"/>
     </label><br/>
     <form:errors path="description"/>
     <br/>
 
-    <label>Miasto:<br/>
+    <label>Miasto:**<br/>
         <form:select path="cityId" >
             <form:option value="0" label="Wybierz"/>
             <form:options items="${allCities}" itemLabel="name" itemValue="id"/>
@@ -58,8 +59,12 @@
         </form:select>
     </label><br/>
     <form:errors path="howFar"/>
-    <br/>
-
+    <br/><br/>
+<span>
+    * Jeśli miejsce zakończenia jest inne, zaznacz to dopisując je do Dodatkowego opisu.<br/>
+    ** Miasta zostały dopasowane do Twojego aktualnego województwa. Aby je zmienić odwiedź stronę: Twój profil.
+</span><br/><br/>
     <form:button type="submit">Dodaj trasę</form:button>
 </form:form>
+<script src="/scripts/dataScript.js" defer></script>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

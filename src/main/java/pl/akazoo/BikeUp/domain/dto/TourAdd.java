@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class TourAdd {
 
-    @Range(min=1,max = 10)
+    @Range(min=1,max = 10, message = "Ilość uczestników musi być w przedziale od 1 do 10")
     private int participants; // participants amount
     @NotNull
     @Range(min = 5, max = 150)

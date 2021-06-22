@@ -18,13 +18,14 @@ body {
     z-index: -1;
     text-align: center;
 }
-.clock-data{
+
+.clock-data {
     text-align: center;
     margin-top: 30px;
     color: gainsboro;
 }
 
-.clock, .weather {
+.clock, .weather, .anecdote {
     position: fixed;
     right: 2%;
     text-align: center;
@@ -33,11 +34,17 @@ body {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
 }
-.clock{
+
+.clock {
     top: 5%;
 }
-.weather{
+
+.weather {
     top: 30%;
+}
+
+.anecdote {
+    top: 55%;
 }
 
 .hamburger {
@@ -134,6 +141,13 @@ a, h1, h5 {
     color: white;
 }
 
-span {
+span, label{
     color: gainsboro;
+}
+#participants.errors{
+    color: red;
+}
+table{
+    text-align: center;
+    margin: auto;
 }

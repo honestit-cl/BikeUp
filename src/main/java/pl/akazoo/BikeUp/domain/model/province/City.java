@@ -1,5 +1,6 @@
 package pl.akazoo.BikeUp.domain.model.province;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
 
@@ -18,5 +19,6 @@ public class City {
     @Column(unique = true, nullable = false)
     private String name;
     @ManyToOne
+    @JsonIgnore
     private Province province;
 }

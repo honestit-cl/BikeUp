@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.akazoo.BikeUp.domain.model.province.City;
 import pl.akazoo.BikeUp.domain.model.province.Province;
 import pl.akazoo.BikeUp.domain.repository.CityRepository;
+import pl.akazoo.BikeUp.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -20,5 +21,9 @@ public class CityService {
 
     public List<City> findAllByProvince(Province province){
         return cityRepository.findAllByProvince(province);
+    }
+
+    public City findCityById(Long id){
+         return cityRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("City with id " + id + " not exist"));
     }
 }
