@@ -2,6 +2,8 @@ package pl.akazoo.BikeUp.domain.dto;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.URL;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -25,4 +27,6 @@ public class TourAdd {
     private String howFar; // from selected city
     @Range(min = 1)
     private Long cityId;
+    @URL
+    private String link;
 }

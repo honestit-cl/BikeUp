@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.domain.repository.TourRepository;
+import pl.akazoo.BikeUp.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -29,5 +30,13 @@ public class TourService {
 
     public List<Tour> findToursByUser(User user){
         return tourRepository.findAllTourByUser(user);
+    }
+
+    public Tour findById(Long id){
+        return tourRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Tour with id="+id+"not exits."));
+    }
+    public void delete(Long id){
+        Tour tour = findById(id);
+        tourRepository.delete(tour);
     }
 }

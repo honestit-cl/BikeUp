@@ -33,6 +33,7 @@ public class Converter {
     public TourDetails tourAddToTourDetails(TourAdd tourAdd) {
         TourDetails tourDetails = new TourDetails();
         tourDetails.setHowFar(tourAdd.getHowFar());
+        tourDetails.setMapLink(tourAdd.getLink());
         tourDetails.setDescription(tourAdd.getDescription());
         tourDetails.setStart(tourAdd.getStart());
         return tourDetails;

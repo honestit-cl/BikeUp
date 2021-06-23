@@ -1,12 +1,12 @@
 body {
-    background-image: url("/images/vidar-nordli-mathisen-Kuu5mmxkwW4-unsplash.jpg");
+    background-image: url("/images/dan-carlson-EXSh-k3wjds-unsplash.jpg");
     background-attachment: fixed;
     background-size: cover;
     padding: 20px;
 }
 
 .mainApp {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
     position: absolute;
     left: 260px;
@@ -25,13 +25,13 @@ body {
     color: gainsboro;
 }
 
-.clock, .weather, .anecdote {
-    position: fixed;
+.clock, .weather, .anecdote, .status {
+    position: absolute;
     right: 2%;
     text-align: center;
     height: 20%;
     width: 20%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
 }
 
@@ -39,12 +39,15 @@ body {
     top: 5%;
 }
 
-.weather {
-    top: 30%;
+.status{
+    top: 27.5%;
 }
 
+.weather {
+    top: 50%;
+}
 .anecdote {
-    top: 55%;
+    top: 72.5%;
 }
 
 .hamburger {

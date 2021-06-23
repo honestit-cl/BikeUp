@@ -33,8 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <td>${active}</td>
             <td>${realP}/${participants}</td>
             <td>
-                <span><a href="">Szczegóły</a></span><br/>
-                <span><a href="">Usuń</a></span><br/>
+                <span><a href="/app/tours/details/${tourId}">Szczegóły</a></span><br/>
             </td> 
  `;
 
@@ -51,9 +50,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const link = document.createElement('span');
         if (active === 'open') {
             link.innerHTML = `
-           <span><a href="">Edytuj</a></span><br/>
-           <span><a href="">Potwierdź wykonanie</a></span><br/>
-           <span><a href="">Potwierdź uczestników</a></span><br/>
+           <span><a href="/app/tours/delete/${tourId}">Usuń</a></span><br/>
+           <span><a href="/app/tours/edit/${tourId}">Edytuj</a></span><br/>
+           <span><a href="/app/tours/confirmTour/${tourId}">Potwierdź wykonanie</a></span><br/>
+           <span><a href="/app/tours/confirmPart/${tourId}">Potwierdź uczestników</a></span><br/>
            `;
             section.lastElementChild.append(link);
         }
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const link2 = document.createElement('span');
         if (active === 'closed') {
             link2.innerHTML = ` 
-           <span><a href="">Przydziel punkty</a></span><br/>
+           <span><a href="/app/tours/addPoints/${tourId}">Przydziel punkty</a></span><br/>
            `;
             section.lastElementChild.append(link2);
         }

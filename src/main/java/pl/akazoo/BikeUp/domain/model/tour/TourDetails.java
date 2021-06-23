@@ -28,6 +28,8 @@ public class TourDetails {
     private LocalDateTime creationTime;
     @Column
     private LocalDateTime updateTime;
+    @Column
+    private String mapLink;
 
     @PrePersist
     public void creationTimeUpdate() {

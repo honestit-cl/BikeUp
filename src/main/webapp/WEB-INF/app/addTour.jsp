@@ -60,6 +60,12 @@
     </label><br/>
     <form:errors path="howFar"/>
     <br/><br/>
+
+    <label>Odległość od zaznaczonego miasta:<br/>
+        <form:input path="link" placeholder="Link do trasy w Google Maps"/>
+    </label><br/>
+    <form:errors path="link"/>
+    <br/><br/>
 <span>
     * Jeśli miejsce zakończenia jest inne, zaznacz to dopisując je do Dodatkowego opisu.<br/>
     ** Miasta zostały dopasowane do Twojego aktualnego województwa. Aby je zmienić odwiedź stronę: Twój profil.

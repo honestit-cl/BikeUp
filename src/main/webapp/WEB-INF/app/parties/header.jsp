@@ -20,9 +20,12 @@
     <ul class="navigation__list">
         <li><img src="<c:url value='/images/193240896_311767273863710_3235863038840980410_n.png'/>" width="180" height="120" alt="logo"/></li>
         <li class="navigation__item"><a href="/app/news">Bądź na bieżąco</a></li>
+        <li class="navigation__item"><a href="/app/success">Podziel się swoim sukcesem</a></li>
         <li class="navigation__item"><a href="/app/addTour">Dodaj nową trasę</a></li>
         <li class="navigation__item"><a href="/app/search">Wyszukaj trasy</a></li>
         <li class="navigation__item"><a href="/app/tours">Twoje trasy</a></li>
+        <li class="navigation__item"><a href="/app/points">Twoje punkty za trasy</a></li>
+        <li class="navigation__item"><a href="/app/participation">Uczestnictwo w trasach</a></li>
         <li class="navigation__item"><a href="/app/profile">Twój profil</a></li>
         <li class="navigation__item"><a href="/logout">Wyloguj</a></li>
         <li class="navigation__item"><span>Copyright BikeUp.pl</span></li>

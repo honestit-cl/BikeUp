@@ -8,6 +8,10 @@
     <br/>
     <div > <script type="text/JavaScript" src="http://www.free4u.pl/data_godzina.php?co=data"></script></div>
 </div>
+<div class="status">
+    <div class="clock-data">Ilość punktów:</div><br/>
+    <div class="clock-data">Poziom:</div><br/>
+</div>
 <div class="weather">
     <div class="clock-data">Miejsce na pogodę.</div><br/>
 </div>
