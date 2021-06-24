@@ -18,7 +18,7 @@
     <div class="container_start">
         <ul><h2>Regulamin aplikacji</h2> <br>
             <li><h3>Będę miły i uprzejmy dla wszystkich użytkowników</h3></li>
-            <li><h3>Będę obiektywny, a nie zawistny</h3></li>
+            <li><h3>Będę obiektywnie oceniał użytkowników.</h3></li>
     </ul>
     </div>
 
@@ -37,7 +37,7 @@
             </label><br/>
             <form:errors path="password"/>
             <br/>
-            <label>Województwo:<br/>
+            <label>Województwo(można zmienić):<br/>
                 <form:select path="province" >
                     <form:option value="0" label="Wybierz"/>
                             <form:options items="${allProvinces}" itemLabel="name" itemValue="id"/>

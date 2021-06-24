@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.URL;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Data
 public class TourAdd {
@@ -22,6 +23,7 @@ public class TourAdd {
     @NotBlank
     private String start; // place, road,
     @NotBlank
+    @Size(max = 1000)
     private String description; // extra description
     @NotBlank
     private String howFar; // from selected city

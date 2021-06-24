@@ -20,7 +20,7 @@ public class TourDetails {
     private Tour tour;
     @Column(nullable = false)
     private String start; //starting place
-    @Column(nullable = false)
+    @Column(nullable = false,length = 1000)
     private String description; //  extra description
     @Column(nullable = false)
     private String howFar; // how far from city chosen before
@@ -28,7 +28,7 @@ public class TourDetails {
     private LocalDateTime creationTime;
     @Column
     private LocalDateTime updateTime;
-    @Column
+    @Column(length = 1024)
     private String mapLink;
 
     @PrePersist

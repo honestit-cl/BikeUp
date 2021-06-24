@@ -61,7 +61,7 @@
     <form:errors path="howFar"/>
     <br/><br/>
 
-    <label>Odległość od zaznaczonego miasta:<br/>
+    <label>Link do mapy trasy(GoogleMaps):<br/>
         <form:input path="link" placeholder="Link do trasy w Google Maps"/>
     </label><br/>
     <form:errors path="link"/>
