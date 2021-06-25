@@ -3,6 +3,7 @@ package pl.akazoo.BikeUp.domain.model.converter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.akazoo.BikeUp.domain.dto.TourAdd;
+import pl.akazoo.BikeUp.domain.dto.UserEdit;
 import pl.akazoo.BikeUp.domain.dto.UserRegistry;
 import pl.akazoo.BikeUp.domain.model.province.City;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
@@ -67,5 +68,13 @@ public class Converter {
         tour.setActive("open");
         tour.setUser(user);
         return tour;
+    }
+
+    public User userEditToUser(UserEdit userEdit) {
+        User user = userService.findUserByUsername();
+        user.setProvince(provinceService.findById(userEdit.getProvince()));
+        user.setFirstName(userEdit.getFirstName());
+        user.setLastName(userEdit.getLastName());
+        return user;
     }
 }

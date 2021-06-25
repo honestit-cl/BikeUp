@@ -37,7 +37,8 @@
             </label><br/>
             <form:errors path="password"/>
             <br/>
-            <label>Województwo(można zmienić):<br/>
+            <label>Województwo<br>
+                (można zmienić):<br/>
                 <form:select path="province" >
                     <form:option value="0" label="Wybierz"/>
                             <form:options items="${allProvinces}" itemLabel="name" itemValue="id"/>
@@ -49,7 +50,7 @@
             <br/>
             <form:errors path="loyalty"/>
             <br/><br/>
-            <form:button type="submit">Zarejestruj</form:button>
+            <form:button type="submit">Zarejestruj</form:button><input type="button" value="Wróć" onclick="location.href='/'">
         </form:form>
     </div>
 </div>

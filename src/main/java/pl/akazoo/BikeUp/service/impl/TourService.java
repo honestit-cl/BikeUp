@@ -15,9 +15,11 @@ import java.util.List;
 public class TourService {
 
     private final TourRepository tourRepository;
+    private final UserService userService;
 
-    public TourService(TourRepository tourRepository) {
+    public TourService(TourRepository tourRepository, UserService userService) {
         this.tourRepository = tourRepository;
+        this.userService = userService;
     }
 
     public long allToursCount(){
@@ -38,5 +40,14 @@ public class TourService {
     public void delete(Long id){
         Tour tour = findById(id);
         tourRepository.delete(tour);
+    }
+
+    public List<Tour> findAllTours(){
+        return tourRepository.findAll();
+    }
+
+    public List<Tour> findAllToursWithoutUser() {
+        User user= userService.findUserByUsername();
+        return tourRepository.findAllByUser_IdNotLike(user.getId());
     }
 }

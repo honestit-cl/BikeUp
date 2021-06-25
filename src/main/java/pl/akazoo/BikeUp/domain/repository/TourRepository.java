@@ -10,4 +10,6 @@ public interface TourRepository extends JpaRepository<Tour,Long> {
 
     List<Tour> findAllTourByUser(User user);
 
+    List<Tour> findAllByUser_IdNotLike(Long id);
+
 }

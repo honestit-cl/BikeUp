@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.akazoo.BikeUp.config.popup;
 import pl.akazoo.BikeUp.domain.dto.UserRegistry;
 import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.province.Province;
@@ -50,6 +51,7 @@ public class RegisterController {
         if (bindingResult.hasErrors() || userService.existsByUsername(userRegistry.getLogin())) {
             return "start/register";
         }
+
         userService.save(converter.userRegistryToUser(userRegistry));
         return "start/registerDone";
     }

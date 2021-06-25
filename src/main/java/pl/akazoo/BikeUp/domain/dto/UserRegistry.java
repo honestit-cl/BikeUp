@@ -9,12 +9,12 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class UserRegistry {
 
-    @NotBlank
+    @NotBlank(message = "To pole nie może być puste.")
     private String login;
-    @NotBlank
+    @NotBlank(message = "To pole nie może być puste.")
     private String password;
-    @Range(min=1,max = 16)
+    @Range(min=1,max = 16,message = "Wybierz swoje województwo.")
     private Long province;
-    @AssertTrue
+    @AssertTrue(message = "Potwierdź zapoznanie się z regulaminem.")
     private boolean loyalty;
 }
