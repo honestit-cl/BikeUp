@@ -50,7 +50,7 @@
             <br/>
             <form:errors path="loyalty"/>
             <br/><br/>
-            <form:button type="submit">Zarejestruj</form:button><input type="button" value="Wróć" onclick="location.href='/'">
+            <form:button class="myButton"  type="submit">Zarejestruj</form:button> <input  class="myButton" type="button" value="Wróć" onclick="location.href='/'">
         </form:form>
     </div>
 </div>

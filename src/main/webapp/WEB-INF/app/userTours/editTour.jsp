@@ -56,7 +56,7 @@
     <span>
    Pamiętaj, aby o każdej zmianie poinformować uczestników.<br/>
 </span><br/><br/>
-    <form:button type="submit">Edytuj trasę</form:button>
+    <form:button class="myButton" type="submit">Edytuj trasę</form:button>
 </form:form>
 <script src="/scripts/dataScript.js" defer></script>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

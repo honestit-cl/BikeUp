@@ -7,8 +7,9 @@
     <p>Czy na pewno chesz potwierdzić wycieczkę, która ma odbyła się ${tour.date}?(id = ${tour.id})?</p>
     <p>Potwierdzasz tym samym że wycieczka miała miejsce według ustalonych wytycznych.</p>
     <p>
-        <input type="hidden" name="id" value="${tour.id}"/>
-        <button type="submit">Tak</button> <input type="button" value="Nie" onclick="location.href='/app/tours'">
+        <input class="myButton" type="hidden" name="id" value="${tour.id}"/>
+        <br/>
+        <button class="myButton" type="submit">Tak</button> <input class="myButton" type="button" value="Nie" onclick="location.href='/app/tours'">
     </p>
 </form>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

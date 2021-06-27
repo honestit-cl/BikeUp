@@ -4,11 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.service.impl.MemberService;
 import pl.akazoo.BikeUp.service.impl.TourDetailsService;
 import pl.akazoo.BikeUp.service.impl.TourService;
+import pl.akazoo.BikeUp.service.impl.UserService;
 
 import java.util.List;
 
@@ -20,11 +20,13 @@ public class SearchController {
     private final TourService tourService;
     private final TourDetailsService tourDetailsService;
     private final MemberService memberService;
+    private final UserService userService;
 
-    public SearchController(TourService tourService, TourDetailsService tourDetailsService, MemberService memberService) {
+    public SearchController(TourService tourService, TourDetailsService tourDetailsService, MemberService memberService, UserService userService) {
         this.tourService = tourService;
         this.tourDetailsService = tourDetailsService;
         this.memberService = memberService;
+        this.userService = userService;
     }
 
     @GetMapping
@@ -52,8 +54,11 @@ public class SearchController {
 
     @PostMapping("/confirmPart")
     public String confirmed(Long id) {
-        Tour tour = tourService.findById(id);
-        memberService.saveNewMember(tour);
-        return "redirect:/app/search";
+        if(memberService.findByUser_IdAndTour_Id(userService.findUserByUsername().getId(),id).isEmpty()) {
+            Tour tour = tourService.findById(id);
+            memberService.saveNewMember(tour);
+            return "redirect:/app/search";
+        }
+        return "/app/searching/memberWrong";
     }
 }

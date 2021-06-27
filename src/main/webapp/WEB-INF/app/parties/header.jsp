@@ -32,4 +32,4 @@
         <li class="navigation__item"><span>Copyright BikeUp.pl</span></li>
     </ul>
 </div>
-<div class="mainApp">
+<div class="mainApp" style="overflow: auto">

@@ -29,5 +29,6 @@
         <td>${user.lastName}</td>
     </tr>
 </table><br/>
-<input type="button" value="Edytuj" onclick="location.href='/app/profile/edit'">
+<br/>
+<input type="button" value="Edytuj" class="myButton" onclick="location.href='/app/profile/edit'">
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

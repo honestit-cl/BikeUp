@@ -6,6 +6,7 @@ import pl.akazoo.BikeUp.domain.model.user.Point;
 import pl.akazoo.BikeUp.domain.repository.PointRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -25,5 +26,9 @@ public class PointsService {
 
     public void save(Point point){
         pointRepository.save(point);
+    }
+
+    public Optional<Point> findByGiver_IdAndOwner_IdAndTour_Id(Long giver, Long owner, Long tour){
+        return pointRepository.findByGiver_IdAndOwner_IdAndTour_Id(giver, owner, tour);
     }
 }

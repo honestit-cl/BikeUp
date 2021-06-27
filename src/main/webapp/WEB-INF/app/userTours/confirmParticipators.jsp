@@ -25,5 +25,6 @@ Id wycieczki : ${tour.id}</p><br/>
     </c:forEach>
 </table>
 <br/>
-<input type="button" value="Powrót" onclick="location.href='/app/tours'">
+<br/>
+<input type="button" class="myButton" value="Powrót" onclick="location.href='/app/tours'">
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

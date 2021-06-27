@@ -22,7 +22,7 @@
     Możesz już zacząć swoją przygodę :)<br/>
     <br/>
     </span>
-    <input type="button" value="Strona główna" onclick="location.href='/'">
+    <input type="button" class="myButton"  value="Strona główna" onclick="location.href='/'">
 </div>
 </body>
 </html>

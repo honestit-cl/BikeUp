@@ -8,7 +8,8 @@
     <p></p>
     <p>
         <input type="hidden" name="id" value="${tour.id}"/>
-        <button type="submit">Tak</button> <input type="button" value="Nie" onclick="location.href='/app/search'">
+        <br/>
+        <button class="myButton" type="submit">Tak</button> <input type="button"  class="myButton" value="Nie" onclick="location.href='/app/search'">
     </p>
 </form>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

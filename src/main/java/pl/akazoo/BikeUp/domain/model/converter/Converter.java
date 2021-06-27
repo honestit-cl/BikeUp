@@ -11,6 +11,7 @@ import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.service.impl.*;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -115,5 +116,9 @@ public class Converter {
         point.setOwner(userService.findUserById(pointAdd.getUserIdToAdd()));
         point.setTour(tourService.findById(pointAdd.getTourId()));
         pointsService.save(point);
+    }
+
+    public Optional<Point> pointsCheck(PointAdd pointAdd) {
+       return pointsService.findByGiver_IdAndOwner_IdAndTour_Id(userService.findUserByUsername().getId(), pointAdd.getUserIdToAdd(),pointAdd.getTourId());
     }
 }

@@ -8,7 +8,8 @@
     <p>Potwierdzasz tym samym że osoby które zostały zapisane na ta wycieczkę mają tego świadomość.</p>
     <p>
         <input type="hidden" name="id" value="${tour.id}"/>
-        <button type="submit">Tak</button> <input type="button" value="Nie" onclick="location.href='/app/tours'">
+        <br/>
+        <button class="myButton" type="submit">Tak</button> <input class="myButton" type="button" value="Nie" onclick="location.href='/app/tours'">
     </p>
 </form>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

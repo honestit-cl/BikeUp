@@ -3,11 +3,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="/WEB-INF/app/parties/header.jsp" %>
 <h1>Przydziel punkty</h1><br/>
+<p>Dodajesz właśnie ocenę dla użytkownika o loginie: ${user.username}</p>
 <form:form action="/app/tours/addPointsConfirmed" method="post" modelAttribute="pointAdd">
     <form:hidden path="tourId" value="${pointAdd.tourId}"/>
     <form:hidden path="userIdToAdd" value="${pointAdd.userIdToAdd}"/>
     <label>Ilość punktów:<br/>
-        <form:input  path="amount" placeholder="Ilość pounktów"/>
+        <form:input  path="amount" placeholder="Ilość punktów"/>
     </label><br/>
     <form:errors path="amount"/>
     <br/>
@@ -18,5 +19,7 @@
     <br/>
     <form:button type="submit">Dodaj</form:button>
 </form:form>
-<input type="button" value="Powrót" onclick="location.href='/app/tours/addPointsList/${pointAdd.tourId}'">
+<br/>
+<br/>
+<input type="button" class="myButton" value="Powrót" onclick="location.href='/app/tours/addPointsList/${pointAdd.tourId}'">
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

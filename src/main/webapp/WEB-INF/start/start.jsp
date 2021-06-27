@@ -34,7 +34,7 @@
                 <input type="password"  id="password" name="password" placeholder="Podaj hasło">
             </div>
             <br>
-            <button type="submit">Zaloguj</button> <input type="button" value="Zarejestruj" onclick="location.href='/register'">
+            <button class="myButton startButton" type="submit">Zaloguj</button> <input class="myButton startButton" type="button" value="Zarejestruj" onclick="location.href='/register'">
         </form>
     </div>
 </div>

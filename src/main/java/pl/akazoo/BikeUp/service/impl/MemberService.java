@@ -8,6 +8,7 @@ import pl.akazoo.BikeUp.domain.repository.MemberRepository;
 import pl.akazoo.BikeUp.exceptions.ResourceNotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -42,5 +43,9 @@ public class MemberService {
         member.setStatus("waiting");
         member.setUser(userService.findUserByUsername());
         memberRepository.save(member);
+    }
+
+    public Optional<Member> findByUser_IdAndTour_Id(Long userId,Long tourId){
+        return memberRepository.findByUser_idAndTour_id(userId, tourId);
     }
 }

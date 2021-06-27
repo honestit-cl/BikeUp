@@ -12,11 +12,15 @@
         <th>Dostępne akcje</th>
     </tr>
     <c:forEach items="${members}" var="member">
+        <c:if test="${member.status == 'active'}">
         <tr>
             <th>${member.user.username}</th>
             <th><input type="button" value="Przydziel" onclick="location.href='/app/tours/addPoints/${member.user.id}/${tour.id}'"></th>
         </tr>
+        </c:if>
     </c:forEach>
 </table>
-<input type="button" value="Powrót" onclick="location.href='/app/tours'">
+<br/>
+<br/>
+<input type="button" class="myButton" value="Powrót" onclick="location.href='/app/tours'">
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

@@ -122,6 +122,7 @@ public class UserToursController {
         point.setUserIdToAdd(userId);
         point.setTourId(tourId);
         model.addAttribute("pointAdd", point);
+        model.addAttribute("user",userService.findUserById(userId));
         return "/app/userTours/pointsForm";
     }
 
@@ -130,8 +131,11 @@ public class UserToursController {
         if (bindingResult.hasErrors()) {
             return "/app/userTours/pointsForm";
         }
-        converter.savePointAdd(pointAdd);
-        return "redirect:/app/tours/addPointsList/" + pointAdd.getTourId();
+        if(converter.pointsCheck(pointAdd).isEmpty()) {
+            converter.savePointAdd(pointAdd);
+            return "redirect:/app/tours/addPointsList/" + pointAdd.getTourId();
+        }
+        return "/app/userTours/pointsWrong";
     }
 
     @ModelAttribute("hours")

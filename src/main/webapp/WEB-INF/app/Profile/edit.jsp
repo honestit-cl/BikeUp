@@ -23,6 +23,6 @@
     <form:errors path="province"/>
     <br/>
     <br/>
-    <form:button type="submit">Edutuj</form:button><input type="button" value="Wróć" onclick="location.href='/app/profile'">
+    <form:button class="myButton" type="submit">Edutuj</form:button><input type="button"  class="myButton" value="Wróć" onclick="location.href='/app/profile'">
 </form:form>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>
