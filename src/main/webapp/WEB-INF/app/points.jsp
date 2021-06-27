@@ -5,14 +5,16 @@
 <h1>Twoje punkty</h1><br/>
 <table border="1">
     <tr>
-        <th>Id</th>
-        <th>Data</th>
-        <th>Miasto</th>
-        <th>Dystans</th>
-        <th>Czas</th>
-        <th>Status</th>
-        <th>Potwierdzeni uczestnicy</th>
-        <th>Dostępne akcje</th>
+        <th>Id trasy</th>
+        <th>Ilość</th>
+        <th>Opis</th>
     </tr>
+    <c:forEach items="${points}" var="point">
+        <tr>
+            <th>${point.tour.id}</th>
+            <th>${point.amount}</th>
+            <th>${point.description}</th>
+        </tr>
+    </c:forEach>
 </table>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

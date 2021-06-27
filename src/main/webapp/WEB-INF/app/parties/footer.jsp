@@ -13,10 +13,14 @@
     <div class="clock-data">Poziom:</div><br/>
 </div>
 <div class="weather">
-    <div class="clock-data">Miejsce na pogodę.</div><br/>
+    <div class="clock-data">Pogoda</div><br/>
+    <div class="clock-data">26 stopni<br/>
+    Słonecznie<br/>
+ Czyżby to idelane warunki na rower? :)</div><br/>
 </div>
 <div class="anecdote">
-    <div class="clock-data">Miejsce na anegdoty.</div><br/>
+    <div class="clock-data">Czy wiesz że... ?</div><br/>
+    <div class="clock-data">Skórzane siodełko Brooks B17 jest produkowane w niezmienionej formie od ponad 120 lat.</div><br/>
 </div>
 </body>
 </html>

@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const link2 = document.createElement('span');
         if (active === 'closed') {
             link2.innerHTML = ` 
-           <span><a href="/app/tours/addPoints/${tourId}">Przydziel punkty</a></span><br/>
+           <span><a href="/app/tours/addPointsList/${tourId}">Przydziel punkty</a></span><br/>
            `;
             section.lastElementChild.append(link2);
         }

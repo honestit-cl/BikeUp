@@ -2,28 +2,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="/WEB-INF/app/parties/header.jsp" %>
-<h1>Potwierdź uczestników</h1><br/>
-Uczestnicy wycieczki, która ma obyć się ${tour.date}.<br/>
-Id wycieczki : ${tour.id}</p><br/>
+<h1>Przydziel punkty</h1><br/>
+<p>Użytkownicy, którym możesz przydzielić punkty za trasę z dnia ${tour.date}.<br/>
+    Id wycieczki : ${tour.id}</p><br/>
+
 <table border="1">
     <tr>
-        <th>Id</th>
-        <th>Nazwa Użykownika</th>
-        <th>Status</th>
+        <th>Użytkownik</th>
         <th>Dostępne akcje</th>
     </tr>
     <c:forEach items="${members}" var="member">
         <tr>
-            <th>${member.id}</th>
             <th>${member.user.username}</th>
-            <th>${member.status}</th>
-            <th><c:if test="${member.status == 'waiting'}">
-                <input type="button" value="Potwierdź" onclick="location.href='/app/tours/setActive/${member.id}/${tour.id}'">
-            </c:if>
-            </th>
+            <th><input type="button" value="Przydziel" onclick="location.href='/app/tours/addPoints/${member.user.id}/${tour.id}'"></th>
         </tr>
     </c:forEach>
 </table>
-<br/>
 <input type="button" value="Powrót" onclick="location.href='/app/tours'">
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = {"memberList","tourList"})
 @Getter
 @Setter
 public class User {
@@ -28,7 +28,7 @@ public class User {
     private String password;
     @ManyToOne
     private Province province;
-    @Formula("(select count(p.amount) from points p where p.id = id)")
+    @Formula("(select SUM(p.amount) from points p where p.owner_id = id)")
     private Long points;
     @OneToMany(mappedBy = "user")
     private List<Member> memberList;

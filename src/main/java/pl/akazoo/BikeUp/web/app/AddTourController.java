@@ -47,7 +47,7 @@ public class AddTourController {
     }
 
     @PostMapping
-    public String registerConfirm(@Valid TourAdd tourAdd, BindingResult bindingResult,Model model) {
+    public String registerConfirm(@Valid TourAdd tourAdd, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "app/addTour";
         }

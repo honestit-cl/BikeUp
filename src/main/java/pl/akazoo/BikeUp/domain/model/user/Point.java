@@ -21,5 +21,9 @@ public class Point {
     @ManyToOne
     private Tour tour;
     @ManyToOne
-    private User user;
+    private User owner;
+    @Column
+    private String description;
+    @ManyToOne
+    private User giver;
 }

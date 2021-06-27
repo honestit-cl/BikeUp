@@ -57,4 +57,8 @@ public class UserService {
     public boolean existsByUsername(String username){
         return userRepository.existsByUsername(username);
     }
+
+    public User findUserById(Long id){
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not exist"));
+    }
 }

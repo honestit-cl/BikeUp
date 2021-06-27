@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.repository.MemberRepository;
+import pl.akazoo.BikeUp.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -26,6 +27,9 @@ public class MemberService {
 
     public List<Member> findMembersByTourId(Long id){
         return memberRepository.findAllByTour_Id(id);
+    }
+    public Member findById(Long id){
+        return memberRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Member with id="+id+"not exits."));
     }
 
     public void deleteMembers(List<Member> members){
