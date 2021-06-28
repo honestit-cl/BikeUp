@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.akazoo.BikeUp.domain.model.user.Point;
 import pl.akazoo.BikeUp.domain.repository.PointRepository;
-
 import java.util.List;
 import java.util.Optional;
 

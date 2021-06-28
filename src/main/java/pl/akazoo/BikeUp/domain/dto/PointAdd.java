@@ -2,7 +2,6 @@ package pl.akazoo.BikeUp.domain.dto;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 

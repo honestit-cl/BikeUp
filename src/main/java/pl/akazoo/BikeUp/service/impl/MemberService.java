@@ -6,7 +6,6 @@ import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.repository.MemberRepository;
 import pl.akazoo.BikeUp.exceptions.ResourceNotFoundException;
-
 import java.util.List;
 import java.util.Optional;
 

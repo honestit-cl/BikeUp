@@ -8,21 +8,13 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import pl.akazoo.BikeUp.domain.dto.TourAdd;
-import pl.akazoo.BikeUp.domain.model.Member;
-import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.province.City;
 import pl.akazoo.BikeUp.domain.model.province.Province;
-import pl.akazoo.BikeUp.domain.model.tour.Tour;
-import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
-import pl.akazoo.BikeUp.domain.model.user.Point;
 import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.domain.repository.CityRepository;
 import pl.akazoo.BikeUp.service.impl.*;
-
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
-
 
 @Component
 @Slf4j
@@ -32,14 +24,9 @@ public class DataInput {
 
     private AtomicBoolean alreadyRun = new AtomicBoolean(false);
 
-    private final TourService tourService;
     private final UserService userService;
     private final CityRepository cityRepository;
     private final ProvinceService provinceService;
-    private final TourDetailsService tourDetailsService;
-    private final Converter converter;
-    private final MemberService memberService;
-    private final PointsService pointsService;
 
     @EventListener
     @Transactional
@@ -131,64 +118,6 @@ public class DataInput {
             user.setProvince(provincee);
             user.setRole("ROLE_USER");
             userService.save(user);
-            //
-            User user1 = new User();
-            user1.setUsername("a");
-            user1.setPassword("a");
-            user1.setProvince(provincee16);
-            user1.setRole("ROLE_USER");
-            userService.save(user1);
-            //
-            User user2 = new User();
-            user2.setUsername("b");
-            user2.setPassword("b");
-            user2.setProvince(provincee13);
-            user2.setRole("ROLE_USER");
-            userService.save(user2);
-            //
-            User user3 = new User();
-            user3.setUsername("c");
-            user3.setPassword("c");
-            user3.setProvince(provincee15);
-            user3.setRole("ROLE_USER");
-            userService.save(user3);
-            //
-            TourAdd tourAdd = new TourAdd();
-            tourAdd.setDate("2022-01-01");
-            tourAdd.setDescription("kontrola");
-            tourAdd.setDistance(20L);
-            tourAdd.setHours("1h");
-            tourAdd.setParticipants(4);
-            tourAdd.setStart("asda");
-            tourAdd.setHowFar("bezpośrednio");
-            tourAdd.setCityId(1L);
-            TourDetails tourDetails = converter.tourAddToTourDetails(tourAdd);
-            Tour tour = converter.tourAddToTourEx(tourAdd, tourDetails);
-            tour.setActive("open");
-            tourDetailsService.save(tourDetails);
-            tourService.save(tour);
-            //
-            Member member = new Member(null, user1, tour, "active");
-            memberService.save(member);
-            Member member2 = new Member(null, user2, tour, "waiting");
-            memberService.save(member2);
-            Member member3 = new Member(null, user3, tour, "active");
-            memberService.save(member3);
-            //
-            Point point = new Point();
-            point.setAmount(10L);
-            point.setTour(tour);
-            point.setOwner(user);
-            point.setGiver(user1);
-            point.setDescription("spoko, fajnie");
-            pointsService.save(point);
-            //
-            logger.debug("~-~".repeat(20));
-            logger.debug(provinceService.findAll().toString());
-            logger.debug("~-~".repeat(20));
-            logger.debug(provinceService.findById(1L).toString());
-            logger.debug("~-~".repeat(20));
-            logger.debug(userService.findAll().toString());
         }
     }
 }

@@ -9,7 +9,7 @@
     <div > <script type="text/JavaScript" src="http://www.free4u.pl/data_godzina.php?co=data"></script></div>
 </div>
 <div class="status">
-    <div class="clock-data">Ilość punktów:</div><br/>
+    <div class="clock-data">Ilość punktów: ${sessionData.points}</div><br/>
     <div class="clock-data">Poziom:</div><br/>
 </div>
 <div class="weather">

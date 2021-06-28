@@ -8,8 +8,6 @@ import pl.akazoo.BikeUp.domain.model.province.Province;
 import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.domain.repository.UserRepository;
 import pl.akazoo.BikeUp.exceptions.ResourceNotFoundException;
-
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,10 +33,6 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
-
     public Province findProvinceByLoggedUsername() {
         Optional<User> user = userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
         return user.orElseThrow(() -> new ResourceNotFoundException("User not exist")).getProvince();
@@ -48,10 +42,6 @@ public class UserService {
         return userRepository
                 .findByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
                 .orElseThrow(() -> new ResourceNotFoundException("User with name: " + SecurityContextHolder.getContext().getAuthentication().getName() + " not exist"));
-    }
-
-    public User findUserEx(){
-        return userRepository.findById(1L).orElseThrow();
     }
 
     public boolean existsByUsername(String username){

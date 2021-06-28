@@ -1,6 +1,5 @@
 package pl.akazoo.BikeUp.web.app;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -53,9 +52,9 @@ public class ProfileController {
         userService.save(user);
         return "redirect:/app/profile";
     }
+
     @ModelAttribute("allProvinces")
     public List<Province> provinces() {
         return provinceService.findAll();
     }
-
 }

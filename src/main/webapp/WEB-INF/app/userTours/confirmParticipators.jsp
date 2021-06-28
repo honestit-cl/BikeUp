@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="/WEB-INF/app/parties/header.jsp" %>
 <h1>Potwierdź uczestników</h1><br/>
-Uczestnicy wycieczki, która ma obyć się ${tour.date}.<br/>
+<p>Uczestnicy wycieczki, która ma obyć się ${tour.date}.<br/>
 Id wycieczki : ${tour.id}</p><br/>
 <table border="1">
     <tr>

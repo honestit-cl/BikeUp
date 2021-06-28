@@ -11,10 +11,8 @@ import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
-import pl.akazoo.BikeUp.domain.model.user.Point;
 import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.service.impl.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -28,12 +26,9 @@ public class UserToursController {
     private final TourDetailsService tourDetailsService;
     private final MemberService memberService;
     private final Converter converter;
-    private final PointsService pointsService;
 
     @GetMapping
-    public String showTours(Model model) {
-//        User user = userService.findUserByUsername();
-//        model.addAttribute("allTours", tourService.findToursByUser(user));
+    public String showTours() {
         return "app/userTours/userTours";
     }
 

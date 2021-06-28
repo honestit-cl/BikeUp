@@ -5,7 +5,6 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.akazoo.BikeUp.domain.model.province.Province;
 import pl.akazoo.BikeUp.domain.repository.ProvinceRepository;
 import pl.akazoo.BikeUp.exceptions.ResourceNotFoundException;
-
 import java.util.List;
 
 @Service

@@ -6,9 +6,7 @@ import org.hibernate.annotations.Formula;
 import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.province.City;
 import pl.akazoo.BikeUp.domain.model.user.User;
-
 import javax.persistence.*;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.util.List;
 

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/app/success")
 public class SuccessController {
 
-
     @GetMapping
     public String success(){
         return "app/success";

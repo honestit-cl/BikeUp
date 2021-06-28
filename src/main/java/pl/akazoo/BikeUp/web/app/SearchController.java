@@ -9,12 +9,10 @@ import pl.akazoo.BikeUp.service.impl.MemberService;
 import pl.akazoo.BikeUp.service.impl.TourDetailsService;
 import pl.akazoo.BikeUp.service.impl.TourService;
 import pl.akazoo.BikeUp.service.impl.UserService;
-
 import java.util.List;
 
 @Controller
 @RequestMapping("/app/search")
-@Slf4j
 public class SearchController {
 
     private final TourService tourService;

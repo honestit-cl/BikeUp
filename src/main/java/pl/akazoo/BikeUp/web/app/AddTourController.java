@@ -16,7 +16,6 @@ import pl.akazoo.BikeUp.service.impl.CityService;
 import pl.akazoo.BikeUp.service.impl.TourDetailsService;
 import pl.akazoo.BikeUp.service.impl.TourService;
 import pl.akazoo.BikeUp.service.impl.UserService;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -30,13 +29,11 @@ public class AddTourController {
     private final UserService userService;
     private final Converter converter;
 
-
     public AddTourController(TourService tourService, TourDetailsService tourDetailsService, CityService cityService, UserService userService, Converter converter) {
         this.tourService = tourService;
         this.tourDetailsService = tourDetailsService;
         this.cityService = cityService;
         this.userService = userService;
-
         this.converter = converter;
     }
 
@@ -62,6 +59,7 @@ public class AddTourController {
     public List<City> cities() {
         return cityService.findAllByProvince(userService.findProvinceByLoggedUsername());
     }
+
     @ModelAttribute("hours")
     public List<String> hours() {
         return List.of(

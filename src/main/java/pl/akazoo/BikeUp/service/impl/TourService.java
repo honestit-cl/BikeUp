@@ -6,9 +6,7 @@ import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.domain.repository.TourRepository;
 import pl.akazoo.BikeUp.exceptions.ResourceNotFoundException;
-
 import java.util.List;
-
 
 @Service
 @Transactional
@@ -40,10 +38,6 @@ public class TourService {
     public void delete(Long id){
         Tour tour = findById(id);
         tourRepository.delete(tour);
-    }
-
-    public List<Tour> findAllTours(){
-        return tourRepository.findAll();
     }
 
     public List<Tour> findAllToursWithoutUser() {

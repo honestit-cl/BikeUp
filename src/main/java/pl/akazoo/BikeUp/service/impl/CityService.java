@@ -6,7 +6,6 @@ import pl.akazoo.BikeUp.domain.model.province.City;
 import pl.akazoo.BikeUp.domain.model.province.Province;
 import pl.akazoo.BikeUp.domain.repository.CityRepository;
 import pl.akazoo.BikeUp.exceptions.ResourceNotFoundException;
-
 import java.util.List;
 
 @Service

@@ -6,7 +6,7 @@ import pl.akazoo.BikeUp.domain.model.user.User;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "participators")
+@Table(name = "participators", uniqueConstraints = @UniqueConstraint(columnNames = {"tour_id","user_id"}))
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString

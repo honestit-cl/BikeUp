@@ -9,7 +9,6 @@ import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.domain.model.user.Point;
 import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.service.impl.*;
-
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -46,21 +45,6 @@ public class Converter {
         Tour tour = new Tour();
         City city = cityService.findCityById(tourAdd.getCityId());
         User user = userService.findUserByUsername();
-        tour.setDate(LocalDate.parse(tourAdd.getDate()));
-        tour.setHours(tourAdd.getHours());
-        tour.setCity(city);
-        tour.setDistance(tourAdd.getDistance());
-        tour.setParticipants(tourAdd.getParticipants());
-        tour.setTourDetails(tourDetails);
-        tour.setActive("open");
-        tour.setUser(user);
-        return tour;
-    }
-
-    public Tour tourAddToTourEx(TourAdd tourAdd, TourDetails tourDetails) {
-        Tour tour = new Tour();
-        City city = cityService.findCityById(tourAdd.getCityId());
-        User user = userService.findUserEx();
         tour.setDate(LocalDate.parse(tourAdd.getDate()));
         tour.setHours(tourAdd.getHours());
         tour.setCity(city);

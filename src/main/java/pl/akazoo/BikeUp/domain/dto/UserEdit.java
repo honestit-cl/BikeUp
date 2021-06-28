@@ -10,5 +10,4 @@ public class UserEdit {
     private Long province;
     private String lastName;
     private String firstName;
-
 }

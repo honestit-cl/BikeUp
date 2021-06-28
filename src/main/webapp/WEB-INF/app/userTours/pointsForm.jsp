@@ -17,9 +17,6 @@
     </label><br/>
     <form:errors path="description"/>
     <br/>
-    <form:button type="submit">Dodaj</form:button>
+    <form:button class="myButton" type="submit">Dodaj</form:button> <input type="button" class="myButton" value="Powrót" onclick="location.href='/app/tours/addPointsList/${pointAdd.tourId}'">
 </form:form>
-<br/>
-<br/>
-<input type="button" class="myButton" value="Powrót" onclick="location.href='/app/tours/addPointsList/${pointAdd.tourId}'">
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>
