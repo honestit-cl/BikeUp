@@ -44,7 +44,7 @@ public class Converter {
     public Tour tourAddToTour(TourAdd tourAdd, TourDetails tourDetails) {
         Tour tour = new Tour();
         City city = cityService.findCityById(tourAdd.getCityId());
-        User user = userService.findUserByUsername();
+        User user = userService.findUserByLoggedUsername();
         tour.setDate(LocalDate.parse(tourAdd.getDate()));
         tour.setHours(tourAdd.getHours());
         tour.setCity(city);
@@ -57,7 +57,7 @@ public class Converter {
     }
 
     public User userEditToUser(UserEdit userEdit) {
-        User user = userService.findUserByUsername();
+        User user = userService.findUserByLoggedUsername();
         user.setProvince(provinceService.findById(userEdit.getProvince()));
         user.setFirstName(userEdit.getFirstName());
         user.setLastName(userEdit.getLastName());
@@ -96,13 +96,13 @@ public class Converter {
         Point point = new Point();
         point.setDescription(pointAdd.getDescription());
         point.setAmount(pointAdd.getAmount());
-        point.setGiver(userService.findUserByUsername());
+        point.setGiver(userService.findUserByLoggedUsername());
         point.setOwner(userService.findUserById(pointAdd.getUserIdToAdd()));
         point.setTour(tourService.findById(pointAdd.getTourId()));
         pointsService.save(point);
     }
 
     public Optional<Point> pointsCheck(PointAdd pointAdd) {
-       return pointsService.findByGiver_IdAndOwner_IdAndTour_Id(userService.findUserByUsername().getId(), pointAdd.getUserIdToAdd(),pointAdd.getTourId());
+       return pointsService.findByGiver_IdAndOwner_IdAndTour_Id(userService.findUserByLoggedUsername().getId(), pointAdd.getUserIdToAdd(),pointAdd.getTourId());
     }
 }

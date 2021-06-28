@@ -19,7 +19,7 @@
         <h2>Znajdziesz tutaj partnerów do wspólnych treningów, jak również będziesz mógł śledzić swoje postępy.</h2>
         <br/><br/>
         <h3> Jest z nami już ${users} użytkowników,
-        którzy stworzyli już ${tours} tras.</h3>
+        którzy stworzyli ${tours} tras.</h3>
     </div>
 
     <div></div>

@@ -38,7 +38,7 @@ public class UserService {
         return user.orElseThrow(() -> new ResourceNotFoundException("User not exist")).getProvince();
     }
 
-    public User findUserByUsername() {
+    public User findUserByLoggedUsername() {
         return userRepository
                 .findByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
                 .orElseThrow(() -> new ResourceNotFoundException("User with name: " + SecurityContextHolder.getContext().getAuthentication().getName() + " not exist"));

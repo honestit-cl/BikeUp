@@ -43,7 +43,11 @@ public class RegisterController {
     @PostMapping
     public String registerConfirm(@Valid UserRegistry userRegistry, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors() || userService.existsByUsername(userRegistry.getLogin())) {
+        if (bindingResult.hasErrors()) {
+            return "start/register";
+        }
+        if (userService.existsByUsername(userRegistry.getLogin())) {
+            bindingResult.rejectValue("login", null,"Podany login jest już zajęty.");
             return "start/register";
         }
 

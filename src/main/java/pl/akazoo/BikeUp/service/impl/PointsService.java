@@ -20,7 +20,7 @@ public class PointsService {
     }
 
     public List<Point> findAllByUserLogged(){
-        return pointRepository.findAllByOwner_id(userService.findUserByUsername().getId());
+        return pointRepository.findAllByOwner_id(userService.findUserByLoggedUsername().getId());
     }
 
     public void save(Point point){

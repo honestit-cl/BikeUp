@@ -28,6 +28,7 @@ public class MemberService {
     public List<Member> findMembersByTourId(Long id){
         return memberRepository.findAllByTour_Id(id);
     }
+
     public Member findById(Long id){
         return memberRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Member with id="+id+"not exits."));
     }
@@ -40,11 +41,15 @@ public class MemberService {
         Member member = new Member();
         member.setTour(tour);
         member.setStatus("waiting");
-        member.setUser(userService.findUserByUsername());
+        member.setUser(userService.findUserByLoggedUsername());
         memberRepository.save(member);
     }
 
     public Optional<Member> findByUser_IdAndTour_Id(Long userId,Long tourId){
         return memberRepository.findByUser_idAndTour_id(userId, tourId);
+    }
+
+    public List<Member> findMembersByLoggedUsername(){
+        return memberRepository.findByUser_id(userService.findUserByLoggedUsername().getId());
     }
 }

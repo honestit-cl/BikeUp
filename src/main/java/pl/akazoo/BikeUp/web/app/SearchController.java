@@ -1,6 +1,5 @@
 package pl.akazoo.BikeUp.web.app;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -52,7 +51,7 @@ public class SearchController {
 
     @PostMapping("/confirmPart")
     public String confirmed(Long id) {
-        if(memberService.findByUser_IdAndTour_Id(userService.findUserByUsername().getId(),id).isEmpty()) {
+        if(memberService.findByUser_IdAndTour_Id(userService.findUserByLoggedUsername().getId(),id).isEmpty()) {
             Tour tour = tourService.findById(id);
             memberService.saveNewMember(tour);
             return "redirect:/app/search";

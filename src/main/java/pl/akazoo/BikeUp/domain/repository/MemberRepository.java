@@ -10,4 +10,6 @@ public interface MemberRepository extends JpaRepository<Member,Long> {
     List<Member> findAllByTour_Id(Long id);
 
     Optional<Member> findByUser_idAndTour_id(Long userId,Long tourId);
+
+    List<Member> findByUser_id(Long id);
 }
