@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 @Data
 public class PointAdd {
     @NotNull(message = "To pole nie może być puste.")
-    @Range(min=1,max = 20, message = "Ilość punktów musi być w przedziale od 1 do 20.")
+    @Range(min=1, message = "Ilość punktów nie może być mniejsza niż 1.")
     private Long amount;
     @NotBlank(message = "To pole nie może być puste.")
     private String description;

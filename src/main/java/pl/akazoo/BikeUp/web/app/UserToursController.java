@@ -126,6 +126,11 @@ public class UserToursController {
         if (bindingResult.hasErrors()) {
             return "/app/userTours/pointsForm";
         }
+        Tour tour = tourService.findById(pointAdd.getTourId());
+        if (pointAdd.getAmount()> tour.getDistance()) {
+            bindingResult.rejectValue("amount", null,"Ilość punktów nie może większa niż " + tour.getDistance());
+            return "/app/userTours/pointsForm";
+        }
         if(converter.pointsCheck(pointAdd).isEmpty()) {
             converter.savePointAdd(pointAdd);
             return "redirect:/app/tours/addPointsList/" + pointAdd.getTourId();

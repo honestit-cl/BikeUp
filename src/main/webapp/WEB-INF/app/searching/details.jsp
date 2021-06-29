@@ -16,10 +16,11 @@
             <td>${details.start}</td>
             <td>${details.description}</td>
             <td>${details.howFar}</td>
-            <td><a target="_blank" href="${details.mapLink}">Link</a></td>
+            <td><c:if test="${details.mapLink != ''}"><a target="_blank" href="${details.mapLink}">Link</a>
+            </c:if>
+            </td>
         </tr>
 </table><br/>
 <br/>
 <input type="button" value="Powrót" class="myButton" onclick="location.href='/app/search'">
-<iframe src="${details.mapLink}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

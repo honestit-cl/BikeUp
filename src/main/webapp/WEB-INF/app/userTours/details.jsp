@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="/WEB-INF/app/parties/header.jsp" %>
 <h1>Szczegoły wycieczki</h1><br/>
@@ -12,14 +12,16 @@
         <th>Mapa</th>
 
     </tr>
-        <tr>
-            <td>${details.start}</td>
-            <td>${details.description}</td>
-            <td>${details.howFar}</td>
-            <td><a target="_blank" href="${details.mapLink}">Link</a></td>
-        </tr>
-</table><br/>
+    <tr>
+        <td>${details.start}</td>
+        <td>${details.description}</td>
+        <td>${details.howFar}</td>
+        <td><c:if test="${details.mapLink != ''}"><a target="_blank" href="${details.mapLink}">Link</a>
+        </c:if>
+        </td>
+    </tr>
+</table>
+<br/>
 <br/>
 <input type="button" class="myButton" value="Powrót" onclick="location.href='/app/tours'">
-<iframe src="${details.mapLink}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>
