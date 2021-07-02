@@ -16,7 +16,7 @@
 <div class="main">
     <div class="container_start">
         <h2>Witaj w BikeUp!</h2> <br>
-        <h2>Znajdziesz tutaj partnerów do wspólnych treningów, jak również będziesz mógł śledzić swoje postępy.</h2>
+        <h2>Znajdziesz tutaj partnerów do wspólnych treningów i wycieczek,<br/> jak również będziesz mógł śledzić swoje postępy.</h2>
         <br/><br/>
         <h3> Jest z nami już ${users} użytkowników,
         którzy stworzyli ${tours} tras.</h3>

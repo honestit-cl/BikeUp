@@ -41,6 +41,8 @@ public class User {
     private String role;
     @OneToMany(mappedBy = "user")
     private List<Tour> tourList;
+    @Column
+    private String visibility;
 
     @PrePersist
     public void creationDateUpdate(){

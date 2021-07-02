@@ -7,11 +7,11 @@
 <form:form method="post" modelAttribute="userEdit">
 
     <label>Imię:<br/>
-        <form:input  path="firstName" placeholder="Podaj swoje imię."/>
+        <form:input  path="firstName" placeholder="Podaj swoje imię"/>
     </label><br/>
     <br/>
     <label>Nazwisko:<br/>
-        <form:input path="lastName" placeholder="Podaj swoje nazwisko."/>
+        <form:input path="lastName" placeholder="Podaj swoje nazwisko"/>
     </label><br/>
     <br/>
     <label>Województwo<br><br/>
@@ -22,7 +22,15 @@
     </label><br/>
     <form:errors path="province"/>
     <br/>
+    <label>Pozwalam innym użytkownikom widzieć moje dane osobowe:<br/>
+        <form:select path="visibility" >
+        <form:option value="" label="Wybierz"/>
+            <form:option value="hidden" label="Nie"/>
+            <form:option value="show" label="Tak"/>
+        </form:select>
+    </label><br/>
     <br/>
-    <form:button class="myButton" type="submit">Edutuj</form:button><input type="button"  class="myButton" value="Wróć" onclick="location.href='/app/profile'">
+    <br/>
+    <form:button class="myButton" type="submit">Edutuj</form:button> <input type="button"  class="myButton" value="Wróć" onclick="location.href='/app/profile'">
 </form:form>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

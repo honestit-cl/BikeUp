@@ -1,23 +1,109 @@
 package pl.akazoo.BikeUp.web.app;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.akazoo.BikeUp.domain.dto.PointAdd;
+import pl.akazoo.BikeUp.domain.model.Member;
+import pl.akazoo.BikeUp.domain.model.converter.Converter;
+import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.service.impl.MemberService;
+import pl.akazoo.BikeUp.service.impl.TourDetailsService;
+import pl.akazoo.BikeUp.service.impl.TourService;
+import pl.akazoo.BikeUp.service.impl.UserService;
+
+import javax.validation.Valid;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/app/participation")
 public class ParticipationController {
 
     private final MemberService memberService;
+    private final TourService tourService;
+    private final TourDetailsService tourDetailsService;
+    private final UserService userService;
+    private final Converter converter;
 
-    public ParticipationController(MemberService memberService) {
+    public ParticipationController(MemberService memberService, TourService tourService, TourDetailsService tourDetailsService, UserService userService, Converter converter) {
         this.memberService = memberService;
+        this.tourService = tourService;
+        this.tourDetailsService = tourDetailsService;
+        this.userService = userService;
+        this.converter = converter;
+    }
+    @GetMapping("/singOut/{id:\\d+}")
+    public String singOutTrip(@PathVariable Long id, Model model) {
+        model.addAttribute("tour", tourService.findById(id));
+        return "/app/Participation/confirmSingOut";
+    }
+
+    @PostMapping("/singOut")
+    public String confirmed(Long id) {
+        Optional<Member> member = memberService.findByUser_IdAndTour_Id(userService.findUserByLoggedUsername().getId(),id);
+        member.ifPresent(memberService::delete);
+            return "redirect:/app/participation";
     }
 
     @GetMapping
-    public String participation(){
-        memberService.findMembersByLoggedUsername();
-        return "/app/participationPage";
+    public String participation(Model model){
+       List<Member> memberList = memberService.findMembersByLoggedUsername();
+       Map<Tour,String> tourList = new LinkedHashMap<>();
+
+        memberList.removeIf(member -> member.getTour().getUser().getUsername().equals(userService.findUserByLoggedUsername().getUsername()));
+
+           for (Member member : memberList) {
+               tourList.put(member.getTour(), member.getStatus());
+           }
+
+       model.addAttribute("tours",tourList);
+        return "/app/Participation/participationPage";
+    }
+
+    @GetMapping("/details/{id:\\d+}")
+    public String details(@PathVariable Long id, Model model) {
+        model.addAttribute("details", tourDetailsService.findByTourId(id));
+        return "/app/Participation/details";
+    }
+
+    @GetMapping("/addPointsList/{id:\\d+}")
+    public String addPoints(@PathVariable Long id, Model model) {
+        model.addAttribute("tour", tourService.findById(id));
+        model.addAttribute("members",converter.getParticipationListForPoints(id));
+        return "/app/Participation/addPoints";
+    }
+
+    @GetMapping("/addPoints/{userId:\\d+}/{tourId:\\d+}")
+    public String addPointsForm(@PathVariable Long userId, @PathVariable Long tourId, Model model) {
+        PointAdd point = new PointAdd();
+        point.setUserIdToAdd(userId);
+        point.setTourId(tourId);
+        model.addAttribute("pointAdd", point);
+        model.addAttribute("user",userService.findUserById(userId));
+        return "/app/Participation/pointsForm";
+    }
+
+    @PostMapping("/addPointsConfirmed")
+    public String appPointsConfirmed(@Valid PointAdd pointAdd, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/app/Participation/pointsForm";
+        }
+        Tour tour = tourService.findById(pointAdd.getTourId());
+        if (pointAdd.getAmount()> tour.getDistance()) {
+            bindingResult.rejectValue("amount", null,"Ilość punktów nie może większa niż " + tour.getDistance());
+            return "/app/Participation/pointsForm";
+        }
+        if(converter.pointsCheck(pointAdd).isEmpty()) {
+            converter.savePointAdd(pointAdd);
+            return "redirect:/app/participation/addPointsList/" + pointAdd.getTourId();
+        }
+        return "/app/Participation/pointsWrong";
     }
 }

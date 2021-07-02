@@ -2,8 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="/WEB-INF/app/parties/header.jsp" %>
-<h1>Szczegoły wycieczki</h1><br/>
-<p> Id wycieczki: ${details.id}</p>
+<h1>Szczegóły wycieczki</h1><br/>
+<p>Id wycieczki: ${details.id}</p>
 <table border="1">
     <tr>
         <th>Miejsce startu</th>

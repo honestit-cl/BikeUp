@@ -3,9 +3,13 @@ package pl.akazoo.BikeUp.domain.dto;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 import org.hibernate.validator.constraints.URL;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 @Data
 public class TourEdit {
@@ -15,8 +19,8 @@ public class TourEdit {
     private Long distance; // in km
     @NotBlank(message = "To pole nie może być puste.")
     private String hours; //duration
-    @NotBlank(message = "To pole nie może być puste.")
-    private String date; // event time
+    @Future
+    private @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date; // event time
     @NotBlank(message = "To pole nie może być puste.")
     private String start; // place, road,
     @NotBlank(message = "To pole nie może być puste.")

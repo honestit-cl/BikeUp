@@ -1,5 +1,6 @@
 package pl.akazoo.BikeUp.web.app;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,19 +9,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.akazoo.BikeUp.domain.dto.TourAdd;
+import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.province.City;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
-import pl.akazoo.BikeUp.service.impl.CityService;
-import pl.akazoo.BikeUp.service.impl.TourDetailsService;
-import pl.akazoo.BikeUp.service.impl.TourService;
-import pl.akazoo.BikeUp.service.impl.UserService;
+import pl.akazoo.BikeUp.service.impl.*;
+
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @RequestMapping("/app/addTour")
+@RequiredArgsConstructor
 public class AddTourController {
 
     private final TourService tourService;
@@ -28,14 +29,7 @@ public class AddTourController {
     private final CityService cityService;
     private final UserService userService;
     private final Converter converter;
-
-    public AddTourController(TourService tourService, TourDetailsService tourDetailsService, CityService cityService, UserService userService, Converter converter) {
-        this.tourService = tourService;
-        this.tourDetailsService = tourDetailsService;
-        this.cityService = cityService;
-        this.userService = userService;
-        this.converter = converter;
-    }
+    private final MemberService memberService;
 
     @GetMapping
     public String addTour(Model model) {
@@ -52,6 +46,12 @@ public class AddTourController {
         Tour tour = converter.tourAddToTour(tourAdd,tourDetails);
         tourDetailsService.save(tourDetails);
         tourService.save(tour);
+        ///
+        Member member = new Member();
+        member.setStatus("active");
+        member.setTour(tour);
+        member.setUser(userService.findUserByLoggedUsername());
+        memberService.save(member);
         return "app/tourAdded";
     }
 

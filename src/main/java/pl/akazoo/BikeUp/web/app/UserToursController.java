@@ -107,7 +107,7 @@ public class UserToursController {
     @GetMapping("/addPointsList/{id:\\d+}")
     public String addPoints(@PathVariable Long id, Model model) {
         model.addAttribute("tour", tourService.findById(id));
-        model.addAttribute("members", memberService.findMembersByTourId(id));
+        model.addAttribute("members", converter.getParticipationListForPoints(id));
         return "/app/userTours/addPoints";
     }
 

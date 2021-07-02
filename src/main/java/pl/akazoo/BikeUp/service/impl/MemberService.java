@@ -33,6 +33,10 @@ public class MemberService {
         return memberRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Member with id="+id+"not exits."));
     }
 
+    public void delete(Member member){
+        memberRepository.delete(member);
+    }
+
     public void deleteMembers(List<Member> members){
         memberRepository.deleteAll(members);
     }

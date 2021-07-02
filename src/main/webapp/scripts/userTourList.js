@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <td>${distance} km</td>
             <td>${hours}</td>
             <td>${active}</td>
-            <td>${realP}/${participants}</td>
+            <td>${realP-1}/${participants}</td>
             <td>
                 <span><a href="/app/tours/details/${tourId}">Szczegóły</a></span><br/>
             </td> 

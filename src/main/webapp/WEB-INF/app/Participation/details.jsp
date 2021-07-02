@@ -23,5 +23,5 @@
 </table>
 <br/>
 <br/>
-<input type="button" value="Powrót" class="myButton" onclick="location.href='/app/search'">
+<input type="button" class="myButton" value="Powrót" onclick="location.href='/app/participation'">
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>
