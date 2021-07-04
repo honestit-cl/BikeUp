@@ -1,6 +1,6 @@
 body {
-    /*background-image: url("/images/dan-carlson-EXSh-k3wjds-unsplash.jpg");*/
-    background-image: url("/images/vidar-nordli-mathisen-Kuu5mmxkwW4-unsplash.jpg");
+    background-image: url("/images/dan-carlson-EXSh-k3wjds-unsplash.jpg");
+    /*background-image: url("/images/vidar-nordli-mathisen-Kuu5mmxkwW4-unsplash.jpg");*/
     background-attachment: fixed;
     background-size: cover;
     padding: 20px;
@@ -145,7 +145,7 @@ a, h1, h5, h3 ,h4 , h6 {
     color: white;
 }
 
-span, label, p{
+span, label, p, th ,td ,tr {
     color: gainsboro;
 }
 
@@ -154,7 +154,7 @@ table{
     text-align: center;
 }
 table a{
-    color: black;
+    color: gainsboro;
 }
 
 .myButton {
@@ -180,4 +180,8 @@ table a{
 .myButton:active {
     position:relative;
     top:1px;
+}
+
+.panel{
+    color: darkred;
 }

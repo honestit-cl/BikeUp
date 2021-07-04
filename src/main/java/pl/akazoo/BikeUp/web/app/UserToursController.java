@@ -35,7 +35,7 @@ public class UserToursController {
     @GetMapping("/data")
     @ResponseBody
     public List<Tour> tours() {
-        User user = userService.findUserByLoggedUsername();
+        User user = userService.getLoggedUser();
         return tourService.findToursByUser(user);
     }
 

@@ -45,7 +45,7 @@ public class MemberService {
         Member member = new Member();
         member.setTour(tour);
         member.setStatus("waiting");
-        member.setUser(userService.findUserByLoggedUsername());
+        member.setUser(userService.getLoggedUser());
         memberRepository.save(member);
     }
 
@@ -54,6 +54,14 @@ public class MemberService {
     }
 
     public List<Member> findMembersByLoggedUsername(){
-        return memberRepository.findByUser_id(userService.findUserByLoggedUsername().getId());
+        return memberRepository.findByUser_id(userService.getLoggedUser().getId());
+    }
+
+    public void saveCreatorMember(Tour tour) {
+        Member member = new Member();
+        member.setStatus("active");
+        member.setTour(tour);
+        member.setUser(userService.getLoggedUser());
+        memberRepository.save(member);
     }
 }

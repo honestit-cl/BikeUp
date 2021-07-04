@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import pl.akazoo.BikeUp.domain.model.province.City;
 import pl.akazoo.BikeUp.domain.model.province.Province;
+import pl.akazoo.BikeUp.domain.model.user.Point;
 import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.domain.repository.CityRepository;
 import pl.akazoo.BikeUp.service.impl.*;
@@ -27,6 +28,7 @@ public class DataInput {
     private final UserService userService;
     private final CityRepository cityRepository;
     private final ProvinceService provinceService;
+    private final PointsService pointsService;
 
     @EventListener
     @Transactional
@@ -118,6 +120,11 @@ public class DataInput {
             user.setProvince(provincee);
             user.setRole("ROLE_USER");
             userService.save(user);
+            //
+            Point point = new Point();
+            point.setAmount(56L);
+            point.setOwner(user);
+            pointsService.save(point);
         }
     }
 }

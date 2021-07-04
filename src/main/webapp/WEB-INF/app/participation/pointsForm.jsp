@@ -4,11 +4,11 @@
 <%@ include file="/WEB-INF/app/parties/header.jsp" %>
 <h1>Przydziel punkty</h1><br/>
 <p>Dodajesz właśnie ocenę dla użytkownika o loginie: ${user.username}</p>
-<form:form action="/app/tours/addPointsConfirmed" method="post" modelAttribute="pointAdd">
+<form:form action="/app/participation/addPointsConfirmed" method="post" modelAttribute="pointAdd">
     <form:hidden path="tourId" value="${pointAdd.tourId}"/>
     <form:hidden path="userIdToAdd" value="${pointAdd.userIdToAdd}"/>
     <label>Ilość punktów:<br/>
-        <form:input  path="amount" placeholder="Ilość punktów"/>
+        <form:input type="number" path="amount" placeholder="Ilość punktów"/>
     </label><br/>
     <form:errors path="amount"/>
     <br/>

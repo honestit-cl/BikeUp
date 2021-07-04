@@ -8,7 +8,7 @@
     <form:hidden path="tourId" value="${pointAdd.tourId}"/>
     <form:hidden path="userIdToAdd" value="${pointAdd.userIdToAdd}"/>
     <label>Ilość punktów:<br/>
-        <form:input  path="amount" placeholder="Ilość punktów"/>
+        <form:input type="number" path="amount" placeholder="Ilość punktów"/>
     </label><br/>
     <form:errors path="amount"/>
     <br/>

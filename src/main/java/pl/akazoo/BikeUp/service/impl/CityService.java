@@ -18,8 +18,8 @@ public class CityService {
         this.cityRepository = cityRepository;
     }
 
-    public List<City> findAllByProvince(Province province){
-        return cityRepository.findAllByProvince(province);
+    public List<City> findAllByProvinceId(Long id){
+        return cityRepository.findAllByProvince_Id(id);
     }
 
     public City findCityById(Long id){

@@ -48,7 +48,7 @@ public class Converter {
     public Tour tourAddToTour(TourAdd tourAdd, TourDetails tourDetails) {
         Tour tour = new Tour();
         City city = cityService.findCityById(tourAdd.getCityId());
-        User user = userService.findUserByLoggedUsername();
+        User user = userService.getLoggedUser();
         tour.setDate(tourAdd.getDate());
         tour.setHours(tourAdd.getHours());
         tour.setCity(city);
@@ -61,7 +61,7 @@ public class Converter {
     }
 
     public User userEditToUser(UserEdit userEdit) {
-        User user = userService.findUserByLoggedUsername();
+        User user = userService.getLoggedUser();
         user.setProvince(provinceService.findById(userEdit.getProvince()));
         user.setFirstName(userEdit.getFirstName());
         user.setLastName(userEdit.getLastName());
@@ -103,19 +103,19 @@ public class Converter {
         Point point = new Point();
         point.setDescription(pointAdd.getDescription());
         point.setAmount(pointAdd.getAmount());
-        point.setGiver(userService.findUserByLoggedUsername());
+        point.setGiver(userService.getLoggedUser());
         point.setOwner(userService.findUserById(pointAdd.getUserIdToAdd()));
         point.setTour(tourService.findById(pointAdd.getTourId()));
         pointsService.save(point);
     }
 
     public Optional<Point> pointsCheck(PointAdd pointAdd) {
-        return pointsService.findByGiver_IdAndOwner_IdAndTour_Id(userService.findUserByLoggedUsername().getId(), pointAdd.getUserIdToAdd(), pointAdd.getTourId());
+        return pointsService.findByGiver_IdAndOwner_IdAndTour_Id(userService.getLoggedUser().getId(), pointAdd.getUserIdToAdd(), pointAdd.getTourId());
     }
 
     public List<Member> getParticipationListForPoints(Long tourId) {
         List<Member> members = memberService.findMembersByTourId(tourId);
-        Optional<Member> member = memberService.findByUser_IdAndTour_Id(userService.findUserByLoggedUsername().getId(),tourId);
+        Optional<Member> member = memberService.findByUser_IdAndTour_Id(userService.getLoggedUser().getId(),tourId);
         member.ifPresent(members::remove);
         return members;
     }

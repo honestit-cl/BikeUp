@@ -42,12 +42,12 @@ public class ParticipationController {
     @GetMapping("/singOut/{id:\\d+}")
     public String singOutTrip(@PathVariable Long id, Model model) {
         model.addAttribute("tour", tourService.findById(id));
-        return "/app/Participation/confirmSingOut";
+        return "/app/participation/confirmSingOut";
     }
 
     @PostMapping("/singOut")
     public String confirmed(Long id) {
-        Optional<Member> member = memberService.findByUser_IdAndTour_Id(userService.findUserByLoggedUsername().getId(),id);
+        Optional<Member> member = memberService.findByUser_IdAndTour_Id(userService.getLoggedUser().getId(),id);
         member.ifPresent(memberService::delete);
             return "redirect:/app/participation";
     }
@@ -57,27 +57,27 @@ public class ParticipationController {
        List<Member> memberList = memberService.findMembersByLoggedUsername();
        Map<Tour,String> tourList = new LinkedHashMap<>();
 
-        memberList.removeIf(member -> member.getTour().getUser().getUsername().equals(userService.findUserByLoggedUsername().getUsername()));
+        memberList.removeIf(member -> member.getTour().getUser().getUsername().equals(userService.getLoggedUser().getUsername()));
 
            for (Member member : memberList) {
                tourList.put(member.getTour(), member.getStatus());
            }
 
        model.addAttribute("tours",tourList);
-        return "/app/Participation/participationPage";
+        return "/app/participation/participationPage";
     }
 
     @GetMapping("/details/{id:\\d+}")
     public String details(@PathVariable Long id, Model model) {
         model.addAttribute("details", tourDetailsService.findByTourId(id));
-        return "/app/Participation/details";
+        return "/app/participation/details";
     }
 
     @GetMapping("/addPointsList/{id:\\d+}")
     public String addPoints(@PathVariable Long id, Model model) {
         model.addAttribute("tour", tourService.findById(id));
         model.addAttribute("members",converter.getParticipationListForPoints(id));
-        return "/app/Participation/addPoints";
+        return "/app/participation/addPoints";
     }
 
     @GetMapping("/addPoints/{userId:\\d+}/{tourId:\\d+}")
@@ -87,23 +87,23 @@ public class ParticipationController {
         point.setTourId(tourId);
         model.addAttribute("pointAdd", point);
         model.addAttribute("user",userService.findUserById(userId));
-        return "/app/Participation/pointsForm";
+        return "/app/participation/pointsForm";
     }
 
     @PostMapping("/addPointsConfirmed")
     public String appPointsConfirmed(@Valid PointAdd pointAdd, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "/app/Participation/pointsForm";
+            return "/app/participation/pointsForm";
         }
         Tour tour = tourService.findById(pointAdd.getTourId());
         if (pointAdd.getAmount()> tour.getDistance()) {
             bindingResult.rejectValue("amount", null,"Ilość punktów nie może większa niż " + tour.getDistance());
-            return "/app/Participation/pointsForm";
+            return "/app/participation/pointsForm";
         }
         if(converter.pointsCheck(pointAdd).isEmpty()) {
             converter.savePointAdd(pointAdd);
             return "redirect:/app/participation/addPointsList/" + pointAdd.getTourId();
         }
-        return "/app/Participation/pointsWrong";
+        return "/app/participation/pointsWrong";
     }
 }

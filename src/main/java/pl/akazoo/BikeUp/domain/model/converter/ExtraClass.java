@@ -2,7 +2,6 @@ package pl.akazoo.BikeUp.domain.model.converter;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
 import java.util.*;
 
 @Component
@@ -30,11 +29,14 @@ public class ExtraClass {
             level = levels.get(0);
 
         } else {
-            for (Integer point : pointsList) {
-                if (point < userPoints) {
-                    level = levels.get(point);
+            for (int i = 0; i < pointsList.size(); i++) {
+                if (userPoints < pointsList.get(i)){
+                    level = levels.get(i-1);
                     break;
                 }
+            }
+            if(userPoints>12000){
+                level= levels.get(6);
             }
         }
         return level;

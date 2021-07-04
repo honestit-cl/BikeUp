@@ -27,4 +27,5 @@ public class ProvinceService {
     public void save(Province province){
         provinceRepository.save(province);
     }
+
 }

@@ -33,20 +33,20 @@ public class ProfileController {
 
     @GetMapping
     public String profile(Model model){
-        model.addAttribute("user", userService.findUserByLoggedUsername());
-        return "/app/Profile/profile";
+        model.addAttribute("user", userService.getLoggedUser());
+        return "/app/profile/profile";
     }
 
     @GetMapping("/edit")
     public String edit(Model model){
         model.addAttribute("userEdit", new UserEdit());
-        return "/app/Profile/edit";
+        return "/app/profile/edit";
     }
 
     @PostMapping("/edit")
     public String edit(@Valid UserEdit userEdit, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            return "/app/Profile/edit";
+            return "/app/profile/edit";
         }
         User user = converter.userEditToUser(userEdit);
         userService.save(user);

@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AppHomeController {
 
     @GetMapping
-    public String appStartingPage(Authentication currentUser, Model model){
-        model.addAttribute("currentUser",currentUser.getName());
+    public String appStartingPage(){
         return "app/appHome";
     }
 }

@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const link = document.createElement('span');
 
-        if (active === 'open' && realP<participants) {
+        if (active === 'open' && realP-1<participants) {
             link.innerHTML = `
            <span><a href="/app/search/confirmPart/${tourId}">Dołącz</a></span><br/>
            `;

@@ -10,6 +10,6 @@ public class SuccessController {
 
     @GetMapping
     public String success(){
-        return "app/success";
+        return "app/successPage/success";
     }
 }

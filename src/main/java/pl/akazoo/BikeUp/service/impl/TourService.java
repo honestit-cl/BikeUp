@@ -41,7 +41,7 @@ public class TourService {
     }
 
     public List<Tour> findAllToursWithoutUser() {
-        User user= userService.findUserByLoggedUsername();
+        User user= userService.getLoggedUser();
         return tourRepository.findAllByUser_IdNotLike(user.getId());
     }
 }

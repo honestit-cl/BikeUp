@@ -12,14 +12,14 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/app/search")
-public class SearchController {
+public class SearchTourController {
 
     private final TourService tourService;
     private final TourDetailsService tourDetailsService;
     private final MemberService memberService;
     private final UserService userService;
 
-    public SearchController(TourService tourService, TourDetailsService tourDetailsService, MemberService memberService, UserService userService) {
+    public SearchTourController(TourService tourService, TourDetailsService tourDetailsService, MemberService memberService, UserService userService) {
         this.tourService = tourService;
         this.tourDetailsService = tourDetailsService;
         this.memberService = memberService;
@@ -51,7 +51,7 @@ public class SearchController {
 
     @PostMapping("/confirmPart")
     public String confirmed(Long id) {
-        if(memberService.findByUser_IdAndTour_Id(userService.findUserByLoggedUsername().getId(),id).isEmpty()) {
+        if(memberService.findByUser_IdAndTour_Id(userService.getLoggedUser().getId(),id).isEmpty()) {
             Tour tour = tourService.findById(id);
             memberService.saveNewMember(tour);
             return "redirect:/app/search";

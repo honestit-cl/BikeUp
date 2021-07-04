@@ -68,7 +68,6 @@
     <br/><br/>
 <span>
     * Jeśli miejsce zakończenia jest inne, zaznacz to dopisując je do Dodatkowego opisu.<br/>
-    ** Miasta zostały dopasowane do Twojego aktualnego województwa. Aby je zmienić odwiedź stronę: Twój profil.
 </span><br/><br/>
     <form:button class="myButton" type="submit">Dodaj trasę</form:button>
 </form:form>

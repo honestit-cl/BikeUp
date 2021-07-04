@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = {"memberList","tourList"})
+@ToString
 @Getter
 @Setter
 public class User {
@@ -29,8 +29,6 @@ public class User {
     private Province province;
     @Formula("(select SUM(p.amount) from points p where p.owner_id = id)")
     private Long points;
-    @OneToMany(mappedBy = "user")
-    private List<Member> memberList;
     @Column
     private LocalDate creationDate;
     @Column
@@ -39,8 +37,6 @@ public class User {
     private String lastName;
     @Column(nullable = false)
     private String role;
-    @OneToMany(mappedBy = "user")
-    private List<Tour> tourList;
     @Column
     private String visibility;
 

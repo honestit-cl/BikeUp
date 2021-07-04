@@ -4,14 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.akazoo.BikeUp.domain.dto.TourAdd;
-import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.province.City;
+import pl.akazoo.BikeUp.domain.model.province.Province;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.service.impl.*;
@@ -30,34 +27,41 @@ public class AddTourController {
     private final UserService userService;
     private final Converter converter;
     private final MemberService memberService;
+    private final ProvinceService provinceService;
 
     @GetMapping
-    public String addTour(Model model) {
-        model.addAttribute("tourAdd", new TourAdd());
-        return "app/addTour";
+    public String pickProvince() {
+        return "app/addTour/pickProvince";
     }
 
-    @PostMapping
+    @GetMapping("/form")
+    public String addTour(Model model, @RequestParam Long id) {
+        if(id == 0){
+            model.addAttribute("allCities", cityService.findAllByProvinceId(userService.getLoggedUserProvince().getId()));
+        }else {
+            model.addAttribute("allCities", cityService.findAllByProvinceId(id));
+        }
+        model.addAttribute("tourAdd", new TourAdd());
+        return "app/addTour/addTour";
+    }
+
+    @PostMapping("/form")
     public String registerConfirm(@Valid TourAdd tourAdd, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "app/addTour";
+            return "app/addTour/addTour";
         }
         TourDetails tourDetails = converter.tourAddToTourDetails(tourAdd);
-        Tour tour = converter.tourAddToTour(tourAdd,tourDetails);
+        Tour tour = converter.tourAddToTour(tourAdd, tourDetails);
         tourDetailsService.save(tourDetails);
         tourService.save(tour);
         ///
-        Member member = new Member();
-        member.setStatus("active");
-        member.setTour(tour);
-        member.setUser(userService.findUserByLoggedUsername());
-        memberService.save(member);
-        return "app/tourAdded";
+        memberService.saveCreatorMember(tour);
+        return "app/addTour/tourAdded";
     }
 
-    @ModelAttribute("allCities")
-    public List<City> cities() {
-        return cityService.findAllByProvince(userService.findProvinceByLoggedUsername());
+    @ModelAttribute("allProvinces")
+    public List<Province> provinces() {
+        return provinceService.findAll();
     }
 
     @ModelAttribute("hours")
