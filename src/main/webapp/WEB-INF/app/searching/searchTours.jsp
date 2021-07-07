@@ -7,9 +7,10 @@
     <tr>
         <th>Id</th>
         <th>Data</th>
-        <th>Miasto</th>
         <th>Dystans</th>
         <th>Czas</th>
+        <th>Start wycieczki</th>
+        <th>Meta wycieczki</th>
         <th>Status</th>
         <th>Potwierdzeni uczestnicy</th>
         <th>Dostępne akcje</th>

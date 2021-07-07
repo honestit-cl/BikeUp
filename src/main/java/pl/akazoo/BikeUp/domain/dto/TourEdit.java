@@ -15,20 +15,18 @@ import java.time.LocalDate;
 public class TourEdit {
 
     @NotNull(message = "To pole nie może być puste.")
-    @Range(min = 5, max = 150, message = "Przedział od 5 do 150km.")
+    @Range(min = 5, max = 120, message = "Przedział od 5 do 120km.")
     private Long distance; // in km
     @NotBlank(message = "To pole nie może być puste.")
     private String hours; //duration
-    @Future
-    private @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date; // event time
-    @NotBlank(message = "To pole nie może być puste.")
-    private String start; // place, road,
     @NotBlank(message = "To pole nie może być puste.")
     @Size(max = 1000,message = "Opis jest za długi. Dozwolona liczba znaków to 1000.")
     private String description; // extra description
-    @NotBlank(message = "Wybierz jedną z opcji.")
-    private String howFar; // from selected city
     @URL(message = "Podaj poprawny link.")
     private String link;
+    @Size(max = 100, message = " Nazwa miejsca zbiórki nie może być dłuższa niż 100 liter.")
+    private String gatheringPlace;
+    @NotBlank(message = "Proszę zaznaczyć jedną z opcji.")
+    private String returning;
     private Long tourId;
 }

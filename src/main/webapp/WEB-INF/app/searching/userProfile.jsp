@@ -6,16 +6,12 @@
 <table border="1">
     <c:if test="${user.visibility == 'show'}">
     <tr>
-        <td>Imie</td>
+        <td>Imię</td>
         <td>${user.firstName}</td>
     </tr>
     <tr>
         <td>Nazwisko</td>
         <td>${user.lastName}</td>
-    </tr>
-    <tr>
-        <td>Wojewódźtwo</td>
-        <td>${user.province.name}</td>
     </tr>
     <tr>
         <td>Punkty</td>

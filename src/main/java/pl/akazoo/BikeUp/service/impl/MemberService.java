@@ -44,7 +44,7 @@ public class MemberService {
     public void saveNewMember(Tour tour){
         Member member = new Member();
         member.setTour(tour);
-        member.setStatus("waiting");
+        member.setStatus("oczekujący");
         member.setUser(userService.getLoggedUser());
         memberRepository.save(member);
     }
@@ -59,7 +59,7 @@ public class MemberService {
 
     public void saveCreatorMember(Tour tour) {
         Member member = new Member();
-        member.setStatus("active");
+        member.setStatus("aktywny");
         member.setTour(tour);
         member.setUser(userService.getLoggedUser());
         memberRepository.save(member);

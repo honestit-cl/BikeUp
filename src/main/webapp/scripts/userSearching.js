@@ -24,12 +24,13 @@ document.addEventListener('DOMContentLoaded', function () {
         // Tworzenie sekcji
 
         const section = document.createElement("tr");
-        section.classList.add("section");
         section.innerHTML = `        
-            <td>${userId}</td>
-            <td data-name="${username}">${username}</td>
+            <td >${userId}</td>
+            <td>${username}</td>
             <td>
-                <span class=""><a href="/app/searchUser/profile/${userId}">Zobacz profil</a></span><br/>
+                <span data-name="${username}" class="">
+                <input type="button" value="Zobacz profil" onclick="location.href='/app/searchUser/profile/${userId}'">               
+                </span><br/>
             </td> 
  `;
         document.querySelector("table").firstElementChild.after(section)
@@ -45,24 +46,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     );
 
-
-    const sections = document.querySelectorAll(".section");
+    const trs = document.querySelectorAll("tr");
     const input = document.querySelector("#nameInput");
 
-    input.addEventListener("keypress", evt => {
+    input.addEventListener("input", evt => {
         const val = input.value;
 
-        sections.forEach(section => {
-            const name = section.dataset.name;
+        trs.forEach(tr => {
+            const name = tr.lastElementChild.lastElementChild.dataset.name;
             let notExist = true;
 
             if (name.includes(val)) {
                 notExist = false;
-            }
-
-            if (notExist) {
-                section.display = 'none'
+            } if (notExist) {
+                tr.display = 'none'
             }
         })
     })
 })
+

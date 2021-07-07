@@ -14,5 +14,5 @@
         <th>Dostępne akcje</th>
     </tr>
 </table>
-<script src="/scripts/userSearching.js" defer></script>
+<script src="/scripts/userSearching.js" type="text/javascript" defer></script>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

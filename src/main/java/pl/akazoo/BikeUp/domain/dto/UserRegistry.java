@@ -12,8 +12,8 @@ public class UserRegistry {
     private String login;
     @NotBlank(message = "To pole nie może być puste.")
     private String password;
-    @Range(min=1,max = 16,message = "Wybierz swoje województwo.")
-    private Long province;
+    @NotBlank(message = "To pole nie może być puste.")
+    private String password2;
     @AssertTrue(message = "Potwierdź zapoznanie się z regulaminem.")
     private boolean loyalty;
 }

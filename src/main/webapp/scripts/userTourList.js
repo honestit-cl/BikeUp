@@ -19,27 +19,33 @@ document.addEventListener('DOMContentLoaded', function () {
             );
     }
 
-    function renderTour(tourId, date, cityName, distance, hours, active, realP, participants) {
+    function renderTour(tourId,startPlace,startPost,endPlace,endPost, date, distance, hours, active, realP, participants) {
 
         // Tworzenie sekcji
 
         const section = document.createElement("tr");
         section.innerHTML = `        
-            <td>${tourId}</td>
-            <td>${date}</td>
-            <td>${cityName}</td>
+          <td>${tourId}</td>
+            <td>${date}</td>          
             <td>${distance} km</td>
             <td>${hours}</td>
+            <td>${startPost}<br/>
+            ${startPlace}</td>
+              <td>${endPost}<br/>
+            ${endPlace}</td>
             <td>${active}</td>
             <td>${realP-1}/${participants}</td>
             <td>
-                <span><a href="/app/tours/details/${tourId}">Szczegóły</a></span><br/>
+                <span>
+                <input type="button" value="Szczegóły" onClick="location.href='/app/tours/details/${tourId}'">
+                </span><br/>
             </td> 
  `;
 
+
         // Dodawanie do drzewa w zależności od statusu
 
-        if (active === 'open') {
+        if (active === 'otwarta') {
             document.querySelector("table").firstElementChild.after(section)
         } else {
             document.querySelector("table").append(section);
@@ -48,12 +54,20 @@ document.addEventListener('DOMContentLoaded', function () {
         // Dodawanie linkow gdy open
 
         const link = document.createElement('span');
-        if (active === 'open') {
+        if (active === 'otwarta') {
             link.innerHTML = `
-           <span><a href="/app/tours/delete/${tourId}">Usuń</a></span><br/>
-           <span><a href="/app/tours/edit/${tourId}">Edytuj</a></span><br/>
-           <span><a href="/app/tours/confirmTour/${tourId}">Potwierdź wykonanie</a></span><br/>
-           <span><a href="/app/tours/confirmPart/${tourId}">Potwierdź uczestników</a></span><br/>
+           <span>
+           <input type="button" value="Usuń" onClick="location.href='/app/tours/delete/${tourId}'"> 
+           </span><br/>
+           <span>
+           <input type="button" value="Edytuj" onClick="location.href='/app/tours/edit/${tourId}'">              
+           </span><br/>
+           <span>
+           <input type="button" value="Potwierdź wykonanie" onClick="location.href='/app/tours/confirmTour/${tourId}'">
+           </span><br/>           
+           <span>
+           <input type="button" value="Potwierdź uczestników" onClick="location.href='/app/tours/confirmPart/${tourId}'">             
+           </span><br/>
            `;
             section.lastElementChild.append(link);
         }
@@ -61,9 +75,11 @@ document.addEventListener('DOMContentLoaded', function () {
         //Dodawanie linkow gdy closed
 
         const link2 = document.createElement('span');
-        if (active === 'closed') {
+        if (active === 'zamknięta') {
             link2.innerHTML = ` 
-           <span><a href="/app/tours/addPointsList/${tourId}">Przydziel punkty</a></span><br/>
+           <span>
+           <input type="button" value="Przydziel punkty" onClick="location.href='/app/tours/addPointsList/${tourId}'"           
+           </span><br/>
            `;
             section.lastElementChild.append(link2);
         }
@@ -73,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
         function (response) {
             response.forEach(
                 (tour) => {
-                    renderTour(tour.id, tour.date, tour.city.name,tour.distance,tour.hours,tour.active,tour.realParticipants,tour.participants);
+                    renderTour(tour.id, tour.startPlace,tour.startPost,tour.endPlace,tour.endPost, tour.date, tour.distance,tour.hours,tour.active,tour.realParticipants,tour.participants);
                 }
             );
         }

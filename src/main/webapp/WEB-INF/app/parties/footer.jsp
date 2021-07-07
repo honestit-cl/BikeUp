@@ -17,7 +17,7 @@
 <div class="status" style="overflow: auto">
     <div class="clock-data">Ilość punktów: ${userPoints}<br/><br/>
         <c:forEach var="lev" items="${level}">
-        Poziom: ${lev.key}<br/><br/>
+        Twój poziom: ${lev.key}<br/><br/>
             ${lev.value}</div
     </c:forEach>
     <br/>
@@ -26,6 +26,7 @@
     <div class="clock-data">Pogoda<br/><br/>
         26 stopni<br/>
         Słonecznie<br/>
+        <br/>
         Czyżby to idelane warunki na rower? :)
     </div>
     <br/>

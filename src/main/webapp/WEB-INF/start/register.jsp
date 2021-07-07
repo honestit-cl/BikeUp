@@ -14,7 +14,7 @@
     <img src="<c:url value='/images/193240896_311767273863710_3235863038840980410_n.png'/>" width="350" height="250" alt="logo"/>
 </div>
 
-<div class="mainR">
+<div class="mainR" style="overflow: auto">
     <div class="container_start">
         <ul><h2>Regulamin aplikacji</h2> <br>
             <li><h3>Będę miły i uprzejmy dla wszystkich użytkowników,</h3></li>
@@ -22,10 +22,9 @@
             <li><h3>Będę cechował się wysoką kulturą osobistą,</h3></li>
     </ul>
     </div>
-
     <div>
     </div>
-    <div class="registry ">
+    <div class="registry" style="overflow: auto">
         <form:form method="post" modelAttribute="userRegistry">
 
             <label>Login:<br/>
@@ -34,19 +33,15 @@
             <form:errors path="login"/>
             <br/>
             <label>Hasło:<br/>
-                <form:input path="password" placeholder="Podaj hasło"/>
+                <form:password path="password" placeholder="Podaj hasło"/>
             </label><br/>
             <form:errors path="password"/>
             <br/>
-            <label>Województwo<br>
-                (można zmienić):<br/>
-                <form:select path="province" >
-                    <form:option value="0" label="Wybierz"/>
-                            <form:options items="${allProvinces}" itemLabel="name" itemValue="id"/>
-                </form:select>
+            <label>Powtórz hasło:<br/>
+                <form:password path="password2" placeholder="Podaj hasło"/>
             </label><br/>
-            <form:errors path="province"/>
-            <br/><br/>
+            <form:errors path="password2"/>
+            <br/>
             <form:checkbox path="loyalty"/> <span>Będę przestrzegał regulaminu korzystania z aplikacji.</span>
             <br/>
             <form:errors path="loyalty"/>
@@ -55,6 +50,5 @@
         </form:form>
     </div>
 </div>
-
 </body>
 </html>

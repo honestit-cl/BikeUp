@@ -19,27 +19,32 @@ document.addEventListener('DOMContentLoaded', function () {
             );
     }
 
-    function renderTour(tourId, date, cityName, distance, hours, active, realP, participants) {
+    function renderTour(tourId,startPlace,startPost,endPlace,endPost, date, distance, hours, active, realP, participants) {
 
         // Tworzenie sekcji
 
         const section = document.createElement("tr");
         section.innerHTML = `        
             <td>${tourId}</td>
-            <td>${date}</td>
-            <td>${cityName}</td>
+            <td>${date}</td>          
             <td>${distance} km</td>
             <td>${hours}</td>
+            <td>${startPost}<br/>
+            ${startPlace}</td>
+              <td>${endPost}<br/>
+            ${endPlace}</td>
             <td>${active}</td>
             <td>${realP-1}/${participants}</td>
             <td>
-                <span><a href="/app/search/details/${tourId}">Szczegóły</a></span><br/>
+                <span>
+                <input type="button" value="Szczegóły" onclick="location.href='/app/search/details/${tourId}'">                 
+                </span><br/>
             </td> 
  `;
 
         // Dodawanie do drzewa w zależności od statusu
 
-        if (active === 'open') {
+        if (active === 'otwarta') {
             document.querySelector("table").firstElementChild.after(section)
         }
 
@@ -47,9 +52,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const link = document.createElement('span');
 
-        if (active === 'open' && realP-1<participants) {
+        if (active === 'otwarta' && realP-1<participants) {
             link.innerHTML = `
-           <span><a href="/app/search/confirmPart/${tourId}">Dołącz</a></span><br/>
+           <span>
+           <input type="button" value="Dołącz" onclick="location.href='/app/search/confirmPart/${tourId}'">           
+           </span><br/>
            `;
             section.lastElementChild.append(link);
         }
@@ -60,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         function (response) {
             response.forEach(
                 (tour) => {
-                    renderTour(tour.id, tour.date, tour.city.name,tour.distance,tour.hours,tour.active,tour.realParticipants,tour.participants);
+                    renderTour(tour.id, tour.startPlace,tour.startPost,tour.endPlace,tour.endPost,tour.date, tour.distance,tour.hours,tour.active,tour.realParticipants,tour.participants);
                 }
             );
         }

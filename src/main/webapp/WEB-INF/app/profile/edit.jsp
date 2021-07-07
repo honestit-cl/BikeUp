@@ -14,14 +14,6 @@
         <form:input path="lastName" placeholder="Podaj swoje nazwisko"/>
     </label><br/>
     <br/>
-    <label>Województwo<br><br/>
-        <form:select path="province" >
-            <form:option value="0" label="Wybierz"/>
-            <form:options items="${allProvinces}" itemLabel="name" itemValue="id"/>
-        </form:select>
-    </label><br/>
-    <form:errors path="province"/>
-    <br/>
     <label>Pozwalam innym użytkownikom widzieć moje dane osobowe:<br/>
         <form:select path="visibility" >
         <form:option value="" label="Wybierz"/>

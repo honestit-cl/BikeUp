@@ -17,7 +17,7 @@ Id wycieczki : ${tour.id}</p><br/>
             <th>${member.id}</th>
             <th>${member.user.username}</th>
             <th>${member.status}</th>
-            <th><c:if test="${member.status == 'waiting'}">
+            <th><c:if test="${member.status == 'oczekujący'}">
                 <c:if test="${tour.realParticipants -1 < tour.participants}">
                 <input type="button" value="Potwierdź" onclick="location.href='/app/tours/setActive/${member.id}/${tour.id}'">
             </c:if>

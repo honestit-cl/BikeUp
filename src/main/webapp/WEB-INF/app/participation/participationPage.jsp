@@ -8,9 +8,10 @@
     <tr>
         <th>Id</th>
         <th>Data</th>
-        <th>Miasto</th>
         <th>Dystans</th>
         <th>Czas</th>
+        <th>Start wycieczki</th>
+        <th>Meta wycieczki</th>
         <th>Status</th>
         <th>Potwierdzeni uczestnicy</th>
         <th>Twój status</th>
@@ -20,18 +21,21 @@
         <tr>
             <td>${tour.key.id}</td>
             <td>${tour.key.date}</td>
-            <td>${tour.key.city.name}</td>
-            <td>${tour.key.distance}</td>
+            <td>${tour.key.distance} km</td>
             <td>${tour.key.hours}</td>
+            <td>${tour.key.startPost}<br/>
+                    ${tour.key.startPlace}</td>
+            <td>${tour.key.endPost}<br/>
+                    ${tour.key.endPlace}</td>
             <td>${tour.key.active}</td>
             <td>${tour.key.realParticipants -1} / ${tour.key.participants}</td>
             <td>${tour.value}</td>
-            <td><span><a href="/app/participation/details/${tour.key.id}">Szczegóły</a></span><br/>
-                <c:if test="${tour.key.active == 'open'}">
-                    <span><a href="/app/participation/singOut/${tour.key.id}">Wypisz się</a></span><br/>
+            <td><span><input type="button" value="Szczegóły" onclick="location.href='/app/participation/details/${tour.key.id}'"></span><br/>
+                <c:if test="${tour.key.active == 'otwarta'}">
+                    <span><input type="button" value="Wypisz się" onclick="location.href='/app/participation/singOut/${tour.key.id}'"></span><br/>
                 </c:if>
-                <c:if test="${tour.key.active == 'closed'}">
-                    <span><a href="/app/participation/addPointsList/${tour.key.id}">Przydziel punkty</a></span><br/>
+                <c:if test="${tour.key.active == 'zamknięta'}">
+                    <span><input type="button" value="Przydziel punkty" onclick="location.href='/app/participation/addPointsList/${tour.key.id}'"></span><br/>
                 </c:if>
             </td>
         </tr>

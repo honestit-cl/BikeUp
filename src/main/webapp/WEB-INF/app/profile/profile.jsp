@@ -9,10 +9,6 @@
     <td>${user.username}</td>
     </tr>
     <tr>
-        <td>Wojewódźtwo</td>
-        <td>${user.province.name}</td>
-    </tr>
-    <tr>
         <td>Punkty</td>
         <td>${user.points}</td>
     </tr>

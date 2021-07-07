@@ -145,7 +145,7 @@ a, h1, h5, h3 ,h4 , h6 {
     color: white;
 }
 
-span, label, p, th ,td ,tr {
+span, label, p, th ,td ,tr, ul, li {
     color: gainsboro;
 }
 
@@ -184,4 +184,12 @@ table a{
 
 .panel{
     color: darkred;
+}
+.successButton{
+    position: absolute;
+    right: 40px ;
+    top: 20px;
+}
+.rules{
+    text-align: left;
 }

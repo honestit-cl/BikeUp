@@ -19,17 +19,17 @@ public class TourDetails {
     @OneToOne(mappedBy = "tourDetails")
     private Tour tour;
     @Column(nullable = false)
-    private String start; //starting place
+    private String gatheringPlace;
     @Column(nullable = false,length = 1000)
     private String description; //  extra description
-    @Column(nullable = false)
-    private String howFar; // how far from city chosen before
     @Column
     private LocalDateTime creationTime;
     @Column
     private LocalDateTime updateTime;
     @Column(length = 1024)
     private String mapLink;
+    @Column(nullable = false)
+    private String returning;
 
     @PrePersist
     public void creationTimeUpdate() {

@@ -7,8 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.akazoo.BikeUp.domain.dto.TourAdd;
 import pl.akazoo.BikeUp.domain.model.converter.Converter;
-import pl.akazoo.BikeUp.domain.model.province.City;
-import pl.akazoo.BikeUp.domain.model.province.Province;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.service.impl.*;
@@ -23,29 +21,16 @@ public class AddTourController {
 
     private final TourService tourService;
     private final TourDetailsService tourDetailsService;
-    private final CityService cityService;
-    private final UserService userService;
     private final Converter converter;
     private final MemberService memberService;
-    private final ProvinceService provinceService;
 
-    @GetMapping
-    public String pickProvince() {
-        return "app/addTour/pickProvince";
-    }
-
-    @GetMapping("/form")
-    public String addTour(Model model, @RequestParam Long id) {
-        if(id == 0){
-            model.addAttribute("allCities", cityService.findAllByProvinceId(userService.getLoggedUserProvince().getId()));
-        }else {
-            model.addAttribute("allCities", cityService.findAllByProvinceId(id));
-        }
+    @GetMapping()
+    public String addTour(Model model) {
         model.addAttribute("tourAdd", new TourAdd());
         return "app/addTour/addTour";
     }
 
-    @PostMapping("/form")
+    @PostMapping()
     public String registerConfirm(@Valid TourAdd tourAdd, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "app/addTour/addTour";
@@ -57,11 +42,6 @@ public class AddTourController {
         ///
         memberService.saveCreatorMember(tour);
         return "app/addTour/tourAdded";
-    }
-
-    @ModelAttribute("allProvinces")
-    public List<Province> provinces() {
-        return provinceService.findAll();
     }
 
     @ModelAttribute("hours")
@@ -94,16 +74,4 @@ public class AddTourController {
         );
     }
 
-    @ModelAttribute("kilometersAway")
-    public List<String> kilometersAway() {
-        return List.of(
-                "bezpośrednio",
-                "1-5km",
-                "do 10km",
-                "do 15km",
-                "do 20km",
-                "do 25km",
-                "powyżej 25km"
-        );
-    }
 }

@@ -13,6 +13,7 @@
 </head>
 <body>
 <button class="hamburger">
+    <h3>MENU</h3>
         <span class="hamburger__box">
             <span class="hamburger__inner"></span>
         </span>
@@ -30,6 +31,7 @@
         <li class="navigation__item"><a href="/app/points">Twoje punkty za trasy</a></li>
         <li class="navigation__item"><a href="/app/participation">Uczestnictwo w trasach</a></li>
         <li class="navigation__item"><a href="/app/profile">Twój profil</a></li>
+        <li class="navigation__item"><a href="/app/rules">Zasady aplikacji</a></li>
         <li class="navigation__item"><a href="/logout">Wyloguj</a></li>
         <li class="navigation__item"><span class="panel">Copyright BikeUp.pl</span></li>
     </ul>

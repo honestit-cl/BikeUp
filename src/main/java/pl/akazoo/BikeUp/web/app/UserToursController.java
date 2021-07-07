@@ -84,7 +84,7 @@ public class UserToursController {
     @PostMapping("/confirmTour")
     public String confirmed(Long id) {
         Tour tour = tourService.findById(id);
-        tour.setActive("closed");
+        tour.setActive("zamknięta");
         tourService.save(tour);
         return "redirect:/app/tours";
     }
@@ -99,7 +99,7 @@ public class UserToursController {
     @GetMapping("/setActive/{id:\\d+}/{id2:\\d+}")
     public String setActiveMember(@PathVariable Long id, @PathVariable Long id2) {
         Member member = memberService.findById(id);
-        member.setStatus("active");
+        member.setStatus("aktywny");
         memberService.save(member);
         return "redirect:/app/tours/confirmPart/" + id2;
     }
@@ -165,19 +165,6 @@ public class UserToursController {
                 "11h",
                 "11:30h",
                 "12h"
-        );
-    }
-
-    @ModelAttribute("kilometersAway")
-    public List<String> kilometersAway() {
-        return List.of(
-                "bezpośrednio",
-                "1-5km",
-                "do 10km",
-                "do 15km",
-                "do 20km",
-                "do 25km",
-                "powyżej 25km"
         );
     }
 }

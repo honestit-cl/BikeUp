@@ -1,32 +1,26 @@
-
 body {
     background-image: url("/images/jake-blucker-OJX7gIU3E6U-unsplash.jpg");
     background-attachment: fixed;
     background-size: cover;
 }
-
 label {
     font-family: cursive;
     font-size: 50px;
     color: #A6A674;
 }
-
 .container {
-    box-sizing: border-box;
-    display: inline-flex;
     background-color: rgba(0, 0, 0, 0.3);
-    padding: 40px;
+    padding: 40px 20px 20px 20px;
     width: 50%;
     margin-left: 700px;
     margin-top: 160px;
+    text-align: center;
     border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
 }
-
 .logo_start {
     margin-top: -40px;
     margin-left: 50px;
 }
-
 .container_start {
     box-sizing: border-box;
     margin-left: -60px;
@@ -37,7 +31,6 @@ label {
     color: #A6A674;
     border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
 }
-
 .main {
     padding: 85px;
     box-sizing: border-box;
@@ -46,17 +39,16 @@ label {
     align-content: center;
     margin-top: 80px;
 }
-
 h3{
     color: gainsboro;
 }
 .registry{
-    box-sizing: border-box;
-    display: inline-flex;
     background-color: rgba(0, 0, 0, 0.3);
     padding: 20px;
     margin-left: 500px;
     text-align: center;
+    height: 600px;
+    width: 400px;
     border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
 }
 .mainR {

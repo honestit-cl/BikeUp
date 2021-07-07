@@ -6,16 +6,16 @@
 <p>Id wycieczki: ${details.id}</p>
 <table border="1">
     <tr>
-        <th>Miejsce startu</th>
-        <th>Opis</th>
-        <th>Odległość od miasta</th>
+        <th>Miejsce zbiórki</th>
+        <th>Opis wycieczki</th>
+        <th>Powrót</th>
         <th>Mapa</th>
 
     </tr>
     <tr>
-        <td>${details.start}</td>
+        <td>${details.gatheringPlace}</td>
         <td>${details.description}</td>
-        <td>${details.howFar}</td>
+        <td>${details.returning}</td>
         <td><c:if test="${details.mapLink != ''}"><a target="_blank" href="${details.mapLink}">Link</a>
         </c:if>
         </td>

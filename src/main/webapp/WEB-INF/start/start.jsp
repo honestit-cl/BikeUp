@@ -21,8 +21,8 @@
         <h3> Jest z nami już ${users} użytkowników,
         którzy stworzyli ${tours} tras.</h3>
     </div>
-
-    <div></div>
+    <div>
+    </div>
     <div class="container">
         <form method="post" action="/">
             <label>Logowanie</label>

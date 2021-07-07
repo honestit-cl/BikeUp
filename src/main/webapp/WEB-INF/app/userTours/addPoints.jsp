@@ -12,7 +12,7 @@
         <th>Dostępne akcje</th>
     </tr>
     <c:forEach items="${members}" var="member">
-        <c:if test="${member.status == 'active'}">
+        <c:if test="${member.status == 'aktywny'}">
         <tr>
             <th>${member.user.username}</th>
             <th><input type="button" value="Przydziel" onclick="location.href='/app/tours/addPoints/${member.user.id}/${tour.id}'"></th>

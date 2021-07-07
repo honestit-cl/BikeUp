@@ -14,7 +14,7 @@ import java.util.Random;
 public class GlobalDataController {
 
     private final UserService userService;
-    private List<String> didUKnow;
+    private final List<String> didUKnow;
     private final ExtraClass extraClass;
 
     public GlobalDataController(UserService userService, ExtraClass extraClass) {

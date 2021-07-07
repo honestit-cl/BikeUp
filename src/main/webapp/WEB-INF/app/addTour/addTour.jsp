@@ -4,10 +4,33 @@
 <%@ include file="/WEB-INF/app/parties/header.jsp" %>
 <h1>Dodawanie wycieczki</h1><br/>
 <form:form method="post" modelAttribute="tourAdd">
-    <label>Maksymalna ilość dodatkowych uczestników:<br/>
-        <form:input type="number" path="participants" placeholder="Liczba uczestników"/>
+
+    <label>Data wycieczki:<br/>
+        <form:input type="date" id="txtDate" required="Required" path="date" placeholder="Data wycieczki"/>
     </label><br/>
-    <form:errors path="participants"/>
+    <form:errors path="date"/>
+    <br/>
+
+    <label>Start wycieczki:<br/>
+        <form:input path="startPost" placeholder="Podaj kod pocztowy"/>
+        <form:input path="startPlace" placeholder="Podaj miejscowość"/>
+    </label><br/>
+    <form:errors path="startPost"/>
+    <form:errors path="startPlace"/>
+    <br/>
+
+    <label>Meta wycieczki:<br/>
+        <form:input path="endPost" placeholder="Podaj kod pocztowy"/>
+        <form:input path="endPlace" placeholder="Podaj miejscowość"/>
+    </label><br/>
+    <form:errors path="endPost"/>
+    <form:errors path="endPlace"/>
+    <br/>
+
+    <label>Miejsce zbiórki:<br/>
+        <form:input path="gatheringPlace" placeholder="Podaj miejsce zbiórki"/>
+    </label><br/>
+    <form:errors path="gatheringPlace"/>
     <br/>
 
     <label>Szacowany dystans trasy:<br/>
@@ -25,50 +48,35 @@
     <form:errors path="hours"/>
     <br/>
 
-    <label>Data wycieczki:<br/>
-        <form:input type="date" id="txtDate" required="Required" path="date" placeholder="Data wycieczki"/>
-    </label><br/>
-    <form:errors path="date"/>
-    <br/>
-
-    <label>Miejsce rozpoczecia/zakończenia trasy:*<br/>
-        <form:input path="start" placeholder="Ulica,Skwer,Plac itd."/>
-    </label><br/>
-    <form:errors path="start"/>
-    <br/>
-
-    <label>Dodatkowy opis:<br/>
-        <form:textarea rows="5" cols="40" path="description" placeholder="Miejsce docelowe,przystanki,godzina spotkania/wyjazdu oraz wszystkie znaczące informacje"/>
+    <label>Opis trasy:<br/>
+        <form:textarea rows="5" cols="40" path="description" placeholder="Pprzystanki,godzina spotkania/wyjazdu oraz wszystkie znaczące informacje"/>
     </label><br/>
     <form:errors path="description"/>
     <br/>
 
-    <label>Miasto:**<br/>
-        <form:select path="cityId" >
-            <form:option value="0" label="Wybierz"/>
-            <form:options items="${allCities}" itemLabel="name" itemValue="id"/>
-        </form:select>
+    <label>Powrót do mniejsca startu:<br/>
+        tak
+        <form:checkbox path="returning" value="tak"/>
+        nie
+        <form:checkbox path="returning" value="nie"/>
+         <span></span>
     </label><br/>
-    <form:errors path="cityId"/>
+    <form:errors path="returning"/>
     <br/>
 
-    <label>Odległość od zaznaczonego miasta:<br/>
-        <form:select path="howFar" >
-            <form:option value=" " label="Wybierz"/>
-            <form:options items="${kilometersAway}"/>
-        </form:select>
+    <label>Maksymalna ilość dodatkowych uczestników:<br/>
+        <form:input type="number" path="participants" placeholder="Liczba uczestników"/>
     </label><br/>
-    <form:errors path="howFar"/>
-    <br/><br/>
+    <form:errors path="participants"/>
+    <br/>
 
-    <label>Link do mapy trasy(GoogleMaps):<br/>
+    <label>Opcjonalnie</br>
+        Link do mapy trasy (GoogleMaps):<br/>
         <form:input path="link" placeholder="Link do trasy w Google Maps"/>
     </label><br/>
     <form:errors path="link"/>
-    <br/><br/>
-<span>
-    * Jeśli miejsce zakończenia jest inne, zaznacz to dopisując je do Dodatkowego opisu.<br/>
-</span><br/><br/>
+    <br/>
+    <br/>
     <form:button class="myButton" type="submit">Dodaj trasę</form:button>
 </form:form>
 <script src="/scripts/dataScript.js" defer></script>
