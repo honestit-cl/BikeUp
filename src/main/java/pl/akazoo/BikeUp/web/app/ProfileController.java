@@ -1,5 +1,6 @@
 package pl.akazoo.BikeUp.web.app;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,16 +14,12 @@ import pl.akazoo.BikeUp.service.impl.UserService;
 import javax.validation.Valid;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/app/profile")
 public class ProfileController {
 
     private final UserService userService;
     private final Converter converter;
-
-    public ProfileController(UserService userService, Converter converter) {
-        this.userService = userService;
-        this.converter = converter;
-    }
 
     @GetMapping
     public String profile(Model model){
@@ -32,7 +29,7 @@ public class ProfileController {
 
     @GetMapping("/edit")
     public String edit(Model model){
-        model.addAttribute("userEdit", new UserEdit());
+        model.addAttribute("userEdit", converter.userToUserEdit(userService.getLoggedUser()));
         return "/app/profile/edit";
     }
 

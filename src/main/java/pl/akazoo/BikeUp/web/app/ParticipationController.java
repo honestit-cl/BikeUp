@@ -1,5 +1,6 @@
 package pl.akazoo.BikeUp.web.app;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.akazoo.BikeUp.domain.dto.PointAdd;
 import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.converter.Converter;
+import pl.akazoo.BikeUp.domain.model.converter.ExtraClass;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.service.impl.MemberService;
 import pl.akazoo.BikeUp.service.impl.TourDetailsService;
 import pl.akazoo.BikeUp.service.impl.TourService;
 import pl.akazoo.BikeUp.service.impl.UserService;
-
 import javax.validation.Valid;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -23,6 +24,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/app/participation")
 public class ParticipationController {
 
@@ -31,14 +33,8 @@ public class ParticipationController {
     private final TourDetailsService tourDetailsService;
     private final UserService userService;
     private final Converter converter;
+    private final ExtraClass extraClass;
 
-    public ParticipationController(MemberService memberService, TourService tourService, TourDetailsService tourDetailsService, UserService userService, Converter converter) {
-        this.memberService = memberService;
-        this.tourService = tourService;
-        this.tourDetailsService = tourDetailsService;
-        this.userService = userService;
-        this.converter = converter;
-    }
     @GetMapping("/singOut/{id:\\d+}")
     public String singOutTrip(@PathVariable Long id, Model model) {
         model.addAttribute("tour", tourService.findById(id));
@@ -76,7 +72,7 @@ public class ParticipationController {
     @GetMapping("/addPointsList/{id:\\d+}")
     public String addPoints(@PathVariable Long id, Model model) {
         model.addAttribute("tour", tourService.findById(id));
-        model.addAttribute("members",converter.getParticipationListForPoints(id));
+        model.addAttribute("members",extraClass.getParticipationListForPoints(id));
         return "/app/participation/addPoints";
     }
 
@@ -100,7 +96,7 @@ public class ParticipationController {
             bindingResult.rejectValue("amount", null,"Ilość punktów nie może większa niż " + tour.getDistance());
             return "/app/participation/pointsForm";
         }
-        if(converter.pointsCheck(pointAdd).isEmpty()) {
+        if(extraClass.pointsCheck(pointAdd).isEmpty()) {
             converter.savePointAdd(pointAdd);
             return "redirect:/app/participation/addPointsList/" + pointAdd.getTourId();
         }

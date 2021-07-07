@@ -26,14 +26,14 @@ public class Tour {
     @Formula("(select count(p.id) from participators p where p.tour_id=id and p.status like 'aktywny')")
     private int realParticipants;
     @Column(nullable = false)
-    private int participants; //allowed number of participants
+    private int participants;
     //
     @Column(nullable = false)
-    private Long distance; //distance in km
+    private Long distance;
     @Column(nullable = false)
-    private String hours; //duration
+    private String hours;
     @Column
-    private LocalDate date; //event date
+    private LocalDate date;
     @Column(nullable = false)
     private String active;
     @ManyToOne
@@ -42,9 +42,9 @@ public class Tour {
     @Column (nullable = false)
     private String startPlace;
     @Column (nullable = false)
-    private String startPost; // postal code
+    private String startPost;
     @Column (nullable = false)
     private String endPlace;
     @Column (nullable = false)
-    private String endPost; // postal code
+    private String endPost;
 }

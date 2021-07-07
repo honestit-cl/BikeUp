@@ -10,7 +10,6 @@ import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.service.impl.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -73,5 +72,4 @@ public class AddTourController {
                 "12h"
         );
     }
-
 }

@@ -10,7 +10,7 @@
     - poziom 1 - odblokowany po zdobyciu 50pkt, <br/> <br/>
     - poziom 2 - odblokowany po zdobyciu 500pkt,<br/> <br/>
     Kolejne poziomy są tajemnicą do czasu ich samodzielnego odblokowania :)
-</li>
+</li><br/>
     <li>Widoczność Twoich danych osobowych jest automatycznie zablokowana.<br/>
     Jeśli chcesz, aby Twoje dane były widoczne możesz to zmienić w Edycji profilu.</li>
     </ul>

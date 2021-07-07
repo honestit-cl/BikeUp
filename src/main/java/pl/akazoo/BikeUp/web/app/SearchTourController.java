@@ -1,5 +1,6 @@
 package pl.akazoo.BikeUp.web.app;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import pl.akazoo.BikeUp.service.impl.UserService;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/app/search")
 public class SearchTourController {
 
@@ -18,13 +20,6 @@ public class SearchTourController {
     private final TourDetailsService tourDetailsService;
     private final MemberService memberService;
     private final UserService userService;
-
-    public SearchTourController(TourService tourService, TourDetailsService tourDetailsService, MemberService memberService, UserService userService) {
-        this.tourService = tourService;
-        this.tourDetailsService = tourDetailsService;
-        this.memberService = memberService;
-        this.userService = userService;
-    }
 
     @GetMapping
     public String search() {

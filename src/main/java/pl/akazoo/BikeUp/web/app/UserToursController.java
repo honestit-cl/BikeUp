@@ -9,6 +9,7 @@ import pl.akazoo.BikeUp.domain.dto.TourEdit;
 import pl.akazoo.BikeUp.domain.dto.PointAdd;
 import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.converter.Converter;
+import pl.akazoo.BikeUp.domain.model.converter.ExtraClass;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.domain.model.user.User;
@@ -26,6 +27,7 @@ public class UserToursController {
     private final TourDetailsService tourDetailsService;
     private final MemberService memberService;
     private final Converter converter;
+    private final ExtraClass extraClass;
 
     @GetMapping
     public String showTours() {
@@ -107,7 +109,7 @@ public class UserToursController {
     @GetMapping("/addPointsList/{id:\\d+}")
     public String addPoints(@PathVariable Long id, Model model) {
         model.addAttribute("tour", tourService.findById(id));
-        model.addAttribute("members", converter.getParticipationListForPoints(id));
+        model.addAttribute("members", extraClass.getParticipationListForPoints(id));
         return "/app/userTours/addPoints";
     }
 
@@ -131,7 +133,7 @@ public class UserToursController {
             bindingResult.rejectValue("amount", null,"Ilość punktów nie może większa niż " + tour.getDistance());
             return "/app/userTours/pointsForm";
         }
-        if(converter.pointsCheck(pointAdd).isEmpty()) {
+        if(extraClass.pointsCheck(pointAdd).isEmpty()) {
             converter.savePointAdd(pointAdd);
             return "redirect:/app/tours/addPointsList/" + pointAdd.getTourId();
         }

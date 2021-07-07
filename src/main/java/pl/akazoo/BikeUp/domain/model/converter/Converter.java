@@ -1,17 +1,16 @@
 package pl.akazoo.BikeUp.domain.model.converter;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import pl.akazoo.BikeUp.domain.dto.*;
-import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.domain.model.user.Point;
 import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.service.impl.*;
-import java.util.List;
-import java.util.Optional;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class Converter {
@@ -20,7 +19,6 @@ public class Converter {
     private final TourService tourService;
     private final TourDetailsService tourDetailsService;
     private final PointsService pointsService;
-    private final MemberService memberService;
 
 
     public User userRegistryToUser(UserRegistry userRegistry) {
@@ -90,8 +88,12 @@ public class Converter {
         tourDetails.setMapLink(tourEdit.getLink());
         tourDetails.setGatheringPlace(tourEdit.getGatheringPlace());
         tourDetails.setReturning(tourEdit.getReturning());
+        log.debug("Zapisywany obiekt: " + tour);
+        log.debug("Zapisywany obiekt: " + tourDetails);
         tourService.save(tour);
         tourDetailsService.save(tourDetails);
+        log.debug("Zapisano: " + tour);
+        log.debug("Zapisano: " + tourDetails);
     }
 
     public void savePointAdd(PointAdd pointAdd) {
@@ -101,17 +103,16 @@ public class Converter {
         point.setGiver(userService.getLoggedUser());
         point.setOwner(userService.findUserById(pointAdd.getUserIdToAdd()));
         point.setTour(tourService.findById(pointAdd.getTourId()));
+        log.debug("Zapisywany obiekt: " + point);
         pointsService.save(point);
+        log.debug("Zapisano: " + point);
     }
 
-    public Optional<Point> pointsCheck(PointAdd pointAdd) {
-        return pointsService.findByGiver_IdAndOwner_IdAndTour_Id(userService.getLoggedUser().getId(), pointAdd.getUserIdToAdd(), pointAdd.getTourId());
-    }
-
-    public List<Member> getParticipationListForPoints(Long tourId) {
-        List<Member> members = memberService.findMembersByTourId(tourId);
-        Optional<Member> member = memberService.findByUser_IdAndTour_Id(userService.getLoggedUser().getId(),tourId);
-        member.ifPresent(members::remove);
-        return members;
+    public UserEdit userToUserEdit(User user){
+        UserEdit userEdit = new UserEdit();
+        userEdit.setFirstName(user.getFirstName());
+        userEdit.setLastName(user.getLastName());
+        userEdit.setVisibility(user.getVisibility());
+        return  userEdit;
     }
 }

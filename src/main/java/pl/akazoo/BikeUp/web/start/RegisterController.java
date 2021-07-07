@@ -1,5 +1,6 @@
 package pl.akazoo.BikeUp.web.start;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,17 +13,12 @@ import pl.akazoo.BikeUp.service.impl.UserService;
 import javax.validation.Valid;
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/register")
 public class RegisterController {
 
     private final Converter converter;
     private final UserService userService;
-
-    public RegisterController(Converter converter, UserService userService) {
-        this.userService = userService;;
-        this.converter = converter;
-    }
-
 
     @GetMapping
     public String register(Model model) {

@@ -1,5 +1,7 @@
 package pl.akazoo.BikeUp.service.impl;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,15 +13,12 @@ import java.util.List;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
+@Slf4j
 public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     public long allUsersCount() {
         return userRepository.count();
@@ -29,7 +28,9 @@ public class UserService {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         user.setRole("ROLE_USER");
+        log.debug("Zapisywany obiekt: " + user);
         userRepository.save(user);
+        log.debug("Zapisano: " + user);
     }
 
     public User getLoggedUser() {

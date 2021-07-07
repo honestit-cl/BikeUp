@@ -21,7 +21,7 @@ public class TourDetails {
     @Column(nullable = false)
     private String gatheringPlace;
     @Column(nullable = false,length = 1000)
-    private String description; //  extra description
+    private String description;
     @Column
     private LocalDateTime creationTime;
     @Column

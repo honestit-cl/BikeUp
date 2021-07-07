@@ -2,11 +2,21 @@ package pl.akazoo.BikeUp.domain.model.converter;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import pl.akazoo.BikeUp.domain.dto.PointAdd;
+import pl.akazoo.BikeUp.domain.model.Member;
+import pl.akazoo.BikeUp.domain.model.user.Point;
+import pl.akazoo.BikeUp.service.impl.MemberService;
+import pl.akazoo.BikeUp.service.impl.PointsService;
+import pl.akazoo.BikeUp.service.impl.UserService;
 import java.util.*;
 
 @Component
 @RequiredArgsConstructor
 public class ExtraClass {
+
+    private final UserService userService;
+    private final MemberService memberService;
+    private final PointsService pointsService;
 
     public Map<Integer, Map<String, String>> levels = new HashMap<>(Map.of(
             0, Map.of("Początek", "Przygodę czas zacząć"),
@@ -17,7 +27,8 @@ public class ExtraClass {
             5, Map.of("5", "Liga światowa.Chapeau bas !"),
             6, Map.of("MAX", "Korona króla kolarzy jest Twoja !")
     ));
-    List<Integer> pointsList = List.of(
+
+    public List<Integer> pointsList = List.of(
             0, 50, 500, 2000, 6000, 9000, 12000
     );
 
@@ -40,5 +51,16 @@ public class ExtraClass {
             }
         }
         return level;
+    }
+
+    public Optional<Point> pointsCheck(PointAdd pointAdd) {
+        return pointsService.findByGiver_IdAndOwner_IdAndTour_Id(userService.getLoggedUser().getId(), pointAdd.getUserIdToAdd(), pointAdd.getTourId());
+    }
+
+    public List<Member> getParticipationListForPoints(Long tourId) {
+        List<Member> members = memberService.findMembersByTourId(tourId);
+        Optional<Member> member = memberService.findByUser_IdAndTour_Id(userService.getLoggedUser().getId(),tourId);
+        member.ifPresent(members::remove);
+        return members;
     }
 }

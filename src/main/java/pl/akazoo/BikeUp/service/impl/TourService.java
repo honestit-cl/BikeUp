@@ -1,5 +1,7 @@
 package pl.akazoo.BikeUp.service.impl;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
@@ -10,22 +12,21 @@ import java.util.List;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
+@Slf4j
 public class TourService {
 
     private final TourRepository tourRepository;
     private final UserService userService;
-
-    public TourService(TourRepository tourRepository, UserService userService) {
-        this.tourRepository = tourRepository;
-        this.userService = userService;
-    }
 
     public long allToursCount(){
         return tourRepository.count();
     }
 
     public void save(Tour tour){
+        log.debug("Zapisywany obiekt: " + tour);
         tourRepository.save(tour);
+        log.debug("Zapisano: " + tour);
     }
 
     public List<Tour> findToursByUser(User user){
@@ -35,9 +36,12 @@ public class TourService {
     public Tour findById(Long id){
         return tourRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Tour with id="+id+"not exits."));
     }
+
     public void delete(Long id){
         Tour tour = findById(id);
+        log.debug("Usuwany obiekt: " + tour);
         tourRepository.delete(tour);
+        log.debug("Usunięto: " + tour);
     }
 
     public List<Tour> findAllToursWithoutUser() {

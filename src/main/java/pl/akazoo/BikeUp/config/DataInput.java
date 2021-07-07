@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.akazoo.BikeUp.domain.model.user.Point;
 import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.service.impl.*;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
@@ -25,17 +26,22 @@ public class DataInput {
     @Transactional
     public void testData(ContextRefreshedEvent event) {
         if (!alreadyRun.getAndSet(true)) {
+
             //
             User user = new User();
             user.setUsername("aa");
             user.setPassword("aa");
             user.setRole("ROLE_USER");
+            log.debug("Zapisywany obiekt: " + user);
             userService.save(user);
+            log.debug("Zapisano: " + user);
             //
             Point point = new Point();
             point.setAmount(12005L);
             point.setOwner(user);
+            log.debug("Zapisywany obiekt: " + point);
             pointsService.save(point);
+            log.debug("Zapisywany obiekt: " + point);
         }
     }
 }

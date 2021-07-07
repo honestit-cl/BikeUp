@@ -1,5 +1,7 @@
 package pl.akazoo.BikeUp.service.impl;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.akazoo.BikeUp.domain.model.user.Point;
@@ -9,22 +11,21 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
+@Slf4j
 public class PointsService {
 
     private final PointRepository pointRepository;
     private final UserService userService;
-
-    public PointsService(PointRepository pointRepository, UserService userService) {
-        this.pointRepository = pointRepository;
-        this.userService = userService;
-    }
 
     public List<Point> findAllByUserLogged(){
         return pointRepository.findAllByOwner_id(userService.getLoggedUser().getId());
     }
 
     public void save(Point point){
+        log.debug("Zapisywany obiekt: " + point);
         pointRepository.save(point);
+        log.debug("Zapisano: " + point);
     }
 
     public Optional<Point> findByGiver_IdAndOwner_IdAndTour_Id(Long giver, Long owner, Long tour){
