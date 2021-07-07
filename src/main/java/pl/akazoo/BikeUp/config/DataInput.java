@@ -32,16 +32,12 @@ public class DataInput {
             user.setUsername("aa");
             user.setPassword("aa");
             user.setRole("ROLE_USER");
-            log.debug("Zapisywany obiekt: " + user);
             userService.save(user);
-            log.debug("Zapisano: " + user);
             //
             Point point = new Point();
             point.setAmount(12005L);
             point.setOwner(user);
-            log.debug("Zapisywany obiekt: " + point);
             pointsService.save(point);
-            log.debug("Zapisywany obiekt: " + point);
         }
     }
 }
