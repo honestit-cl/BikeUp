@@ -89,12 +89,8 @@ public class Converter {
         tourDetails.setMapLink(tourEdit.getLink());
         tourDetails.setGatheringPlace(tourEdit.getGatheringPlace());
         tourDetails.setReturning(tourEdit.getReturning());
-        log.debug("Zapisywany obiekt: " + tour);
-        log.debug("Zapisywany obiekt: " + tourDetails);
         tourService.save(tour);
         tourDetailsService.save(tourDetails);
-        log.debug("Zapisano: " + tour);
-        log.debug("Zapisano: " + tourDetails);
     }
 
     public void savePointAdd(PointAdd pointAdd) {
@@ -104,9 +100,7 @@ public class Converter {
         point.setGiver(userService.getLoggedUser());
         point.setOwner(userService.findUserById(pointAdd.getUserIdToAdd()));
         point.setTour(tourService.findById(pointAdd.getTourId()));
-        log.debug("Zapisywany obiekt: " + point);
         pointsService.save(point);
-        log.debug("Zapisano: " + point);
     }
 
     public UserEdit userToUserEdit(User user){
