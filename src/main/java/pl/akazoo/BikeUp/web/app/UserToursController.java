@@ -14,6 +14,7 @@ import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.service.impl.*;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -37,8 +38,7 @@ public class UserToursController {
     @GetMapping("/data")
     @ResponseBody
     public List<Tour> tours() {
-        User user = userService.getLoggedUser();
-        return tourService.findToursByUser(user);
+        return tourService.findToursByUser(userService.getLoggedUser());
     }
 
     @GetMapping("/delete/{id:\\d+}")
@@ -49,10 +49,7 @@ public class UserToursController {
 
     @PostMapping("/delete")
     public String delete(Long id) {
-        TourDetails tourDetails = tourDetailsService.findByTourId(id);
-        memberService.deleteMembers(memberService.findMembersByTourId(id));
-        tourService.delete(id);
-        tourDetailsService.delete(tourDetails);
+        extraClass.deleteWholeTour(id);
         return "redirect:/app/tours";
     }
 
@@ -85,9 +82,7 @@ public class UserToursController {
 
     @PostMapping("/confirmTour")
     public String confirmed(Long id) {
-        Tour tour = tourService.findById(id);
-        tour.setActive("zamknięta");
-        tourService.save(tour);
+        tourService.closingTour(id);
         return "redirect:/app/tours";
     }
 
@@ -100,9 +95,7 @@ public class UserToursController {
 
     @GetMapping("/setActive/{id:\\d+}/{id2:\\d+}")
     public String setActiveMember(@PathVariable Long id, @PathVariable Long id2) {
-        Member member = memberService.findById(id);
-        member.setStatus("aktywny");
-        memberService.save(member);
+        memberService.activating(id);
         return "redirect:/app/tours/confirmPart/" + id2;
     }
 
@@ -119,7 +112,7 @@ public class UserToursController {
         point.setUserIdToAdd(userId);
         point.setTourId(tourId);
         model.addAttribute("pointAdd", point);
-        model.addAttribute("user",userService.findUserById(userId));
+        model.addAttribute("user", userService.findUserById(userId));
         return "/app/userTours/pointsForm";
     }
 
@@ -128,12 +121,23 @@ public class UserToursController {
         if (bindingResult.hasErrors()) {
             return "/app/userTours/pointsForm";
         }
+
         Tour tour = tourService.findById(pointAdd.getTourId());
-        if (pointAdd.getAmount()> tour.getDistance()) {
-            bindingResult.rejectValue("amount", null,"Ilość punktów nie może większa niż " + tour.getDistance());
-            return "/app/userTours/pointsForm";
+        TourDetails tourDetails = tourDetailsService.findByTourId(pointAdd.getTourId());
+
+        if (tourDetails.getReturning().equals("tak")) {
+            if (pointAdd.getAmount() > tour.getDistance() * 2) {
+                bindingResult.rejectValue("amount", null, "Ilość punktów nie może większa niż " + tour.getDistance() * 2);
+                return "/app/userTours/pointsForm";
+            }
+        } else {
+            if (pointAdd.getAmount() > tour.getDistance()) {
+                bindingResult.rejectValue("amount", null, "Ilość punktów nie może większa niż " + tour.getDistance());
+                return "/app/userTours/pointsForm";
+            }
         }
-        if(extraClass.pointsCheck(pointAdd).isEmpty()) {
+
+        if (extraClass.pointsCheck(pointAdd).isEmpty()) {
             converter.savePointAdd(pointAdd);
             return "redirect:/app/tours/addPointsList/" + pointAdd.getTourId();
         }

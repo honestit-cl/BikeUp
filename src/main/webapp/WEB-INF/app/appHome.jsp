@@ -10,6 +10,7 @@
     <li>Kominikaty o zmianie stanu trasy(nowe prośby o dołączenie do wycieczki, edycja wycieczki itd.)</li><br/>
     <li>Więcej ciekawostek,</li><br/>
     <li>Więcej poziomów,</li><br/>
-    <li>Możliwość dodania swojego sukcesu,</li>
+    <li>Możliwość dodania swojego sukcesu,</li><br/>
+    <li>Techinczne : przyciski powrót(do poprzedniej strony, nie link)</li>
 </ul>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

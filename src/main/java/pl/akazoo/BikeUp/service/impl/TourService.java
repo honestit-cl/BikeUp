@@ -48,4 +48,10 @@ public class TourService {
         User user= userService.getLoggedUser();
         return tourRepository.findAllByUser_IdNotLike(user.getId());
     }
+
+    public void closingTour(Long id) {
+        Tour tour = findById(id);
+        tour.setActive("zamknięta");
+        save(tour);
+    }
 }

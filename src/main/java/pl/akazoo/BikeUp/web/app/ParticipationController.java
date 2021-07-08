@@ -13,10 +13,12 @@ import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.converter.ExtraClass;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
+import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.service.impl.MemberService;
 import pl.akazoo.BikeUp.service.impl.TourDetailsService;
 import pl.akazoo.BikeUp.service.impl.TourService;
 import pl.akazoo.BikeUp.service.impl.UserService;
+
 import javax.validation.Valid;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -43,23 +45,14 @@ public class ParticipationController {
 
     @PostMapping("/singOut")
     public String confirmed(Long id) {
-        Optional<Member> member = memberService.findByUser_IdAndTour_Id(userService.getLoggedUser().getId(),id);
-        member.ifPresent(memberService::delete);
-            return "redirect:/app/participation";
+        memberService.singOut(id);
+        return "redirect:/app/participation";
     }
 
     @GetMapping
-    public String participation(Model model){
-       List<Member> memberList = memberService.findMembersByLoggedUsername();
-       Map<Tour,String> tourList = new LinkedHashMap<>();
-
-        memberList.removeIf(member -> member.getTour().getUser().getUsername().equals(userService.getLoggedUser().getUsername()));
-
-           for (Member member : memberList) {
-               tourList.put(member.getTour(), member.getStatus());
-           }
-
-       model.addAttribute("tours",tourList);
+    public String participation(Model model) {
+        Map<Tour, String> tourList = memberService.getParticipationMap();
+        model.addAttribute("tours", tourList);
         return "/app/participation/participationPage";
     }
 
@@ -72,7 +65,7 @@ public class ParticipationController {
     @GetMapping("/addPointsList/{id:\\d+}")
     public String addPoints(@PathVariable Long id, Model model) {
         model.addAttribute("tour", tourService.findById(id));
-        model.addAttribute("members",extraClass.getParticipationListForPoints(id));
+        model.addAttribute("members", extraClass.getParticipationListForPoints(id));
         return "/app/participation/addPoints";
     }
 
@@ -82,7 +75,7 @@ public class ParticipationController {
         point.setUserIdToAdd(userId);
         point.setTourId(tourId);
         model.addAttribute("pointAdd", point);
-        model.addAttribute("user",userService.findUserById(userId));
+        model.addAttribute("user", userService.findUserById(userId));
         return "/app/participation/pointsForm";
     }
 
@@ -91,12 +84,23 @@ public class ParticipationController {
         if (bindingResult.hasErrors()) {
             return "/app/participation/pointsForm";
         }
+
         Tour tour = tourService.findById(pointAdd.getTourId());
-        if (pointAdd.getAmount()> tour.getDistance()) {
-            bindingResult.rejectValue("amount", null,"Ilość punktów nie może większa niż " + tour.getDistance());
-            return "/app/participation/pointsForm";
+        TourDetails tourDetails = tourDetailsService.findByTourId(pointAdd.getTourId());
+
+        if (tourDetails.getReturning().equals("tak")) {
+            if (pointAdd.getAmount() > tour.getDistance() * 2) {
+                bindingResult.rejectValue("amount", null, "Ilość punktów nie może większa niż " + tour.getDistance() * 2);
+                return "/app/participation/pointsForm";
+            }
+        } else {
+            if (pointAdd.getAmount() > tour.getDistance()) {
+                bindingResult.rejectValue("amount", null, "Ilość punktów nie może większa niż " + tour.getDistance());
+                return "/app/participation/pointsForm";
+            }
         }
-        if(extraClass.pointsCheck(pointAdd).isEmpty()) {
+
+        if (extraClass.pointsCheck(pointAdd).isEmpty()) {
             converter.savePointAdd(pointAdd);
             return "redirect:/app/participation/addPointsList/" + pointAdd.getTourId();
         }

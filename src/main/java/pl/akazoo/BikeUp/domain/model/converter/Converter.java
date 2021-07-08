@@ -29,16 +29,13 @@ public class Converter {
         return user;
     }
 
-    public TourDetails tourAddToTourDetails(TourAdd tourAdd) {
+    public Tour saveTourAdd(TourAdd tourAdd) {
         TourDetails tourDetails = new TourDetails();
         tourDetails.setGatheringPlace(tourAdd.getGatheringPlace());
         tourDetails.setMapLink(tourAdd.getLink());
         tourDetails.setDescription(tourAdd.getDescription());
         tourDetails.setReturning(tourAdd.getReturning());
-        return tourDetails;
-    }
-
-    public Tour tourAddToTour(TourAdd tourAdd, TourDetails tourDetails) {
+        ////
         Tour tour = new Tour();
         User user = userService.getLoggedUser();
         tour.setDate(tourAdd.getDate());
@@ -52,17 +49,21 @@ public class Converter {
         tour.setStartPost(tourAdd.getStartPost());
         tour.setEndPlace(tourAdd.getEndPlace());
         tour.setEndPost(tourAdd.getEndPost());
+        //////
+        tourDetailsService.save(tourDetails);
+        tourService.save(tour);
+        //////
         return tour;
     }
 
-    public User userEditToUser(UserEdit userEdit) {
+    public void saveUserEdit(UserEdit userEdit) {
         User user = userService.getLoggedUser();
         user.setFirstName(userEdit.getFirstName());
         user.setLastName(userEdit.getLastName());
         if (userEdit.getVisibility() != null) {
             user.setVisibility(userEdit.getVisibility());
         }
-        return user;
+        userService.save(user);
     }
 
     public TourEdit tourToTourEditById(Long id) {

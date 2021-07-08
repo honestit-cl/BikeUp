@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.akazoo.BikeUp.domain.dto.UserEdit;
 import pl.akazoo.BikeUp.domain.model.converter.Converter;
-import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.service.impl.UserService;
 import javax.validation.Valid;
 
@@ -38,8 +37,7 @@ public class ProfileController {
         if(bindingResult.hasErrors()){
             return "/app/profile/edit";
         }
-        User user = converter.userEditToUser(userEdit);
-        userService.save(user);
+        converter.saveUserEdit(userEdit);
         return "redirect:/app/profile";
     }
 }

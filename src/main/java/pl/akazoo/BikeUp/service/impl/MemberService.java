@@ -8,7 +8,10 @@ import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.repository.MemberRepository;
 import pl.akazoo.BikeUp.exceptions.ResourceNotFoundException;
+
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -72,5 +75,26 @@ public class MemberService {
         log.debug("Zapisywany obiekt: " + member);
         memberRepository.save(member);
         log.debug("Zapisano: " + member);
+    }
+
+    public Map<Tour, String> getParticipationMap() {
+        List<Member> memberList = findMembersByLoggedUsername();
+        Map<Tour, String> tourList = new LinkedHashMap<>();
+        memberList.removeIf(member -> member.getTour().getUser().getUsername().equals(userService.getLoggedUser().getUsername()));
+        for (Member member : memberList) {
+            tourList.put(member.getTour(), member.getStatus());
+        }
+        return  tourList;
+    }
+
+    public void singOut(Long id) {
+        Optional<Member> member = findByUser_IdAndTour_Id(userService.getLoggedUser().getId(), id);
+        member.ifPresent(this::delete);
+    }
+
+    public void activating(Long id) {
+        Member member = findById(id);
+        member.setStatus("aktywny");
+        save(member);
     }
 }

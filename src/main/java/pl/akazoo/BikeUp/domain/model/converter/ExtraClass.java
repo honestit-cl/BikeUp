@@ -4,10 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.akazoo.BikeUp.domain.dto.PointAdd;
 import pl.akazoo.BikeUp.domain.model.Member;
+import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.domain.model.user.Point;
-import pl.akazoo.BikeUp.service.impl.MemberService;
-import pl.akazoo.BikeUp.service.impl.PointsService;
-import pl.akazoo.BikeUp.service.impl.UserService;
+import pl.akazoo.BikeUp.service.impl.*;
+
 import java.util.*;
 
 @Component
@@ -17,6 +17,8 @@ public class ExtraClass {
     private final UserService userService;
     private final MemberService memberService;
     private final PointsService pointsService;
+    private final TourDetailsService tourDetailsService;
+    private final TourService tourService;
 
     public Map<Integer, Map<String, String>> levels = new HashMap<>(Map.of(
             0, Map.of("Początek", "Przygodę czas zacząć"),
@@ -62,5 +64,12 @@ public class ExtraClass {
         Optional<Member> member = memberService.findByUser_IdAndTour_Id(userService.getLoggedUser().getId(),tourId);
         member.ifPresent(members::remove);
         return members;
+    }
+
+    public void deleteWholeTour(Long id) {
+        TourDetails tourDetails = tourDetailsService.findByTourId(id);
+        memberService.deleteMembers(memberService.findMembersByTourId(id));
+        tourService.delete(id);
+        tourDetailsService.delete(tourDetails);
     }
 }

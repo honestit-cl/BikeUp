@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.akazoo.BikeUp.domain.dto.TourAdd;
 import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
-import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.service.impl.*;
 import javax.validation.Valid;
 import java.util.List;
@@ -18,8 +17,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AddTourController {
 
-    private final TourService tourService;
-    private final TourDetailsService tourDetailsService;
     private final Converter converter;
     private final MemberService memberService;
 
@@ -34,11 +31,7 @@ public class AddTourController {
         if (bindingResult.hasErrors()) {
             return "app/addTour/addTour";
         }
-        TourDetails tourDetails = converter.tourAddToTourDetails(tourAdd);
-        Tour tour = converter.tourAddToTour(tourAdd, tourDetails);
-        tourDetailsService.save(tourDetails);
-        tourService.save(tour);
-        ///
+        Tour tour = converter.saveTourAdd(tourAdd);
         memberService.saveCreatorMember(tour);
         return "app/addTour/tourAdded";
     }
