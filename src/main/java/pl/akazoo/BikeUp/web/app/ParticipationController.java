@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.akazoo.BikeUp.domain.dto.PointAdd;
-import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.converter.ExtraClass;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
@@ -20,10 +19,7 @@ import pl.akazoo.BikeUp.service.impl.TourService;
 import pl.akazoo.BikeUp.service.impl.UserService;
 
 import javax.validation.Valid;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -75,7 +71,7 @@ public class ParticipationController {
         point.setUserIdToAdd(userId);
         point.setTourId(tourId);
         model.addAttribute("pointAdd", point);
-        model.addAttribute("user", userService.findUserById(userId));
+        model.addAttribute("user", userService.findById(userId));
         return "/app/participation/pointsForm";
     }
 

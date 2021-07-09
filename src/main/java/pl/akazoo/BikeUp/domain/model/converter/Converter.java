@@ -98,7 +98,7 @@ public class Converter {
         point.setDescription(pointAdd.getDescription());
         point.setAmount(pointAdd.getAmount());
         point.setGiver(userService.getLoggedUser());
-        point.setOwner(userService.findUserById(pointAdd.getUserIdToAdd()));
+        point.setOwner(userService.findById(pointAdd.getUserIdToAdd()));
         point.setTour(tourService.findById(pointAdd.getTourId()));
         pointsService.save(point);
     }

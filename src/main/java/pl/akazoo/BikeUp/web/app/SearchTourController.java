@@ -49,7 +49,7 @@ public class SearchTourController {
         if(memberService.findByUser_IdAndTour_Id(userService.getLoggedUser().getId(),id).isEmpty()) {
             Tour tour = tourService.findById(id);
             memberService.saveNewMember(tour);
-            return "redirect:/app/search";
+            return "/app/searching/userAdded";
         }
         return "/app/searching/memberWrong";
     }

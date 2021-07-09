@@ -14,30 +14,33 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 @Slf4j
-public class TourService {
+public class TourService implements pl.akazoo.BikeUp.service.Service<Tour> {
 
     private final TourRepository tourRepository;
     private final UserService userService;
 
-    public long allToursCount(){
+    public long allToursCount() {
         return tourRepository.count();
     }
 
-    public void save(Tour tour){
+    @Override
+    public void save(Tour tour) {
         log.debug("Zapisywany obiekt: " + tour);
         tourRepository.save(tour);
         log.debug("Zapisano: " + tour);
     }
 
-    public List<Tour> findToursByUser(User user){
+    public List<Tour> findToursByUser(User user) {
         return tourRepository.findAllTourByUser(user);
     }
 
-    public Tour findById(Long id){
-        return tourRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Tour with id="+id+"not exits."));
+    @Override
+    public Tour findById(Long id) {
+        return tourRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tour with id=" + id + " not exits."));
     }
 
-    public void delete(Long id){
+    @Override
+    public void delete(Long id) {
         Tour tour = findById(id);
         log.debug("Usuwany obiekt: " + tour);
         tourRepository.delete(tour);
@@ -45,7 +48,7 @@ public class TourService {
     }
 
     public List<Tour> findAllToursWithoutUser() {
-        User user= userService.getLoggedUser();
+        User user = userService.getLoggedUser();
         return tourRepository.findAllByUser_IdNotLike(user.getId());
     }
 

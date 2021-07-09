@@ -7,12 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.akazoo.BikeUp.domain.dto.TourEdit;
 import pl.akazoo.BikeUp.domain.dto.PointAdd;
-import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.converter.ExtraClass;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
-import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.service.impl.*;
 
 import javax.validation.Valid;
@@ -112,7 +110,7 @@ public class UserToursController {
         point.setUserIdToAdd(userId);
         point.setTourId(tourId);
         model.addAttribute("pointAdd", point);
-        model.addAttribute("user", userService.findUserById(userId));
+        model.addAttribute("user", userService.findById(userId));
         return "/app/userTours/pointsForm";
     }
 

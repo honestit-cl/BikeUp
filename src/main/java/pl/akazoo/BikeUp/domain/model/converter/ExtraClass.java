@@ -70,6 +70,6 @@ public class ExtraClass {
         TourDetails tourDetails = tourDetailsService.findByTourId(id);
         memberService.deleteMembers(memberService.findMembersByTourId(id));
         tourService.delete(id);
-        tourDetailsService.delete(tourDetails);
+        tourDetailsService.delete(tourDetails.getId());
     }
 }

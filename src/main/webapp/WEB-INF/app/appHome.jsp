@@ -11,6 +11,6 @@
     <li>Więcej ciekawostek,</li><br/>
     <li>Więcej poziomów,</li><br/>
     <li>Możliwość dodania swojego sukcesu,</li><br/>
-    <li>Techinczne : przyciski powrót(do poprzedniej strony, nie link)</li>
+    <li>Techniczne : przyciski powrót(do poprzedniej strony, nie link)</li>
 </ul>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

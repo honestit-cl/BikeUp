@@ -10,12 +10,13 @@ import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.domain.repository.UserRepository;
 import pl.akazoo.BikeUp.exceptions.ResourceNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 @Slf4j
-public class UserService {
+public class UserService implements pl.akazoo.BikeUp.service.Service<User> {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -24,6 +25,7 @@ public class UserService {
         return userRepository.count();
     }
 
+    @Override
     public void save(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -39,15 +41,24 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User with name: " + SecurityContextHolder.getContext().getAuthentication().getName() + " not exist"));
     }
 
-    public boolean existsByUsername(String username){
+    public boolean existsByUsername(String username) {
         return userRepository.existsByUsername(username);
     }
 
-    public User findUserById(Long id){
-        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not exist"));
+    @Override
+    public User findById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User with id=" + id + " not exist"));
     }
 
-    public List<User> findAll(){
+    public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public void delete(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        log.debug("Usuwany obiekt: " + user);
+        user.ifPresent(userRepository::delete);
+        log.debug("Usunięto: " + user);
     }
 }
