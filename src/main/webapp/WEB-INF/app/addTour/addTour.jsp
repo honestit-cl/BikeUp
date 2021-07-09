@@ -49,12 +49,12 @@
     <br/>
 
     <label>Opis trasy:<br/>
-        <form:textarea rows="5" cols="40" path="description" placeholder="Pprzystanki,godzina spotkania/wyjazdu oraz wszystkie znaczące informacje"/>
+        <form:textarea rows="5" cols="40" path="description" placeholder="Przystanki,godzina spotkania/wyjazdu oraz wszystkie znaczące informacje"/>
     </label><br/>
     <form:errors path="description"/>
     <br/>
 
-    <label>Powrót do mniejsca startu:<br/>
+    <label>Powrót do miejsca startu:<br/>
         tak
         <form:checkbox path="returning" value="tak"/>
         nie

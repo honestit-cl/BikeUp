@@ -7,12 +7,11 @@
 <input id="nameInput" type="text" placeholder="Wpisz nazwę użytkownika">
 <br/>
 <br/>
-<table border="1">
-    <tr>
-        <th>Id</th>
-        <th>Nazwa użytkownika</th>
-        <th>Dostępne akcje</th>
-    </tr>
+<table border="1" id="table">
+    <tbody>
+    </tbody>
 </table>
-<script src="/scripts/userSearching.js" type="text/javascript" defer></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js" ></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="/scripts/userSearching.js" type="text/javascript" ></script>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>
