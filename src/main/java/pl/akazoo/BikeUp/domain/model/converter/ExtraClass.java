@@ -7,7 +7,6 @@ import pl.akazoo.BikeUp.domain.model.Member;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.domain.model.user.Point;
 import pl.akazoo.BikeUp.service.impl.*;
-
 import java.util.*;
 
 @Component

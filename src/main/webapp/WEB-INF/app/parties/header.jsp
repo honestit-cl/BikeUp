@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BikeUp</title>
     <style><%@include file="/css/appStyle.css"%></style>
-    <script src="/scripts/script.js" defer></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js" defer></script>
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js" defer></script>
+    <script src="/scripts/hamburgerMenu.js" defer></script>
 </head>
 <body>
 <button class="hamburger">

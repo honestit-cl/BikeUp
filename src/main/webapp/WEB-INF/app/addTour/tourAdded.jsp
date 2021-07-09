@@ -6,5 +6,5 @@
 <p>Twoja wycieczka została pomyślnie dodana i powinna od razu pojawić się w Twoich trasach.</p>
 <br/>
 <br/>
-<input type="button" class="myButton" value="Powrót" onclick="location.href='/app/tours'">
+<input type="button" class="myButton" value="Przejdź" onclick="location.href='/app/tours'">
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>

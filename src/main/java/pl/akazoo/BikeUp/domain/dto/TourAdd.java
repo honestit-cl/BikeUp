@@ -18,7 +18,6 @@ public class TourAdd {
     private Long distance;
     @NotBlank(message = "To pole nie może być puste.")
     private String hours;
-    @Future
     private @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date;
     @NotBlank(message = "To pole nie może być puste.")
     @Size(max = 1000, message = "Opis jest za długi. Dozwolona liczba znaków to 1000.")

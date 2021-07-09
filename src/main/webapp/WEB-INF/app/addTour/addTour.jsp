@@ -55,10 +55,10 @@
     <br/>
 
     <label>Powrót do miejsca startu:<br/>
-        tak
-        <form:checkbox path="returning" value="tak"/>
-        nie
-        <form:checkbox path="returning" value="nie"/>
+        <label for="yes">tak</label>
+        <form:checkbox  id="yes" class="checkboxy" path="returning" value="tak"/>
+        <label for="no">nie</label>
+        <form:checkbox  id="no" class="checkboxy" path="returning" value="nie" checked="true"/>
          <span></span>
     </label><br/>
     <form:errors path="returning"/>
@@ -79,5 +79,5 @@
     <br/>
     <form:button class="myButton" type="submit">Dodaj trasę</form:button>
 </form:form>
-<script src="/scripts/dataScript.js" defer></script>
+<script src="/scripts/addFormScript.js" defer></script>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>
