@@ -11,7 +11,7 @@
     <li>Więcej ciekawostek,</li><br/>
     <li>Więcej poziomów,</li><br/>
     <li>Możliwość dodania swojego sukcesu,</li><br/>
-    <li>Przegląd punktów z poprzednich lat,</li>
+    <li>Przegląd punktów z poprzednich lat,</li><br/>
     <li>Techniczne : <br/>
         - przyciski powrót(do poprzedniej strony, nie link)<br/>
         - zerowanie punktów wraz z nowym rokiem

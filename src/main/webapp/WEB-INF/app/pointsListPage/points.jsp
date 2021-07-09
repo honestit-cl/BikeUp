@@ -3,6 +3,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="/WEB-INF/app/parties/header.jsp" %>
 <h1>Twoje punkty</h1><br/>
+<div class="successButton">
+    <input class="myButton startButton" type="button" value="Poprzednie lata" onclick="location.href=''">
+</div>
+<p>Punkty zdobyte w tym roku:</p>
 <table border="1">
     <tr>
         <th>Id trasy</th>
