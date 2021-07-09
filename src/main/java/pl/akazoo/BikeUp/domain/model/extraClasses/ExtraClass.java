@@ -1,4 +1,4 @@
-package pl.akazoo.BikeUp.domain.model.converter;
+package pl.akazoo.BikeUp.domain.model.extraClasses;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

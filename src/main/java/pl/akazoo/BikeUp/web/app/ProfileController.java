@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.akazoo.BikeUp.domain.dto.UserEdit;
-import pl.akazoo.BikeUp.domain.model.converter.Converter;
+import pl.akazoo.BikeUp.domain.model.extraClasses.Converter;
 import pl.akazoo.BikeUp.service.impl.UserService;
 import javax.validation.Valid;
 

@@ -17,7 +17,7 @@
         <td>${user.creationDate}</td>
     </tr>
     <tr>
-        <td>Imie</td>
+        <td>Imię</td>
         <td>${user.firstName}</td>
     </tr>
     <tr>

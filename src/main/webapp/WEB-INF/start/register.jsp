@@ -19,7 +19,7 @@
         <ul><h2>Regulamin aplikacji</h2> <br>
             <li><h3>Będę miły i uprzejmy dla wszystkich użytkowników,</h3></li>
             <li><h3>Będę obiektywnie oceniał użytkowników,</h3></li>
-            <li><h3>Będę cechował się wysoką kulturą osobistą,</h3></li>
+            <li><h3>Będę cechował się wysoką kulturą osobistą.</h3></li>
     </ul>
     </div>
     <div>

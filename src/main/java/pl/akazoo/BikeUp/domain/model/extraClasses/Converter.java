@@ -1,4 +1,4 @@
-package pl.akazoo.BikeUp.domain.model.converter;
+package pl.akazoo.BikeUp.domain.model.extraClasses;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,12 +21,12 @@ public class Converter {
     private final PointsService pointsService;
 
 
-    public User userRegistryToUser(UserRegistry userRegistry) {
+    public void saveUserRegistry(UserRegistry userRegistry) {
         User user = new User();
         user.setUsername(userRegistry.getLogin());
         user.setPassword(userRegistry.getPassword());
         user.setVisibility("hidden");
-        return user;
+        userService.save(user);
     }
 
     public Tour saveTourAdd(TourAdd tourAdd) {

@@ -3,10 +3,9 @@ package pl.akazoo.BikeUp.web;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import pl.akazoo.BikeUp.domain.model.converter.ExtraClass;
+import pl.akazoo.BikeUp.domain.model.extraClasses.ExtraClass;
 import pl.akazoo.BikeUp.service.impl.UserService;
 import pl.akazoo.BikeUp.web.app.AppHomeController;
-import java.util.List;
 import java.util.List;
 import java.util.Random;
 

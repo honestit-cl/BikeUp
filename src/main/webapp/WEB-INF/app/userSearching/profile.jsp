@@ -10,10 +10,6 @@
     <td>${user.username}</td>
     </tr>
     <tr>
-        <td>Wojewódźtwo</td>
-        <td>${user.province.name}</td>
-    </tr>
-    <tr>
         <td>Punkty</td>
         <td>${user.points}</td>
     </tr>
@@ -30,6 +26,9 @@
         <td>${user.lastName}</td>
     </tr>
     </c:if>
+<c:if test="${user.visibility == 'hidden'}">
+    <p>Ten użytkownik zablokował widoczność swoich danych.</p>
+</c:if>
 </table><br/>
 <br/>
 <input type="button" value="Powrót" class="myButton" onclick="location.href='/app/searchUser'">

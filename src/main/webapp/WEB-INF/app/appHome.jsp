@@ -11,6 +11,10 @@
     <li>Więcej ciekawostek,</li><br/>
     <li>Więcej poziomów,</li><br/>
     <li>Możliwość dodania swojego sukcesu,</li><br/>
-    <li>Techniczne : przyciski powrót(do poprzedniej strony, nie link)</li>
+    <li>Przegląd punktów z poprzednich lat,</li>
+    <li>Techniczne : <br/>
+        - przyciski powrót(do poprzedniej strony, nie link)<br/>
+        - zerowanie punktów wraz z nowym rokiem
+    </li>
 </ul>
 <%@ include file="/WEB-INF/app/parties/footer.jsp" %>
