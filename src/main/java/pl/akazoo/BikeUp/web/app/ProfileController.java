@@ -22,13 +22,13 @@ public class ProfileController {
 
     @GetMapping
     public String profile(Model model){
-        model.addAttribute("user", userService.getLoggedUser());
+        model.addAttribute("user", userService.logged());
         return "/app/profile/profile";
     }
 
     @GetMapping("/edit")
     public String edit(Model model){
-        model.addAttribute("userEdit", converter.userToUserEdit(userService.getLoggedUser()));
+        model.addAttribute("userEdit", converter.userToUserEdit(userService.logged()));
         return "/app/profile/edit";
     }
 

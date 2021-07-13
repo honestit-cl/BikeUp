@@ -31,7 +31,7 @@ public class SearchUserController {
 
     @GetMapping("/profile/{id:\\d+}")
     public String profile(@PathVariable Long id, Model model) {
-        model.addAttribute("user", userService.findById(id));
+        model.addAttribute("user", userService.getById(id));
         return "/app/userSearching/profile";
     }
 }

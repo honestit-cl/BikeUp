@@ -35,7 +35,7 @@ public class ParticipationController {
 
     @GetMapping("/singOut/{id:\\d+}")
     public String singOutTrip(@PathVariable Long id, Model model) {
-        model.addAttribute("tour", tourService.findById(id));
+        model.addAttribute("tour", tourService.getById(id));
         return "/app/participation/confirmSingOut";
     }
 
@@ -54,13 +54,13 @@ public class ParticipationController {
 
     @GetMapping("/details/{id:\\d+}")
     public String details(@PathVariable Long id, Model model) {
-        model.addAttribute("details", tourDetailsService.findByTourId(id));
+        model.addAttribute("details", tourDetailsService.getByTourId(id));
         return "/app/participation/details";
     }
 
     @GetMapping("/addPointsList/{id:\\d+}")
     public String addPoints(@PathVariable Long id, Model model) {
-        model.addAttribute("tour", tourService.findById(id));
+        model.addAttribute("tour", tourService.getById(id));
         model.addAttribute("members", extraClass.getParticipationListForPoints(id));
         return "/app/participation/addPoints";
     }
@@ -71,7 +71,7 @@ public class ParticipationController {
         point.setUserIdToAdd(userId);
         point.setTourId(tourId);
         model.addAttribute("pointAdd", point);
-        model.addAttribute("user", userService.findById(userId));
+        model.addAttribute("user", userService.getById(userId));
         return "/app/participation/pointsForm";
     }
 
@@ -81,8 +81,8 @@ public class ParticipationController {
             return "/app/participation/pointsForm";
         }
 
-        Tour tour = tourService.findById(pointAdd.getTourId());
-        TourDetails tourDetails = tourDetailsService.findByTourId(pointAdd.getTourId());
+        Tour tour = tourService.getById(pointAdd.getTourId());
+        TourDetails tourDetails = tourDetailsService.getByTourId(pointAdd.getTourId());
 
         if (tourDetails.getReturning().equals("tak")) {
             if (pointAdd.getAmount() > tour.getDistance() * 2) {

@@ -16,7 +16,7 @@ public class PointsController {
 
     @GetMapping
     public String pointsList(Model model){
-        model.addAttribute("points",pointsService.findAllByUserLogged());
+        model.addAttribute("points",pointsService.getAllByLogged());
         return "/app/pointsListPage/points";
     }
 }

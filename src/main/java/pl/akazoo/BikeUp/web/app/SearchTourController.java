@@ -29,25 +29,25 @@ public class SearchTourController {
     @GetMapping("/data")
     @ResponseBody
     public List<Tour> toursData() {
-        return tourService.findAllToursWithoutUser();
+        return tourService.getAllWithoutLogged();
     }
 
     @GetMapping("/details/{id:\\d+}")
     public String details(@PathVariable Long id, Model model) {
-        model.addAttribute("details",tourDetailsService.findByTourId(id));
+        model.addAttribute("details",tourDetailsService.getByTourId(id));
         return "/app/searching/details";
     }
 
     @GetMapping("/confirmPart/{id:\\d+}")
     public String confirmTrip(@PathVariable Long id, Model model) {
-        model.addAttribute("tour", tourService.findById(id));
+        model.addAttribute("tour", tourService.getById(id));
         return "/app/searching/confirmPart";
     }
 
     @PostMapping("/confirmPart")
     public String confirmed(Long id) {
-        if(memberService.findByUser_IdAndTour_Id(userService.getLoggedUser().getId(),id).isEmpty()) {
-            Tour tour = tourService.findById(id);
+        if(memberService.getByUserIdAndTourId(userService.logged().getId(),id).isEmpty()) {
+            Tour tour = tourService.getById(id);
             memberService.saveNewMember(tour);
             return "/app/searching/userAdded";
         }

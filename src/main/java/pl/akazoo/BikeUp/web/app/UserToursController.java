@@ -36,12 +36,12 @@ public class UserToursController {
     @GetMapping("/data")
     @ResponseBody
     public List<Tour> tours() {
-        return tourService.findToursByUser(userService.getLoggedUser());
+        return tourService.getAllByUser(userService.logged());
     }
 
     @GetMapping("/delete/{id:\\d+}")
     public String prepareDelete(@PathVariable Long id, Model model) {
-        model.addAttribute("tour", tourService.findById(id));
+        model.addAttribute("tour", tourService.getById(id));
         return "app/userTours/confirmDelete";
     }
 
@@ -68,13 +68,13 @@ public class UserToursController {
 
     @GetMapping("/details/{id:\\d+}")
     public String details(@PathVariable Long id, Model model) {
-        model.addAttribute("details", tourDetailsService.findByTourId(id));
+        model.addAttribute("details", tourDetailsService.getByTourId(id));
         return "/app/userTours/details";
     }
 
     @GetMapping("/confirmTour/{id:\\d+}")
     public String confirmTrip(@PathVariable Long id, Model model) {
-        model.addAttribute("tour", tourService.findById(id));
+        model.addAttribute("tour", tourService.getById(id));
         return "/app/userTours/confirmTour";
     }
 
@@ -86,8 +86,8 @@ public class UserToursController {
 
     @GetMapping("/confirmPart/{id:\\d+}")
     public String confirmParticipants(@PathVariable Long id, Model model) {
-        model.addAttribute("tour", tourService.findById(id));
-        model.addAttribute("members", memberService.findMembersByTourId(id));
+        model.addAttribute("tour", tourService.getById(id));
+        model.addAttribute("members", memberService.getAllByTourId(id));
         return "/app/userTours/confirmParticipators";
     }
 
@@ -99,7 +99,7 @@ public class UserToursController {
 
     @GetMapping("/addPointsList/{id:\\d+}")
     public String addPoints(@PathVariable Long id, Model model) {
-        model.addAttribute("tour", tourService.findById(id));
+        model.addAttribute("tour", tourService.getById(id));
         model.addAttribute("members", extraClass.getParticipationListForPoints(id));
         return "/app/userTours/addPoints";
     }
@@ -110,7 +110,7 @@ public class UserToursController {
         point.setUserIdToAdd(userId);
         point.setTourId(tourId);
         model.addAttribute("pointAdd", point);
-        model.addAttribute("user", userService.findById(userId));
+        model.addAttribute("user", userService.getById(userId));
         return "/app/userTours/pointsForm";
     }
 
@@ -120,8 +120,8 @@ public class UserToursController {
             return "/app/userTours/pointsForm";
         }
 
-        Tour tour = tourService.findById(pointAdd.getTourId());
-        TourDetails tourDetails = tourDetailsService.findByTourId(pointAdd.getTourId());
+        Tour tour = tourService.getById(pointAdd.getTourId());
+        TourDetails tourDetails = tourDetailsService.getByTourId(pointAdd.getTourId());
 
         if (tourDetails.getReturning().equals("tak")) {
             if (pointAdd.getAmount() > tour.getDistance() * 2) {

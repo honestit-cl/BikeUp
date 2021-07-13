@@ -28,11 +28,11 @@ public class MemberService{
         log.debug("Zapisano: " + member);
     }
 
-    public List<Member> findMembersByTourId(Long id) {
+    public List<Member> getAllByTourId(Long id) {
         return memberRepository.findAllByTour_Id(id);
     }
 
-    public Member findById(Long id) {
+    public Member getById(Long id) {
         return memberRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Member with id=" + id + " not exits."));
     }
 
@@ -53,34 +53,34 @@ public class MemberService{
         Member member = new Member();
         member.setTour(tour);
         member.setStatus("oczekujący");
-        member.setUser(userService.getLoggedUser());
+        member.setUser(userService.logged());
         log.debug("Zapisywany obiekt: " + member);
         memberRepository.save(member);
         log.debug("Zapisano: " + member);
     }
 
-    public Optional<Member> findByUser_IdAndTour_Id(Long userId, Long tourId) {
+    public Optional<Member> getByUserIdAndTourId(Long userId, Long tourId) {
         return memberRepository.findByUser_idAndTour_id(userId, tourId);
     }
 
-    public List<Member> findMembersByLoggedUsername() {
-        return memberRepository.findByUser_id(userService.getLoggedUser().getId());
+    public List<Member> getAllByLogged() {
+        return memberRepository.findByUser_id(userService.logged().getId());
     }
 
     public void saveCreatorMember(Tour tour) {
         Member member = new Member();
         member.setStatus("aktywny");
         member.setTour(tour);
-        member.setUser(userService.getLoggedUser());
+        member.setUser(userService.logged());
         log.debug("Zapisywany obiekt: " + member);
         memberRepository.save(member);
         log.debug("Zapisano: " + member);
     }
 
     public Map<Tour, String> getParticipationMap() {
-        List<Member> memberList = findMembersByLoggedUsername();
+        List<Member> memberList = getAllByLogged();
         Map<Tour, String> tourList = new LinkedHashMap<>();
-        memberList.removeIf(member -> member.getTour().getUser().getUsername().equals(userService.getLoggedUser().getUsername()));
+        memberList.removeIf(member -> member.getTour().getUser().getUsername().equals(userService.logged().getUsername()));
         for (Member member : memberList) {
             tourList.put(member.getTour(), member.getStatus());
         }
@@ -88,12 +88,12 @@ public class MemberService{
     }
 
     public void singOut(Long id) {
-        Optional<Member> member = findByUser_IdAndTour_Id(userService.getLoggedUser().getId(), id);
+        Optional<Member> member = getByUserIdAndTourId(userService.logged().getId(), id);
         member.ifPresent(member2 -> delete(member2.getId()));
     }
 
     public void activating(Long id) {
-        Member member = findById(id);
+        Member member = getById(id);
         member.setStatus("aktywny");
         save(member);
     }

@@ -43,7 +43,7 @@ public class GlobalDataController {
 
     @ModelAttribute
     public void globalData(Model model) {
-        Long points = userService.getLoggedUser().getPoints();
+        Long points = userService.logged().getPoints();
         if (points == null) {
             model.addAttribute("userPoints", 0);
             model.addAttribute("level", extraClass.countLevel(0L));
@@ -54,6 +54,6 @@ public class GlobalDataController {
         Random random = new Random();
         int chosen = random.nextInt(didUKnow.size());
         model.addAttribute("didUKnow", didUKnow.get(chosen));
-        model.addAttribute("logged",userService.getLoggedUser().getUsername());
+        model.addAttribute("logged",userService.logged().getUsername());
     }
 }

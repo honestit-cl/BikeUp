@@ -29,28 +29,28 @@ public class TourService {
         log.debug("Zapisano: " + tour);
     }
 
-    public List<Tour> findToursByUser(User user) {
+    public List<Tour> getAllByUser(User user) {
         return tourRepository.findAllTourByUser(user);
     }
 
-    public Tour findById(Long id) {
+    public Tour getById(Long id) {
         return tourRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tour with id=" + id + " not exits."));
     }
 
     public void delete(Long id) {
-        Tour tour = findById(id);
+        Tour tour = getById(id);
         log.debug("Usuwany obiekt: " + tour);
         tourRepository.delete(tour);
         log.debug("Usunięto: " + tour);
     }
 
-    public List<Tour> findAllToursWithoutUser() {
-        User user = userService.getLoggedUser();
+    public List<Tour> getAllWithoutLogged() {
+        User user = userService.logged();
         return tourRepository.findAllByUser_IdNotLike(user.getId());
     }
 
     public void closingTour(Long id) {
-        Tour tour = findById(id);
+        Tour tour = getById(id);
         tour.setActive("zamknięta");
         save(tour);
     }

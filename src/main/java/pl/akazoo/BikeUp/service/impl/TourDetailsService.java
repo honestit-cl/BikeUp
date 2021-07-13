@@ -24,8 +24,8 @@ public class TourDetailsService {
         log.debug("Zapisano: " + tourDetails);
     }
 
-    public TourDetails findByTourId(Long id) {
-        return tourService.findById(id).getTourDetails();
+    public TourDetails getByTourId(Long id) {
+        return tourService.getById(id).getTourDetails();
     }
 
     public void delete(Long id) {
@@ -35,7 +35,7 @@ public class TourDetailsService {
         log.debug("Usunięto: " + tourDetails);
     }
 
-    public TourDetails findById(Long id) {
+    public TourDetails getById(Long id) {
         return tourDetailsRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("TourDetails with id=" + id + " not exits."));
     }
 }

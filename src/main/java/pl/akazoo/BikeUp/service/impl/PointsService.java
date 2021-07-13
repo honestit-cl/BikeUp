@@ -19,8 +19,8 @@ public class PointsService {
     private final PointRepository pointRepository;
     private final UserService userService;
 
-    public List<Point> findAllByUserLogged() {
-        return pointRepository.findAllByOwner_id(userService.getLoggedUser().getId());
+    public List<Point> getAllByLogged() {
+        return pointRepository.findAllByOwner_id(userService.logged().getId());
     }
 
     public void save(Point point) {
@@ -36,11 +36,11 @@ public class PointsService {
         log.debug("Usunięto: " + point);
     }
 
-    public Point findById(Long id) {
+    public Point getById(Long id) {
         return pointRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Point with id=" + id + " not exits."));
     }
 
-    public Optional<Point> findByGiver_IdAndOwner_IdAndTour_Id(Long giver, Long owner, Long tour) {
+    public Optional<Point> getAllByGiverIdAndOwnerIdAndTourId(Long giver, Long owner, Long tour) {
         return pointRepository.findByGiver_IdAndOwner_IdAndTour_Id(giver, owner, tour);
     }
 }

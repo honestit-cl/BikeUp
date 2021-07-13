@@ -55,19 +55,19 @@ public class ExtraClass {
     }
 
     public Optional<Point> pointsCheck(PointAdd pointAdd) {
-        return pointsService.findByGiver_IdAndOwner_IdAndTour_Id(userService.getLoggedUser().getId(), pointAdd.getUserIdToAdd(), pointAdd.getTourId());
+        return pointsService.getAllByGiverIdAndOwnerIdAndTourId(userService.logged().getId(), pointAdd.getUserIdToAdd(), pointAdd.getTourId());
     }
 
     public List<Member> getParticipationListForPoints(Long tourId) {
-        List<Member> members = memberService.findMembersByTourId(tourId);
-        Optional<Member> member = memberService.findByUser_IdAndTour_Id(userService.getLoggedUser().getId(),tourId);
+        List<Member> members = memberService.getAllByTourId(tourId);
+        Optional<Member> member = memberService.getByUserIdAndTourId(userService.logged().getId(),tourId);
         member.ifPresent(members::remove);
         return members;
     }
 
     public void deleteWholeTour(Long id) {
-        TourDetails tourDetails = tourDetailsService.findByTourId(id);
-        memberService.deleteMembers(memberService.findMembersByTourId(id));
+        TourDetails tourDetails = tourDetailsService.getByTourId(id);
+        memberService.deleteMembers(memberService.getAllByTourId(id));
         tourService.delete(id);
         tourDetailsService.delete(tourDetails.getId());
     }

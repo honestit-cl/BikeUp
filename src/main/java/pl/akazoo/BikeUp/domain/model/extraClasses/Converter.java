@@ -37,7 +37,7 @@ public class Converter {
         tourDetails.setReturning(tourAdd.getReturning());
         ////
         Tour tour = new Tour();
-        User user = userService.getLoggedUser();
+        User user = userService.logged();
         tour.setDate(tourAdd.getDate());
         tour.setHours(tourAdd.getHours());
         tour.setDistance(tourAdd.getDistance());
@@ -57,7 +57,7 @@ public class Converter {
     }
 
     public void saveUserEdit(UserEdit userEdit) {
-        User user = userService.getLoggedUser();
+        User user = userService.logged();
         user.setFirstName(userEdit.getFirstName());
         user.setLastName(userEdit.getLastName());
         if (userEdit.getVisibility() != null) {
@@ -67,8 +67,8 @@ public class Converter {
     }
 
     public TourEdit tourToTourEditById(Long id) {
-        Tour tour = tourService.findById(id);
-        TourDetails tourDetails = tourDetailsService.findByTourId(id);
+        Tour tour = tourService.getById(id);
+        TourDetails tourDetails = tourDetailsService.getByTourId(id);
         TourEdit tourEdit = new TourEdit();
         tourEdit.setTourId(id);
         tourEdit.setDistance(tour.getDistance());
@@ -81,8 +81,8 @@ public class Converter {
     }
 
     public void saveTourEdit(TourEdit tourEdit) {
-        Tour tour = tourService.findById(tourEdit.getTourId());
-        TourDetails tourDetails = tourDetailsService.findByTourId(tourEdit.getTourId());
+        Tour tour = tourService.getById(tourEdit.getTourId());
+        TourDetails tourDetails = tourDetailsService.getByTourId(tourEdit.getTourId());
         tour.setDistance(tourEdit.getDistance());
         tour.setHours(tourEdit.getHours());
         tourDetails.setDescription(tourEdit.getDescription());
@@ -97,9 +97,9 @@ public class Converter {
         Point point = new Point();
         point.setDescription(pointAdd.getDescription());
         point.setAmount(pointAdd.getAmount());
-        point.setGiver(userService.getLoggedUser());
-        point.setOwner(userService.findById(pointAdd.getUserIdToAdd()));
-        point.setTour(tourService.findById(pointAdd.getTourId()));
+        point.setGiver(userService.logged());
+        point.setOwner(userService.getById(pointAdd.getUserIdToAdd()));
+        point.setTour(tourService.getById(pointAdd.getTourId()));
         pointsService.save(point);
     }
 

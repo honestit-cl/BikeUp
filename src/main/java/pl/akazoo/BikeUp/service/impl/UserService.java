@@ -34,7 +34,7 @@ public class UserService {
         log.debug("Zapisano: " + user);
     }
 
-    public User getLoggedUser() {
+    public User logged() {
         return userRepository
                 .findByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
                 .orElseThrow(() -> new ResourceNotFoundException("User with name: " + SecurityContextHolder.getContext().getAuthentication().getName() + " not exist"));
@@ -44,7 +44,7 @@ public class UserService {
         return userRepository.existsByUsername(username);
     }
 
-    public User findById(Long id) {
+    public User getById(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User with id=" + id + " not exist"));
     }
 
