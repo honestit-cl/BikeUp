@@ -1,0 +1,99 @@
+body {
+    background-image: url("/images/jake-blucker-OJX7gIU3E6U-unsplash.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+}
+label {
+    font-family: cursive;
+    font-size: 50px;
+    color: #A6A674;
+}
+.container {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 40px 20px 20px 20px;
+    width: 50%;
+    margin-left: 700px;
+    margin-top: 160px;
+    text-align: center;
+    border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
+}
+.logo_start {
+    margin-top: -40px;
+    margin-left: 50px;
+}
+.container_start {
+    box-sizing: border-box;
+    margin-left: -60px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    display: inline;
+    text-align: center;
+    color: #A6A674;
+    border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
+}
+.main {
+    padding: 85px;
+    box-sizing: border-box;
+    flex-direction: row;
+    display: inline-flex;
+    align-content: center;
+    margin-top: 80px;
+}
+h3{
+    color: gainsboro;
+}
+.registry{
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    margin-left: 500px;
+    text-align: center;
+    height: 600px;
+    width: 400px;
+    border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
+}
+.mainR {
+    padding: 85px;
+    box-sizing: border-box;
+    flex-direction: row;
+    display: inline-flex;
+    align-content: center;
+    margin-top: -120px;
+}
+span{
+    color: gainsboro;
+}
+.info{
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 60px;
+    border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 70px;
+    width: 40em;
+}
+.myButton {
+    box-shadow:inset 0px 1px 3px 0px #91b8b3;
+    background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    background-color:#768d87;
+    border-radius:5px;
+    border:1px solid #566963;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:11px 23px;
+    text-decoration:none;
+    text-shadow:0px -1px 0px #2b665e;
+}
+.myButton:hover {
+    background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+    background-color:#6c7c7c;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}

@@ -1,0 +1,195 @@
+body {
+    background-image: url("/images/dan-carlson-EXSh-k3wjds-unsplash.jpg");
+    /*background-image: url("/images/vidar-nordli-mathisen-Kuu5mmxkwW4-unsplash.jpg");*/
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 20px;
+}
+
+.mainApp {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
+    position: absolute;
+    left: 260px;
+    right: auto;
+    top: 5%;
+    bottom: 5%;
+    height: 90%;
+    width: 60%;
+    z-index: -1;
+    text-align: center;
+}
+
+.clock-data {
+    text-align: center;
+    margin-top: 30px;
+    color: gainsboro;
+}
+
+.clock, .weather, .anecdote, .status {
+    position: absolute;
+    right: 2%;
+    text-align: center;
+    height: 20%;
+    width: 20%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5% 5% 5% 5% / 5% 5% 5% 5%;
+}
+
+.clock {
+    top: 5%;
+}
+
+.status{
+    top: 27.5%;
+}
+
+.weather {
+    top: 50%;
+}
+.anecdote {
+    top: 72.5%;
+}
+
+.hamburger {
+    padding: 10px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+}
+
+.hamburger, .navigation {
+    transition: transform .3s .1s ease-in-out;
+}
+
+.hamburger--active {
+    transform: translatex(250px);
+}
+
+.hamburger__box {
+    width: 35px;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+}
+
+.hamburger__inner {
+    width: 100%;
+    height: 3px;
+    background-color: gainsboro;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: background-color .3s .1s ease-in-out;
+}
+
+.hamburger__inner::before,
+.hamburger__inner::after {
+    content: '';
+    width: 100%;
+    height: 3px;
+    background-color: gainsboro;
+    position: absolute;
+    left: 0;
+    transition: transform .3s .2s ease-in-out;
+}
+
+.hamburger__inner::before {
+    top: -10px;
+}
+
+.hamburger__inner::after {
+    top: 10px;
+}
+
+.hamburger--active .hamburger__inner {
+    background-color: transparent;
+}
+
+.hamburger--active .hamburger__inner::before {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger--active .hamburger__inner::after {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+.navigation {
+    height: 100vh;
+    width: 250px;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-250px);
+}
+
+.navigation--active {
+    transform: translateX(0px);
+}
+
+.navigation__list {
+    margin-top: 10px;
+    list-style: none;
+}
+
+.navigation__item {
+    margin-bottom: 20px;
+}
+
+a, h1, h5, h3 ,h4 , h6 {
+    text-decoration: none;
+    color: white;
+}
+
+span, label, p, th ,td ,tr, ul, li {
+    color: gainsboro;
+}
+
+table{
+    margin: auto;
+    text-align: center;
+}
+table a{
+    color: gainsboro;
+}
+
+.myButton {
+    box-shadow:inset 0px 1px 3px 0px #91b8b3;
+    background:linear-gradient(to bottom, #768d87 5%, #6c7c7c 100%);
+    background-color:#768d87;
+    border-radius:5px;
+    border:1px solid #566963;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:11px 23px;
+    text-decoration:none;
+    text-shadow:0px -1px 0px #2b665e;
+}
+.myButton:hover {
+    background:linear-gradient(to bottom, #6c7c7c 5%, #768d87 100%);
+    background-color:#6c7c7c;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
+
+.panel{
+    color: darkred;
+}
+.successButton{
+    position: absolute;
+    right: 40px ;
+    top: 20px;
+}
+.rules{
+    text-align: left;
+}
