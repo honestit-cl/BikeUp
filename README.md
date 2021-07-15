@@ -4,7 +4,7 @@ Aplikacja BikeUp jest projektem zaliczeniowym dla kursu Java Developer w szkole 
 
 O aplikacji:
 
-Aplikacja zbudowana jest z użyciem freamworka Spring (Data JPA,Security, Web) oraz Maven.
+Aplikacja zbudowana jest z użyciem freamworka Spring (Boot, Data JPA, Security, Web) oraz Maven.
 Posiada elementy w jezyku Java oraz Javascript.
 Za oprawę wizualną opowiedzialne są widoki JSP oraz CSS.
 Aplikacja wykorzystuje bazę danych w MySQL, 8 Dialect.
