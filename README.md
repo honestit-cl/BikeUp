@@ -15,21 +15,21 @@ Features:
 
 -Currently:
 
-1.Create and manage routes/trips that each user can join,
-2.Points system - each user earns points for the tours they take. These points are awarded by other tour participants,
-3.Interesting facts from the world of bicycles,
-4.Dynamic user search by login,
-5.Your own account with the possibility of hiding your data,
-6.Additional window with current date and time.
+1. Create and manage routes/trips that each user can join,
+2. Points system - each user earns points for the tours they take. These points are awarded by other tour participants,
+3. Interesting facts from the world of bicycles,
+4. Dynamic user search by login,
+5. Your own account with the possibility of hiding your data,
+6. Additional window with current date and time.
 
 - In the nearest future:
 
-1.Adding and viewing users' successes (adding own photo and description),
-2.Information about the weather suitable for the location,
-3.Possibility to send messages to users,
-4.Review of points from previous years,
-5.Notification of tour status changes (join request, edit),
-6.Dynamic trip search.
+1. Adding and viewing users' successes (adding own photo and description),
+2. Information about the weather suitable for the location,
+3. Possibility to send messages to users,
+4. Review of points from previous years,
+5. Notification of tour status changes (join request, edit),
+6. Dynamic trip search.
 
 Polish transcription :
 
