@@ -13,7 +13,7 @@ BikeUp is a portal connecting cycling enthusiasts. It doesn't matter if you're a
 
 Features:
 
--Currently:
+- Currently:
 
 1. Create and manage routes/trips that each user can join,
 2. Points system - each user earns points for the tours they take. These points are awarded by other tour participants,
@@ -48,7 +48,7 @@ czy planujesz wycieczkę na lody do sąsiedniego miasta - to miejsce jest dla Ci
 
 Funkcjonalności:
 
--Aktulane:
+- Aktulane:
 1. Tworzenie  oraz zarządzanie trasami/wycieczkami do których każdy użytkownik może dołączyc,
 2. System punktowy - każdy użytkownik zdobywa punkty za odbyte trasy. Są one przyznawane przez innych uczestników wycieczki,
 3. Ciekawostki ze świata rowerów,
@@ -56,7 +56,7 @@ Funkcjonalności:
 5. Własne konto z możliwością ukrycia swoich danych,
 6. Dodatkowe okno z aktualna data oraz godziną.
 
--Planowane:
+- Planowane:
 1. Dodawanie oraz przeglądanie sukcesów użytkowników (dodanie własnego zdjęcia oraz opisu),
 2. Informacja odnośnie pogody odpowiedniej dla mniejsca pobytu,
 3. Możliwość wysyłania wiadomości do użytkowników,
