@@ -30,11 +30,16 @@ public class PointsService {
         log.debug("Zapisano: " + point);
     }
 
-    public Optional<Point> getAllByGiverIdAndOwnerIdAndTourId(Long giver, Long owner, Long tour) {
-        return pointRepository.findByGiver_IdAndOwner_IdAndTour_Id(giver, owner, tour);
-    }
+    public boolean exists(PointAdd pointAdd) {
 
-    public Optional<Point> pointsCheck(PointAdd pointAdd) {
-        return getAllByGiverIdAndOwnerIdAndTourId(userService.loggedUser().getId(), pointAdd.getUserIdToAdd(), pointAdd.getTourId());
+        Optional<Point> point = pointRepository.findByGiver_IdAndOwner_IdAndTour_Id(
+                userService.loggedUser().getId(),
+                pointAdd.getUserIdToAdd(),
+                pointAdd.getTourId());
+
+        if(point.isEmpty()){
+            return false;
+        }
+        return true;
     }
 }

@@ -28,7 +28,6 @@ public class ParticipationController {
     private final TourDetailsService tourDetailsService;
     private final UserService userService;
     private final Converter converter;
-    private final ExtraClass extraClass;
     private final PointsService pointsService;
 
     @GetMapping("/singOut/{id:\\d+}")
@@ -94,7 +93,7 @@ public class ParticipationController {
             }
         }
 
-        if (pointsService.pointsCheck(pointAdd).isEmpty()) {
+        if (pointsService.exists(pointAdd)) {
             Point point = converter.pointAddToPoint(pointAdd);
             pointsService.save(point);
             return "redirect:/app/participation/addPointsList/" + pointAdd.getTourId();

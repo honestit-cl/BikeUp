@@ -26,7 +26,6 @@ public class UserToursController {
     private final TourDetailsService tourDetailsService;
     private final MemberService memberService;
     private final Converter converter;
-    private final ExtraClass extraClass;
     private final PointsService pointsService;
 
     @GetMapping
@@ -139,7 +138,7 @@ public class UserToursController {
             }
         }
 
-        if (pointsService.pointsCheck(pointAdd).isEmpty()) {
+        if (pointsService.exists(pointAdd)) {
             Point point = converter.pointAddToPoint(pointAdd);
             pointsService.save(point);
             return "redirect:/app/tours/addPointsList/" + pointAdd.getTourId();
