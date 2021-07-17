@@ -34,7 +34,7 @@ public class UserService {
         log.debug("Zapisano: " + user);
     }
 
-    public User logged() {
+    public User loggedUser() {
         return userRepository
                 .findByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
                 .orElseThrow(() -> new ResourceNotFoundException("User with name: " + SecurityContextHolder.getContext().getAuthentication().getName() + " not exist"));
@@ -52,10 +52,4 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void delete(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        log.debug("Usuwany obiekt: " + user);
-        user.ifPresent(userRepository::delete);
-        log.debug("Usunięto: " + user);
-    }
 }

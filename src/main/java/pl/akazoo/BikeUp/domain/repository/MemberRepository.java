@@ -1,7 +1,7 @@
 package pl.akazoo.BikeUp.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.akazoo.BikeUp.domain.model.Member;
+import pl.akazoo.BikeUp.domain.model.user.Member;
 import java.util.List;
 import java.util.Optional;
 

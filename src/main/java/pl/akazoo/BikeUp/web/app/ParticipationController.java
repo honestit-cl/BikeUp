@@ -9,14 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.akazoo.BikeUp.domain.dto.PointAdd;
-import pl.akazoo.BikeUp.domain.model.extraClasses.Converter;
-import pl.akazoo.BikeUp.domain.model.extraClasses.ExtraClass;
+import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
-import pl.akazoo.BikeUp.service.impl.MemberService;
-import pl.akazoo.BikeUp.service.impl.TourDetailsService;
-import pl.akazoo.BikeUp.service.impl.TourService;
-import pl.akazoo.BikeUp.service.impl.UserService;
+import pl.akazoo.BikeUp.domain.model.user.Point;
+import pl.akazoo.BikeUp.service.impl.*;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -32,6 +29,7 @@ public class ParticipationController {
     private final UserService userService;
     private final Converter converter;
     private final ExtraClass extraClass;
+    private final PointsService pointsService;
 
     @GetMapping("/singOut/{id:\\d+}")
     public String singOutTrip(@PathVariable Long id, Model model) {
@@ -41,7 +39,7 @@ public class ParticipationController {
 
     @PostMapping("/singOut")
     public String confirmed(Long id) {
-        memberService.singOut(id);
+        memberService.singOutFromTrip(id);
         return "redirect:/app/participation";
     }
 
@@ -61,7 +59,7 @@ public class ParticipationController {
     @GetMapping("/addPointsList/{id:\\d+}")
     public String addPoints(@PathVariable Long id, Model model) {
         model.addAttribute("tour", tourService.getById(id));
-        model.addAttribute("members", extraClass.getParticipationListForPoints(id));
+        model.addAttribute("members", memberService.getParticipationListForPoints(id));
         return "/app/participation/addPoints";
     }
 
@@ -96,8 +94,9 @@ public class ParticipationController {
             }
         }
 
-        if (extraClass.pointsCheck(pointAdd).isEmpty()) {
-            converter.savePointAdd(pointAdd);
+        if (pointsService.pointsCheck(pointAdd).isEmpty()) {
+            Point point = converter.pointAddToPoint(pointAdd);
+            pointsService.save(point);
             return "redirect:/app/participation/addPointsList/" + pointAdd.getTourId();
         }
         return "/app/participation/pointsWrong";

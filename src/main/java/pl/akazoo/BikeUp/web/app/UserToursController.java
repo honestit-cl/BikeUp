@@ -7,10 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.akazoo.BikeUp.domain.dto.TourEdit;
 import pl.akazoo.BikeUp.domain.dto.PointAdd;
-import pl.akazoo.BikeUp.domain.model.extraClasses.Converter;
-import pl.akazoo.BikeUp.domain.model.extraClasses.ExtraClass;
+import pl.akazoo.BikeUp.domain.model.converter.Converter;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
+import pl.akazoo.BikeUp.domain.model.user.Point;
 import pl.akazoo.BikeUp.service.impl.*;
 
 import javax.validation.Valid;
@@ -27,6 +27,7 @@ public class UserToursController {
     private final MemberService memberService;
     private final Converter converter;
     private final ExtraClass extraClass;
+    private final PointsService pointsService;
 
     @GetMapping
     public String showTours() {
@@ -36,7 +37,7 @@ public class UserToursController {
     @GetMapping("/data")
     @ResponseBody
     public List<Tour> tours() {
-        return tourService.getAllByUser(userService.logged());
+        return tourService.getAllByUser(userService.loggedUser());
     }
 
     @GetMapping("/delete/{id:\\d+}")
@@ -47,7 +48,7 @@ public class UserToursController {
 
     @PostMapping("/delete")
     public String delete(Long id) {
-        extraClass.deleteWholeTour(id);
+        tourService.deleteWholeTour(id);
         return "redirect:/app/tours";
     }
 
@@ -62,7 +63,10 @@ public class UserToursController {
         if (bindingResult.hasErrors()) {
             return "app/userTours/editTour";
         }
-        converter.saveTourEdit(tourEdit);
+        Tour tour = converter.tourEditToTour(tourEdit);
+        TourDetails tourDetails = converter.tourEditToTourDetails(tourEdit);
+        tourService.save(tour);
+        tourDetailsService.save(tourDetails);
         return "redirect:/app/tours";
     }
 
@@ -80,7 +84,7 @@ public class UserToursController {
 
     @PostMapping("/confirmTour")
     public String confirmed(Long id) {
-        tourService.closingTour(id);
+        tourService.setClose(id);
         return "redirect:/app/tours";
     }
 
@@ -93,14 +97,14 @@ public class UserToursController {
 
     @GetMapping("/setActive/{id:\\d+}/{id2:\\d+}")
     public String setActiveMember(@PathVariable Long id, @PathVariable Long id2) {
-        memberService.activating(id);
+        memberService.setActive(id);
         return "redirect:/app/tours/confirmPart/" + id2;
     }
 
     @GetMapping("/addPointsList/{id:\\d+}")
     public String addPoints(@PathVariable Long id, Model model) {
         model.addAttribute("tour", tourService.getById(id));
-        model.addAttribute("members", extraClass.getParticipationListForPoints(id));
+        model.addAttribute("members", memberService.getParticipationListForPoints(id));
         return "/app/userTours/addPoints";
     }
 
@@ -135,8 +139,9 @@ public class UserToursController {
             }
         }
 
-        if (extraClass.pointsCheck(pointAdd).isEmpty()) {
-            converter.savePointAdd(pointAdd);
+        if (pointsService.pointsCheck(pointAdd).isEmpty()) {
+            Point point = converter.pointAddToPoint(pointAdd);
+            pointsService.save(point);
             return "redirect:/app/tours/addPointsList/" + pointAdd.getTourId();
         }
         return "/app/userTours/pointsWrong";

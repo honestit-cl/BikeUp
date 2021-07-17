@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.akazoo.BikeUp.domain.model.Member;
+import pl.akazoo.BikeUp.domain.model.user.Member;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.repository.MemberRepository;
 import pl.akazoo.BikeUp.exceptions.ResourceNotFoundException;
@@ -53,7 +53,7 @@ public class MemberService{
         Member member = new Member();
         member.setTour(tour);
         member.setStatus("oczekujący");
-        member.setUser(userService.logged());
+        member.setUser(userService.loggedUser());
         log.debug("Zapisywany obiekt: " + member);
         memberRepository.save(member);
         log.debug("Zapisano: " + member);
@@ -63,38 +63,45 @@ public class MemberService{
         return memberRepository.findByUser_idAndTour_id(userId, tourId);
     }
 
-    public List<Member> getAllByLogged() {
-        return memberRepository.findByUser_id(userService.logged().getId());
+    public List<Member> getAllByLoggedUser() {
+        return memberRepository.findByUser_id(userService.loggedUser().getId());
     }
 
     public void saveCreatorMember(Tour tour) {
         Member member = new Member();
         member.setStatus("aktywny");
         member.setTour(tour);
-        member.setUser(userService.logged());
+        member.setUser(userService.loggedUser());
         log.debug("Zapisywany obiekt: " + member);
         memberRepository.save(member);
         log.debug("Zapisano: " + member);
     }
 
     public Map<Tour, String> getParticipationMap() {
-        List<Member> memberList = getAllByLogged();
+        List<Member> memberList = getAllByLoggedUser();
         Map<Tour, String> tourList = new LinkedHashMap<>();
-        memberList.removeIf(member -> member.getTour().getUser().getUsername().equals(userService.logged().getUsername()));
+        memberList.removeIf(member -> member.getTour().getUser().getUsername().equals(userService.loggedUser().getUsername()));
         for (Member member : memberList) {
             tourList.put(member.getTour(), member.getStatus());
         }
         return tourList;
     }
 
-    public void singOut(Long id) {
-        Optional<Member> member = getByUserIdAndTourId(userService.logged().getId(), id);
+    public void singOutFromTrip(Long tripId) {
+        Optional<Member> member = getByUserIdAndTourId(userService.loggedUser().getId(), tripId);
         member.ifPresent(member2 -> delete(member2.getId()));
     }
 
-    public void activating(Long id) {
+    public void setActive(Long id) {
         Member member = getById(id);
         member.setStatus("aktywny");
         save(member);
+    }
+
+    public List<Member> getParticipationListForPoints(Long tourId) {
+        List<Member> members = getAllByTourId(tourId);
+        Optional<Member> member = getByUserIdAndTourId(userService.loggedUser().getId(),tourId);
+        member.ifPresent(members::remove);
+        return members;
     }
 }

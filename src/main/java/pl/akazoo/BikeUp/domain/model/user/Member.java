@@ -1,4 +1,4 @@
-package pl.akazoo.BikeUp.domain.model;
+package pl.akazoo.BikeUp.domain.model.user;
 
 import lombok.*;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;

@@ -32,12 +32,12 @@ public class TourDetails {
     private String returning;
 
     @PrePersist
-    public void creationTimeUpdate() {
+    public void setCreationTime() {
         creationTime = LocalDateTime.now();
     }
 
     @PreUpdate
-    public void updateTimeUpdate() {
+    public void setUpdateTime() {
         updateTime = LocalDateTime.now();
     }
 }

@@ -1,4 +1,4 @@
-package pl.akazoo.BikeUp.domain.model.extraClasses;
+package pl.akazoo.BikeUp.domain.model.converter;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,26 +18,19 @@ public class Converter {
     private final UserService userService;
     private final TourService tourService;
     private final TourDetailsService tourDetailsService;
-    private final PointsService pointsService;
 
 
-    public void saveUserRegistry(UserRegistry userRegistry) {
+    public User userRegistryToUser(UserRegistry userRegistry) {
         User user = new User();
         user.setUsername(userRegistry.getLogin());
         user.setPassword(userRegistry.getPassword());
-        user.setVisibility("hidden");
-        userService.save(user);
+        user.setPersonalDataVisibility("hidden");
+        return user;
     }
 
-    public Tour saveTourAdd(TourAdd tourAdd) {
-        TourDetails tourDetails = new TourDetails();
-        tourDetails.setGatheringPlace(tourAdd.getGatheringPlace());
-        tourDetails.setMapLink(tourAdd.getLink());
-        tourDetails.setDescription(tourAdd.getDescription());
-        tourDetails.setReturning(tourAdd.getReturning());
-        ////
+    public Tour tourAddToTour(TourAdd tourAdd, TourDetails tourDetails) {
         Tour tour = new Tour();
-        User user = userService.logged();
+        User user = userService.loggedUser();
         tour.setDate(tourAdd.getDate());
         tour.setHours(tourAdd.getHours());
         tour.setDistance(tourAdd.getDistance());
@@ -46,24 +39,29 @@ public class Converter {
         tour.setActive("otwarta");
         tour.setUser(user);
         tour.setStartPlace(tourAdd.getStartPlace());
-        tour.setStartPost(tourAdd.getStartPost());
+        tour.setStartPostalCode(tourAdd.getStartPostalCode());
         tour.setEndPlace(tourAdd.getEndPlace());
-        tour.setEndPost(tourAdd.getEndPost());
-        //////
-        tourDetailsService.save(tourDetails);
-        tourService.save(tour);
-        //////
+        tour.setEndPostalCode(tourAdd.getEndPostalCode());
         return tour;
     }
 
-    public void saveUserEdit(UserEdit userEdit) {
-        User user = userService.logged();
+    public TourDetails tourAddToTourDetails(TourAdd tourAdd){
+        TourDetails tourDetails = new TourDetails();
+        tourDetails.setGatheringPlace(tourAdd.getGatheringPlace());
+        tourDetails.setMapLink(tourAdd.getLink());
+        tourDetails.setDescription(tourAdd.getDescription());
+        tourDetails.setReturning(tourAdd.getReturning());
+        return tourDetails;
+    }
+
+    public User userEditToUser(UserEdit userEdit) {
+        User user = userService.loggedUser();
         user.setFirstName(userEdit.getFirstName());
         user.setLastName(userEdit.getLastName());
-        if (userEdit.getVisibility() != null) {
-            user.setVisibility(userEdit.getVisibility());
+        if (userEdit.getPersonalDataVisibility() != null) {
+            user.setPersonalDataVisibility(userEdit.getPersonalDataVisibility());
         }
-        userService.save(user);
+        return user;
     }
 
     public TourEdit tourToTourEditById(Long id) {
@@ -80,34 +78,37 @@ public class Converter {
         return tourEdit;
     }
 
-    public void saveTourEdit(TourEdit tourEdit) {
+    public Tour tourEditToTour(TourEdit tourEdit) {
         Tour tour = tourService.getById(tourEdit.getTourId());
-        TourDetails tourDetails = tourDetailsService.getByTourId(tourEdit.getTourId());
         tour.setDistance(tourEdit.getDistance());
         tour.setHours(tourEdit.getHours());
+        return tour;
+    }
+
+    public TourDetails tourEditToTourDetails(TourEdit tourEdit){
+        TourDetails tourDetails = tourDetailsService.getByTourId(tourEdit.getTourId());
         tourDetails.setDescription(tourEdit.getDescription());
         tourDetails.setMapLink(tourEdit.getLink());
         tourDetails.setGatheringPlace(tourEdit.getGatheringPlace());
         tourDetails.setReturning(tourEdit.getReturning());
-        tourService.save(tour);
-        tourDetailsService.save(tourDetails);
+        return tourDetails;
     }
 
-    public void savePointAdd(PointAdd pointAdd) {
+    public Point pointAddToPoint(PointAdd pointAdd) {
         Point point = new Point();
         point.setDescription(pointAdd.getDescription());
         point.setAmount(pointAdd.getAmount());
-        point.setGiver(userService.logged());
+        point.setGiver(userService.loggedUser());
         point.setOwner(userService.getById(pointAdd.getUserIdToAdd()));
         point.setTour(tourService.getById(pointAdd.getTourId()));
-        pointsService.save(point);
+        return point;
     }
 
     public UserEdit userToUserEdit(User user){
         UserEdit userEdit = new UserEdit();
         userEdit.setFirstName(user.getFirstName());
         userEdit.setLastName(user.getLastName());
-        userEdit.setVisibility(user.getVisibility());
+        userEdit.setPersonalDataVisibility(user.getPersonalDataVisibility());
         return  userEdit;
     }
 }

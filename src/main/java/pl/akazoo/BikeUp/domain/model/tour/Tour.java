@@ -42,9 +42,9 @@ public class Tour {
     @Column (nullable = false)
     private String startPlace;
     @Column (nullable = false)
-    private String startPost;
+    private String startPostalCode;
     @Column (nullable = false)
     private String endPlace;
     @Column (nullable = false)
-    private String endPost;
+    private String endPostalCode;
 }

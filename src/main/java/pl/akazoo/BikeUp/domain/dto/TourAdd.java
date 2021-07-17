@@ -28,12 +28,12 @@ public class TourAdd {
     private String startPlace;
     @NotBlank(message = "To pole nie może być puste.")
     @Pattern(regexp = "[0-9]{2}-[0-9]{3}", message = "Poprawny format kodu to xx-xxx")
-    private String startPost;
+    private String startPostalCode;
     @NotBlank(message = "To pole nie może być puste.")
     private String endPlace;
     @NotBlank(message = "To pole nie może być puste.")
     @Pattern(regexp = "[0-9]{2}-[0-9]{3}", message = "Poprawny format kodu to xx-xxx")
-    private String endPost;
+    private String endPostalCode;
     @NotBlank(message = "To pole nie może być puste.")
     @Size(max = 100, message = " Nazwa miejsca zbiórki nie może być dłuższa niż 100 liter.")
     private String gatheringPlace;

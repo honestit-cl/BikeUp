@@ -29,7 +29,7 @@ public class SearchTourController {
     @GetMapping("/data")
     @ResponseBody
     public List<Tour> toursData() {
-        return tourService.getAllWithoutLogged();
+        return tourService.getAllWithoutLoggedUser();
     }
 
     @GetMapping("/details/{id:\\d+}")
@@ -46,7 +46,7 @@ public class SearchTourController {
 
     @PostMapping("/confirmPart")
     public String confirmed(Long id) {
-        if(memberService.getByUserIdAndTourId(userService.logged().getId(),id).isEmpty()) {
+        if(memberService.getByUserIdAndTourId(userService.loggedUser().getId(),id).isEmpty()) {
             Tour tour = tourService.getById(id);
             memberService.saveNewMember(tour);
             return "/app/searching/userAdded";

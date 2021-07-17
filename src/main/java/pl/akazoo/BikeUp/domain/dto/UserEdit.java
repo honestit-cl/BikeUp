@@ -9,5 +9,5 @@ public class UserEdit {
     private String lastName;
     private String firstName;
     @NotBlank(message = "To pole nie może być puste.")
-    private String visibility;
+    private String personalDataVisibility;
 }

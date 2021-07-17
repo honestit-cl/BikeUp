@@ -32,10 +32,10 @@ public class User {
     @Column(nullable = false)
     private String role;
     @Column
-    private String visibility;
+    private String personalDataVisibility;
 
     @PrePersist
-    public void creationDateUpdate(){
+    public void setCreationDate(){
         this.creationDate = LocalDate.now();
     }
 }

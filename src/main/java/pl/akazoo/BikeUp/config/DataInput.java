@@ -32,7 +32,7 @@ public class DataInput {
             user.setUsername("aa");
             user.setPassword("aa");
             user.setRole("ROLE_USER");
-            user.setVisibility("hidden");
+            user.setPersonalDataVisibility("hidden");
             userService.save(user);
             //
             Point point = new Point();

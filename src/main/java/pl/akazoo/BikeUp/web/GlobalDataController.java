@@ -3,7 +3,7 @@ package pl.akazoo.BikeUp.web;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import pl.akazoo.BikeUp.domain.model.extraClasses.ExtraClass;
+import pl.akazoo.BikeUp.domain.model.Level;
 import pl.akazoo.BikeUp.service.impl.UserService;
 import pl.akazoo.BikeUp.web.app.AppHomeController;
 import java.util.List;
@@ -14,11 +14,11 @@ public class GlobalDataController {
 
     private final UserService userService;
     private final List<String> didUKnow;
-    private final ExtraClass extraClass;
+    private final Level level;
 
-    public GlobalDataController(UserService userService, ExtraClass extraClass) {
+    public GlobalDataController(UserService userService,Level level) {
         this.userService = userService;
-        this.extraClass = extraClass;
+        this.level = level;
         didUKnow = List.of(
                 "Pierwotne nazwy roweru to welocyped i bicykl.",
                 "Pierwszy prototyp roweru został zbudowany przez francuskiego hrabiego Mède de Sivrac w 1790 roku. Umożliwiał wyłącznie jazdę w jednym kierunku (nie dało się nim skręcać).",
@@ -43,17 +43,17 @@ public class GlobalDataController {
 
     @ModelAttribute
     public void globalData(Model model) {
-        Long points = userService.logged().getPoints();
+        Long points = userService.loggedUser().getPoints();
         if (points == null) {
             model.addAttribute("userPoints", 0);
-            model.addAttribute("level", extraClass.countLevel(0L));
+            model.addAttribute("level", level.countLevel(0L));
         }else{
             model.addAttribute("userPoints", points);
-            model.addAttribute("level", extraClass.countLevel(points));
+            model.addAttribute("level", level.countLevel(points));
         }
         Random random = new Random();
         int chosen = random.nextInt(didUKnow.size());
         model.addAttribute("didUKnow", didUKnow.get(chosen));
-        model.addAttribute("logged",userService.logged().getUsername());
+        model.addAttribute("logged",userService.loggedUser().getUsername());
     }
 }

@@ -35,7 +35,4 @@ public class TourDetailsService {
         log.debug("Usunięto: " + tourDetails);
     }
 
-    public TourDetails getById(Long id) {
-        return tourDetailsRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("TourDetails with id=" + id + " not exits."));
-    }
 }

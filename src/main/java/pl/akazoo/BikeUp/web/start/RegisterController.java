@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.akazoo.BikeUp.domain.dto.UserRegistry;
-import pl.akazoo.BikeUp.domain.model.extraClasses.Converter;
+import pl.akazoo.BikeUp.domain.model.converter.Converter;
+import pl.akazoo.BikeUp.domain.model.user.User;
 import pl.akazoo.BikeUp.service.impl.UserService;
 import javax.validation.Valid;
 
@@ -40,7 +41,8 @@ public class RegisterController {
             bindingResult.rejectValue("password", null,"Hasła nie są takie same.");
             return "start/register";
         }
-        converter.saveUserRegistry(userRegistry);
+        User user = converter.userRegistryToUser(userRegistry);
+        userService.save(user);
         return "start/registerDone";
     }
 }
