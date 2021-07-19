@@ -62,4 +62,4 @@ Funkcjonalności:
 3. Możliwość wysyłania wiadomości do użytkowników,
 4. Przegląd punktów z zeszłych lat,
 5. Kominukaty o zmianie stanu tras/wycieczek (prośby o dołączenie,edycja),
-6. Dynamiczne wyszukwianie wycieczek.
+6. Dynamiczne wyszukiwanie wycieczek.
