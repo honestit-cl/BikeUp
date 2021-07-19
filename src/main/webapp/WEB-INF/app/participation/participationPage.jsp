@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ include file="/WEB-INF/app/parties/header.jsp" %>
+<%@ include file="/WEB-INF/app/pageParts/header.jsp" %>
 <h1>Wycieczki w których uczestniczysz:</h1><br/>
 
 <table border="1">
@@ -23,9 +23,9 @@
             <td>${tour.key.date}</td>
             <td>${tour.key.distance} km</td>
             <td>${tour.key.hours}</td>
-            <td>${tour.key.startPost}<br/>
+            <td>${tour.key.startPostalCode}<br/>
                     ${tour.key.startPlace}</td>
-            <td>${tour.key.endPost}<br/>
+            <td>${tour.key.endPostalCode}<br/>
                     ${tour.key.endPlace}</td>
             <td>${tour.key.active}</td>
             <td>${tour.key.realParticipants -1} / ${tour.key.participants}</td>
@@ -41,4 +41,4 @@
         </tr>
     </c:forEach>
 </table>
-<%@ include file="/WEB-INF/app/parties/footer.jsp" %>
+<%@ include file="/WEB-INF/app/pageParts/footer.jsp" %>

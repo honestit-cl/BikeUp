@@ -17,8 +17,6 @@ public class Converter {
 
     private final UserService userService;
     private final TourService tourService;
-    private final TourDetailsService tourDetailsService;
-
 
     public User userRegistryToUser(UserRegistry userRegistry) {
         User user = new User();
@@ -65,8 +63,8 @@ public class Converter {
     }
 
     public TourEdit tourToTourEditById(Long id) {
-        Tour tour = tourService.getById(id);
-        TourDetails tourDetails = tourDetailsService.getByTourId(id);
+        Tour tour = tourService.getTourById(id);
+        TourDetails tourDetails = tourService.getTourDetailsByTourId(id);
         TourEdit tourEdit = new TourEdit();
         tourEdit.setTourId(id);
         tourEdit.setDistance(tour.getDistance());
@@ -79,14 +77,14 @@ public class Converter {
     }
 
     public Tour tourEditToTour(TourEdit tourEdit) {
-        Tour tour = tourService.getById(tourEdit.getTourId());
+        Tour tour = tourService.getTourById(tourEdit.getTourId());
         tour.setDistance(tourEdit.getDistance());
         tour.setHours(tourEdit.getHours());
         return tour;
     }
 
     public TourDetails tourEditToTourDetails(TourEdit tourEdit){
-        TourDetails tourDetails = tourDetailsService.getByTourId(tourEdit.getTourId());
+        TourDetails tourDetails = tourService.getTourDetailsByTourId(tourEdit.getTourId());
         tourDetails.setDescription(tourEdit.getDescription());
         tourDetails.setMapLink(tourEdit.getLink());
         tourDetails.setGatheringPlace(tourEdit.getGatheringPlace());
@@ -100,7 +98,7 @@ public class Converter {
         point.setAmount(pointAdd.getAmount());
         point.setGiver(userService.loggedUser());
         point.setOwner(userService.getById(pointAdd.getUserIdToAdd()));
-        point.setTour(tourService.getById(pointAdd.getTourId()));
+        point.setTour(tourService.getTourById(pointAdd.getTourId()));
         return point;
     }
 

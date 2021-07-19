@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="/WEB-INF/app/parties/header.jsp" %>
+<%@ include file="/WEB-INF/app/pageParts/header.jsp" %>
 <h1>Co u nas nowego?</h1><br/>
     <h4>Następna aktualizacja przyniesie ze sobą:</h4>
 <ul class="rules">
@@ -15,7 +15,7 @@
     <li>Techniczne : <br/>
         - przyciski powrót(do poprzedniej strony, nie link)<br/>
         - zerowanie punktów wraz z nowym rokiem kalendarzowym<br/>
-        - czerwone spany(errors) przy dodawaniu punktów
+        - przy zmianie imienia i nazwiska nie przechodzi logowania(?)
     </li>
 </ul>
-<%@ include file="/WEB-INF/app/parties/footer.jsp" %>
+<%@ include file="/WEB-INF/app/pageParts/footer.jsp" %>

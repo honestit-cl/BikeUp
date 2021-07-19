@@ -23,7 +23,6 @@ public class UserToursController {
 
     private final UserService userService;
     private final TourService tourService;
-    private final TourDetailsService tourDetailsService;
     private final MemberService memberService;
     private final Converter converter;
     private final PointsService pointsService;
@@ -36,12 +35,12 @@ public class UserToursController {
     @GetMapping("/data")
     @ResponseBody
     public List<Tour> tours() {
-        return tourService.getAllByUser(userService.loggedUser());
+        return tourService.getToursByUser(userService.loggedUser());
     }
 
     @GetMapping("/delete/{id:\\d+}")
     public String prepareDelete(@PathVariable Long id, Model model) {
-        model.addAttribute("tour", tourService.getById(id));
+        model.addAttribute("tour", tourService.getTourById(id));
         return "app/userTours/confirmDelete";
     }
 
@@ -60,24 +59,25 @@ public class UserToursController {
     @PostMapping("/edit")
     public String edited(@Valid TourEdit tourEdit, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            tourEdit.setReturning("");
             return "app/userTours/editTour";
         }
         Tour tour = converter.tourEditToTour(tourEdit);
         TourDetails tourDetails = converter.tourEditToTourDetails(tourEdit);
-        tourService.save(tour);
-        tourDetailsService.save(tourDetails);
+        tourService.saveTour(tour);
+        tourService.saveTourDetails(tourDetails);
         return "redirect:/app/tours";
     }
 
     @GetMapping("/details/{id:\\d+}")
     public String details(@PathVariable Long id, Model model) {
-        model.addAttribute("details", tourDetailsService.getByTourId(id));
+        model.addAttribute("details", tourService.getTourDetailsByTourId(id));
         return "/app/userTours/details";
     }
 
     @GetMapping("/confirmTour/{id:\\d+}")
     public String confirmTrip(@PathVariable Long id, Model model) {
-        model.addAttribute("tour", tourService.getById(id));
+        model.addAttribute("tour", tourService.getTourById(id));
         return "/app/userTours/confirmTour";
     }
 
@@ -89,7 +89,7 @@ public class UserToursController {
 
     @GetMapping("/confirmPart/{id:\\d+}")
     public String confirmParticipants(@PathVariable Long id, Model model) {
-        model.addAttribute("tour", tourService.getById(id));
+        model.addAttribute("tour", tourService.getTourById(id));
         model.addAttribute("members", memberService.getAllByTourId(id));
         return "/app/userTours/confirmParticipators";
     }
@@ -102,7 +102,7 @@ public class UserToursController {
 
     @GetMapping("/addPointsList/{id:\\d+}")
     public String addPoints(@PathVariable Long id, Model model) {
-        model.addAttribute("tour", tourService.getById(id));
+        model.addAttribute("tour", tourService.getTourById(id));
         model.addAttribute("members", memberService.getParticipationListForPoints(id));
         return "/app/userTours/addPoints";
     }
@@ -118,13 +118,13 @@ public class UserToursController {
     }
 
     @PostMapping("/addPointsConfirmed")
-    public String appPointsConfirmed(@Valid PointAdd pointAdd, BindingResult bindingResult) {
+    public String appPointsConfirmed(@Valid PointAdd pointAdd, BindingResult bindingResult,Model model) {
         if (bindingResult.hasErrors()) {
             return "/app/userTours/pointsForm";
         }
 
-        Tour tour = tourService.getById(pointAdd.getTourId());
-        TourDetails tourDetails = tourDetailsService.getByTourId(pointAdd.getTourId());
+        Tour tour = tourService.getTourById(pointAdd.getTourId());
+        TourDetails tourDetails = tourService.getTourDetailsByTourId(pointAdd.getTourId());
 
         if (tourDetails.getReturning().equals("tak")) {
             if (pointAdd.getAmount() > tour.getDistance() * 2) {
@@ -138,10 +138,11 @@ public class UserToursController {
             }
         }
 
-        if (pointsService.exists(pointAdd)) {
+        if (!pointsService.exists(pointAdd)) {
             Point point = converter.pointAddToPoint(pointAdd);
             pointsService.save(point);
-            return "redirect:/app/tours/addPointsList/" + pointAdd.getTourId();
+            model.addAttribute("tourId",pointAdd.getTourId());
+            return "app/userTours/pointsDone";
         }
         return "/app/userTours/pointsWrong";
     }

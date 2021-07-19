@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ include file="/WEB-INF/app/parties/header.jsp" %>
+<%@ include file="/WEB-INF/app/pageParts/header.jsp" %>
 <h1>Dodawanie wycieczki</h1><br/>
 <form:form method="post" modelAttribute="tourAdd">
 
@@ -12,18 +12,18 @@
     <br/>
 
     <label>Start wycieczki:<br/>
-        <form:input path="startPost" placeholder="Podaj kod pocztowy"/>
+        <form:input path="startPostalCode" placeholder="Podaj kod pocztowy"/>
         <form:input path="startPlace" placeholder="Podaj miejscowość"/>
     </label><br/>
-    <form:errors path="startPost"/>
+    <form:errors path="startPostalCode"/>
     <form:errors path="startPlace"/>
     <br/>
 
     <label>Meta wycieczki:<br/>
-        <form:input path="endPost" placeholder="Podaj kod pocztowy"/>
+        <form:input path="endPostalCode" placeholder="Podaj kod pocztowy"/>
         <form:input path="endPlace" placeholder="Podaj miejscowość"/>
     </label><br/>
-    <form:errors path="endPost"/>
+    <form:errors path="endPostalCode"/>
     <form:errors path="endPlace"/>
     <br/>
 
@@ -79,5 +79,5 @@
     <br/>
     <form:button class="myButton" type="submit">Dodaj trasę</form:button>
 </form:form>
-<script src="/scripts/addFormScript.js" defer></script>
-<%@ include file="/WEB-INF/app/parties/footer.jsp" %>
+<script src="/scripts/addTourFormScript.js" defer></script>
+<%@ include file="/WEB-INF/app/pageParts/footer.jsp" %>

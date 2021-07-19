@@ -3,6 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="/WEB-INF/app/pageParts/header.jsp" %>
 <h1>Przydziel punkty</h1>
-<p>Nie możesz ponownie dodać punktów temu użytkownikowi za tą trasę.</p><br/>
- <input type="button" class="myButton" value="Powrót" onclick="location.href='/app/tours'">
+<p>Punkty zostały pomyślnie przydzielone.</p><br/>
+ <input type="button" class="myButton" value="Powrót" onclick="location.href='/app/participation/addPointsList/${tourId}'">
 <%@ include file="/WEB-INF/app/pageParts/footer.jsp" %>

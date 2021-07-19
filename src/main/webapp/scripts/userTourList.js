@@ -19,9 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
             );
     }
 
-    function renderTour(tourId,startPlace,startPost,endPlace,endPost, date, distance, hours, active, realP, participants) {
-
-        // Tworzenie sekcji
+    function renderTour(tourId,startPlace,startPostalCode,endPlace,endPostalCode, date, distance, hours, active, realP, participants) {
 
         const section = document.createElement("tr");
         section.innerHTML = `        
@@ -29,9 +27,9 @@ document.addEventListener('DOMContentLoaded', function () {
             <td>${date}</td>          
             <td>${distance} km</td>
             <td>${hours}</td>
-            <td>${startPost}<br/>
+            <td>${startPostalCode}<br/>
             ${startPlace}</td>
-              <td>${endPost}<br/>
+              <td>${endPostalCode}<br/>
             ${endPlace}</td>
             <td>${active}</td>
             <td>${realP-1}/${participants}</td>
@@ -42,16 +40,11 @@ document.addEventListener('DOMContentLoaded', function () {
             </td> 
  `;
 
-
-        // Dodawanie do drzewa w zależności od statusu
-
         if (active === 'otwarta') {
             document.querySelector("table").firstElementChild.after(section)
         } else {
             document.querySelector("table").append(section);
         }
-
-        // Dodawanie linkow gdy open
 
         const link = document.createElement('span');
         if (active === 'otwarta') {
@@ -72,8 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
             section.lastElementChild.append(link);
         }
 
-        //Dodawanie linkow gdy closed
-
         const link2 = document.createElement('span');
         if (active === 'zamknięta') {
             link2.innerHTML = ` 
@@ -89,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
         function (response) {
             response.forEach(
                 (tour) => {
-                    renderTour(tour.id, tour.startPlace,tour.startPost,tour.endPlace,tour.endPost, tour.date, tour.distance,tour.hours,tour.active,tour.realParticipants,tour.participants);
+                    renderTour(tour.id, tour.startPlace,tour.startPostalCode,tour.endPlace,tour.endPostalCode, tour.date, tour.distance,tour.hours,tour.active,tour.realParticipants,tour.participants);
                 }
             );
         }

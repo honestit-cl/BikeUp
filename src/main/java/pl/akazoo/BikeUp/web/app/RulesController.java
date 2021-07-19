@@ -10,6 +10,6 @@ public class RulesController {
 
     @GetMapping
     public String rulesPage(){
-        return "/app/rules";
+        return "/app/rulesPage/rules";
     }
 }

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ include file="/WEB-INF/app/parties/header.jsp" %>
+<%@ include file="/WEB-INF/app/pageParts/header.jsp" %>
 <h1>Twoje punkty</h1><br/>
 <div class="successButton">
     <input class="myButton startButton" type="button" value="Poprzednie lata" onclick="location.href=''">
@@ -21,4 +21,4 @@
         </tr>
     </c:forEach>
 </table>
-<%@ include file="/WEB-INF/app/parties/footer.jsp" %>
+<%@ include file="/WEB-INF/app/pageParts/footer.jsp" %>

@@ -19,8 +19,6 @@ function apiUserList() {
 
 function renderUser(userId, username) {
 
-    // Tworzenie sekcji
-
     const section = document.createElement("tr");
     section.innerHTML = `        
             <td >${userId}</td>

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ include file="/WEB-INF/app/parties/header.jsp" %>
+<%@ include file="/WEB-INF/app/pageParts/header.jsp" %>
 <h1>Edycja profilu</h1><br/>
 
 <form:form method="post" modelAttribute="userEdit">
@@ -15,7 +15,7 @@
     </label><br/>
     <br/>
     <label>Pozwalam innym użytkownikom widzieć moje dane osobowe:<br/>
-        <form:select path="visibility" >
+        <form:select path="personalDataVisibility" >
         <form:option value="" label="Wybierz"/>
             <form:option value="hidden" label="Nie"/>
             <form:option value="show" label="Tak"/>
@@ -25,4 +25,4 @@
     <br/>
     <form:button class="myButton" type="submit">Zapisz</form:button> <input type="button"  class="myButton" value="Wróć" onclick="location.href='/app/profile'">
 </form:form>
-<%@ include file="/WEB-INF/app/parties/footer.jsp" %>
+<%@ include file="/WEB-INF/app/pageParts/footer.jsp" %>

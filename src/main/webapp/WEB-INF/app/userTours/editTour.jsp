@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ include file="/WEB-INF/app/parties/header.jsp" %>
+<%@ include file="/WEB-INF/app/pageParts/header.jsp" %>
 <h1>Edytuj wycieczkę</h1><br/>
 <form:form method="post" action="/app/tours/edit" modelAttribute="tourEdit">
 
@@ -36,10 +36,10 @@
     <br/>
 
     <label>Powrót do mniejsca startu:<br/>
-        tak
-        <form:checkbox path="returning" value="tak"/>
-        nie
-        <form:checkbox path="returning" value="nie"/>
+        <label for="yes">tak</label>
+        <form:checkbox  id="yes" class="checkboxy" path="returning" value="tak"/>
+        <label for="no">nie</label>
+        <form:checkbox  id="no" class="checkboxy" path="returning" value="nie"/>
         <span></span>
     </label><br/>
     <form:errors path="returning"/>
@@ -55,5 +55,5 @@
 </span><br/><br/>
     <form:button class="myButton" type="submit">Edytuj trasę</form:button>
 </form:form>
-<script src="/scripts/dataScript.js" defer></script>
-<%@ include file="/WEB-INF/app/parties/footer.jsp" %>
+<script src="/scripts/editTourFormScript.js" defer></script>
+<%@ include file="/WEB-INF/app/pageParts/footer.jsp" %>

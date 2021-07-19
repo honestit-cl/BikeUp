@@ -16,7 +16,6 @@ import pl.akazoo.BikeUp.domain.model.user.Point;
 import pl.akazoo.BikeUp.service.impl.*;
 
 import javax.validation.Valid;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,14 +24,13 @@ public class ParticipationController {
 
     private final MemberService memberService;
     private final TourService tourService;
-    private final TourDetailsService tourDetailsService;
     private final UserService userService;
     private final Converter converter;
     private final PointsService pointsService;
 
     @GetMapping("/singOut/{id:\\d+}")
     public String singOutTrip(@PathVariable Long id, Model model) {
-        model.addAttribute("tour", tourService.getById(id));
+        model.addAttribute("tour", tourService.getTourById(id));
         return "/app/participation/confirmSingOut";
     }
 
@@ -44,20 +42,19 @@ public class ParticipationController {
 
     @GetMapping
     public String participation(Model model) {
-        Map<Tour, String> tourList = memberService.getParticipationMap();
-        model.addAttribute("tours", tourList);
+        model.addAttribute("tours", memberService.getParticipationMap());
         return "/app/participation/participationPage";
     }
 
     @GetMapping("/details/{id:\\d+}")
     public String details(@PathVariable Long id, Model model) {
-        model.addAttribute("details", tourDetailsService.getByTourId(id));
+        model.addAttribute("details", tourService.getTourDetailsByTourId(id));
         return "/app/participation/details";
     }
 
     @GetMapping("/addPointsList/{id:\\d+}")
     public String addPoints(@PathVariable Long id, Model model) {
-        model.addAttribute("tour", tourService.getById(id));
+        model.addAttribute("tour", tourService.getTourById(id));
         model.addAttribute("members", memberService.getParticipationListForPoints(id));
         return "/app/participation/addPoints";
     }
@@ -73,13 +70,13 @@ public class ParticipationController {
     }
 
     @PostMapping("/addPointsConfirmed")
-    public String appPointsConfirmed(@Valid PointAdd pointAdd, BindingResult bindingResult) {
+    public String appPointsConfirmed(@Valid PointAdd pointAdd, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "/app/participation/pointsForm";
         }
 
-        Tour tour = tourService.getById(pointAdd.getTourId());
-        TourDetails tourDetails = tourDetailsService.getByTourId(pointAdd.getTourId());
+        Tour tour = tourService.getTourById(pointAdd.getTourId());
+        TourDetails tourDetails = tourService.getTourDetailsByTourId(pointAdd.getTourId());
 
         if (tourDetails.getReturning().equals("tak")) {
             if (pointAdd.getAmount() > tour.getDistance() * 2) {
@@ -93,10 +90,11 @@ public class ParticipationController {
             }
         }
 
-        if (pointsService.exists(pointAdd)) {
+        if (!pointsService.exists(pointAdd)) {
             Point point = converter.pointAddToPoint(pointAdd);
             pointsService.save(point);
-            return "redirect:/app/participation/addPointsList/" + pointAdd.getTourId();
+            model.addAttribute("tourId",pointAdd.getTourId());
+            return "/app/participation/pointsDone";
         }
         return "/app/participation/pointsWrong";
     }

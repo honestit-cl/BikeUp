@@ -36,5 +36,6 @@
         ${didUKnow}</div>
     <br/>
 </div>
+<script src="/scripts/errorSpans.js" defer></script>
 </body>
 </html>

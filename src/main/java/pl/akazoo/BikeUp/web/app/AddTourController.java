@@ -20,7 +20,6 @@ public class AddTourController {
 
     private final Converter converter;
     private final MemberService memberService;
-    private final TourDetailsService tourDetailsService;
     private final TourService tourService;
 
     @GetMapping()
@@ -32,12 +31,13 @@ public class AddTourController {
     @PostMapping()
     public String registerConfirm(@Valid TourAdd tourAdd, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
+            tourAdd.setReturning("");
             return "app/addTour/addTour";
         }
         TourDetails tourDetails = converter.tourAddToTourDetails(tourAdd);
         Tour tour = converter.tourAddToTour(tourAdd,tourDetails);
-        tourDetailsService.save(tourDetails);
-        tourService.save(tour);
+        tourService.saveTourDetails(tourDetails);
+        tourService.saveTour(tour);
         memberService.saveCreatorMember(tour);
         return "app/addTour/tourAdded";
     }

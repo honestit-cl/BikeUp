@@ -7,9 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.domain.model.user.User;
+import pl.akazoo.BikeUp.domain.repository.TourDetailsRepository;
 import pl.akazoo.BikeUp.domain.repository.TourRepository;
 import pl.akazoo.BikeUp.exceptions.ResourceNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -19,50 +21,66 @@ public class TourService {
 
     private final TourRepository tourRepository;
     private final UserService userService;
-    private final TourDetailsService tourDetailsService;
-    private final  MemberService memberService;
-    private final TourService tourService;
+    private final MemberService memberService;
+    private final TourDetailsRepository tourDetailsRepository;
 
     public long allToursCount() {
         return tourRepository.count();
     }
 
-    public void save(Tour tour) {
+    public void saveTour(Tour tour) {
         log.debug("Zapisywany obiekt: " + tour);
         tourRepository.save(tour);
         log.debug("Zapisano: " + tour);
     }
 
-    public List<Tour> getAllByUser(User user) {
+    public List<Tour> getToursByUser(User user) {
         return tourRepository.findAllTourByUser(user);
     }
 
-    public Tour getById(Long id) {
+    public Tour getTourById(Long id) {
         return tourRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tour with id=" + id + " not exits."));
     }
 
-    public void delete(Long id) {
-        Tour tour = getById(id);
+    public void deleteTour(Long id) {
+        Tour tour = getTourById(id);
         log.debug("Usuwany obiekt: " + tour);
         tourRepository.delete(tour);
         log.debug("Usunięto: " + tour);
     }
 
-    public List<Tour> getAllWithoutLoggedUser() {
+    public List<Tour> getToursWithoutLoggedUser() {
         User user = userService.loggedUser();
         return tourRepository.findAllByUser_IdNotLike(user.getId());
     }
 
     public void setClose(Long id) {
-        Tour tour = getById(id);
+        Tour tour = getTourById(id);
         tour.setActive("zamknięta");
-        save(tour);
+        saveTour(tour);
     }
 
     public void deleteWholeTour(Long tourId) {
-        TourDetails tourDetails = tourDetailsService.getByTourId(tourId);
+        TourDetails tourDetails = getTourDetailsByTourId(tourId);
         memberService.deleteMembers(memberService.getAllByTourId(tourId));
-        tourService.delete(tourId);
-        tourDetailsService.delete(tourDetails.getId());
+        deleteTour(tourId);
+        deleteTourDetails(tourDetails.getId());
+    }
+
+    public void saveTourDetails(TourDetails tourDetails) {
+        log.debug("Zapisywany obiekt: " + tourDetails);
+        tourDetailsRepository.save(tourDetails);
+        log.debug("Zapisano: " + tourDetails);
+    }
+
+    public TourDetails getTourDetailsByTourId(Long id) {
+        return getTourById(id).getTourDetails();
+    }
+
+    public void deleteTourDetails(Long id) {
+        Optional<TourDetails> tourDetails = tourDetailsRepository.findById(id);
+        log.debug("Usuwany obiekt: " + tourDetails);
+        tourDetails.ifPresent(tourDetailsRepository::delete);
+        log.debug("Usunięto: " + tourDetails);
     }
 }

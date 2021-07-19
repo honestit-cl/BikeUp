@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ include file="/WEB-INF/app/parties/header.jsp" %>
+<%@ include file="/WEB-INF/app/pageParts/header.jsp" %>
 <h1>Konto użytkownika ${user.username} </h1><br/>
 <table border="1">
-    <c:if test="${user.visibility == 'show'}">
+    <c:if test="${user.personalDataVisibility == 'show'}">
     <tr>
     <td>Nazwa użytkownika</td>
     <td>${user.username}</td>
@@ -14,11 +14,11 @@
         <td>${user.points}</td>
     </tr>
     <tr>
-        <td>Data zalożenia konta</td>
+        <td>Data założenia konta</td>
         <td>${user.creationDate}</td>
     </tr>
     <tr>
-        <td>Imie</td>
+        <td>Imię</td>
         <td>${user.firstName}</td>
     </tr>
     <tr>
@@ -26,10 +26,10 @@
         <td>${user.lastName}</td>
     </tr>
     </c:if>
-<c:if test="${user.visibility == 'hidden'}">
+<c:if test="${user.personalDataVisibility == 'hidden'}">
     <p>Ten użytkownik nie udostępnił swoich danych.</p>
 </c:if>
 </table><br/>
 <br/>
 <input type="button" value="Powrót" class="myButton" onclick="location.href='/app/searchUser'">
-<%@ include file="/WEB-INF/app/parties/footer.jsp" %>
+<%@ include file="/WEB-INF/app/pageParts/footer.jsp" %>
