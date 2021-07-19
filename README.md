@@ -49,7 +49,7 @@ czy planujesz wycieczkę na lody do sąsiedniego miasta - to miejsce jest dla Ci
 Funkcjonalności:
 
 - Aktulane:
-1. Tworzenie  oraz zarządzanie trasami/wycieczkami do których każdy użytkownik może dołączyc,
+1. Tworzenie  oraz zarządzanie trasami/wycieczkami do których każdy użytkownik może dołączyć,
 2. System punktowy - każdy użytkownik zdobywa punkty za odbyte trasy. Są one przyznawane przez innych uczestników wycieczki,
 3. Ciekawostki ze świata rowerów,
 4. Dynamiczne wyszukiwanie użytkowników po loginie,
