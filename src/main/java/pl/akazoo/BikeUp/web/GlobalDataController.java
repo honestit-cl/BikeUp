@@ -19,6 +19,7 @@ public class GlobalDataController {
     public GlobalDataController(UserService userService, ExtraClass extraClass) {
         this.userService = userService;
         this.extraClass = extraClass;
+        //TODO To przenieść do @ModelAttribute, razem z losowaniem
         didUKnow = List.of(
                 "Pierwotne nazwy roweru to welocyped i bicykl.",
                 "Pierwszy prototyp roweru został zbudowany przez francuskiego hrabiego Mède de Sivrac w 1790 roku. Umożliwiał wyłącznie jazdę w jednym kierunku (nie dało się nim skręcać).",

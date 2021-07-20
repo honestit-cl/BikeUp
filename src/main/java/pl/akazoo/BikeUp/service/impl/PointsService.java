@@ -43,6 +43,9 @@ public class PointsService implements pl.akazoo.BikeUp.service.Service<Point> {
         return pointRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Point with id=" + id + " not exits."));
     }
 
+    //TODO Metody w serwisie powinny spełniać konwencje Javy (camelCase), a nie taki zapis. Metody w repozytoriach
+    //     mogą stosować pod tym względem wyjątki.
+    //TODO Wprowadzić dodatkową klasę, która będzie grupowała te idiki
     public Optional<Point> findByGiver_IdAndOwner_IdAndTour_Id(Long giver, Long owner, Long tour) {
         return pointRepository.findByGiver_IdAndOwner_IdAndTour_Id(giver, owner, tour);
     }

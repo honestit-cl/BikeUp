@@ -31,6 +31,7 @@ public class AddTourController {
         if (bindingResult.hasErrors()) {
             return "app/addTour/addTour";
         }
+        //TODO Głupi kontroler, mądry serwis, nie odwrotnie
         Tour tour = converter.saveTourAdd(tourAdd);
         memberService.saveCreatorMember(tour);
         return "app/addTour/tourAdded";

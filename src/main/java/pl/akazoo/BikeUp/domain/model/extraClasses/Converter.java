@@ -1,3 +1,4 @@
+//TODO To extraClasses jak już nie ma lepszego pomysłu, to zmienić na utils albo helpers
 package pl.akazoo.BikeUp.domain.model.extraClasses;
 
 import lombok.RequiredArgsConstructor;
@@ -13,13 +14,14 @@ import pl.akazoo.BikeUp.service.impl.*;
 @Slf4j
 @Component
 @RequiredArgsConstructor
+//TODO Ta klasa nazywa się jak konwerter a pełni rolę logiki biznesowej (zapisując użytkowników itd)
+//     Zdecydowanie zły pomysł
 public class Converter {
 
     private final UserService userService;
     private final TourService tourService;
     private final TourDetailsService tourDetailsService;
     private final PointsService pointsService;
-
 
     public void saveUserRegistry(UserRegistry userRegistry) {
         User user = new User();

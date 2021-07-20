@@ -35,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/app/*","/app","/app/").hasRole("USER")
                 .antMatchers("/static","/static/**","/images","/images/**").permitAll()
+                //TODO Nie robimy tego: zabezpieczamy ogólnie, odbezpieczamy szczegółowo
                 .antMatchers("/*").permitAll()
                 .anyRequest().authenticated()
                 .and()

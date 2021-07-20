@@ -41,6 +41,7 @@ public class UserService implements pl.akazoo.BikeUp.service.Service<User> {
                 .orElseThrow(() -> new ResourceNotFoundException("User with name: " + SecurityContextHolder.getContext().getAuthentication().getName() + " not exist"));
     }
 
+    //TODO Nie trzeba przenosić nazewnictwa metod z repozytorium do metod z serwisu, samo exists by wystarczyło
     public boolean existsByUsername(String username) {
         return userRepository.existsByUsername(username);
     }

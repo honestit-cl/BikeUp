@@ -11,6 +11,7 @@ import java.util.*;
 
 @Component
 @RequiredArgsConstructor
+//TODO To jest logika serwisów
 public class ExtraClass {
 
     private final UserService userService;
@@ -37,6 +38,7 @@ public class ExtraClass {
 
         Map<String, String> level = new HashMap<>();
 
+        //TODO Nie porównujemy Long w ten sposób, tylko z .equals()
         if (userPoints == null || userPoints == 0) {
             level = levels.get(0);
 
