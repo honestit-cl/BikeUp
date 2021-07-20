@@ -6,7 +6,7 @@ About:
 
 The application is built using Spring freamwork (Boot, Data JPA, Security, Web) and Maven. 
 It has elements from Java and Javascript. 
-JSP and CSS views are responsible for the visual design. 
+JSP views and CSS are responsible for the visual design. 
 The application uses a MySQL database - 8 Dialect.
 
 BikeUp is a portal connecting cycling enthusiasts. It doesn't matter if you're a pro and looking for a training partner, or if you're planning a trip to the neighboring town for ice cream -  this is the perfect place for you!
