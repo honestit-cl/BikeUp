@@ -56,12 +56,12 @@ Funkcjonalności:
 4. Dynamiczne wyszukiwanie użytkowników po loginie,
 5. Dynamiczne wyszukiwanie tras po wpisanej frazie,
 6. Własne konto z możliwością ukrycia swoich danych,
-7. Dodatkowe okno z aktualna data oraz godziną.
+7. Dodatkowe okno z aktualna datą oraz godziną.
 
 - Planowane:
 1. Dodawanie oraz przeglądanie sukcesów użytkowników (dodanie własnego zdjęcia oraz opisu),
 2. Informacja odnośnie pogody odpowiedniej dla mniejsca pobytu,
 3. Możliwość wysyłania wiadomości do użytkowników,
 4. Przegląd punktów z zeszłych lat,
-5. Kominukaty o zmianie stanu tras/wycieczek (prośby o dołączenie,edycja),
+5. Komunikaty o zmianie stanu tras/wycieczek (prośby o dołączenie,edycja),
 6. Zaawansowane wyszukiwanie wycieczek.
