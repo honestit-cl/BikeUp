@@ -9,7 +9,6 @@
     <li>Możliwość wysłania wiadomości do użytkownika,</li><br/>
     <li>Kominikaty o zmianie stanu trasy(nowe prośby o dołączenie do wycieczki, edycja wycieczki itd.)</li><br/>
     <li>Więcej ciekawostek,</li><br/>
-    <li>Więcej poziomów,</li><br/>
     <li>Możliwość dodania swojego sukcesu,</li><br/>
     <li>Przegląd punktów z poprzednich lat,</li><br/>
     <li>Techniczne : <br/>

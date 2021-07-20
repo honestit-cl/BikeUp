@@ -12,6 +12,7 @@ import pl.akazoo.BikeUp.domain.model.tour.Tour;
 import pl.akazoo.BikeUp.domain.model.tour.TourDetails;
 import pl.akazoo.BikeUp.domain.model.user.Point;
 import pl.akazoo.BikeUp.service.impl.*;
+import pl.akazoo.BikeUp.structure.ApplicationData;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -26,6 +27,7 @@ public class UserToursController {
     private final MemberService memberService;
     private final Converter converter;
     private final PointsService pointsService;
+    private final ApplicationData applicationData;
 
     @GetMapping
     public String showTours() {
@@ -149,31 +151,6 @@ public class UserToursController {
 
     @ModelAttribute("hours")
     public List<String> hours() {
-        return List.of(
-                "30min",
-                "1h",
-                "1:30h",
-                "2h",
-                "2:30h",
-                "3h",
-                "3:30h",
-                "4h",
-                "4:30h",
-                "5h",
-                "5:30h",
-                "6h",
-                "6:30h",
-                "7h",
-                "7:30h",
-                "8h",
-                "8:30h",
-                "9h",
-                "9:30h",
-                "10h",
-                "10:30h",
-                "11h",
-                "11:30h",
-                "12h"
-        );
+        return applicationData.getHours();
     }
 }

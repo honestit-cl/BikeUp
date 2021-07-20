@@ -20,7 +20,7 @@ public class SearchUserController {
 
     @GetMapping
     public String searching() {
-        return "/app/userSearching/search";
+        return "/app/userSearching/userSearching";
     }
 
     @GetMapping("/data")

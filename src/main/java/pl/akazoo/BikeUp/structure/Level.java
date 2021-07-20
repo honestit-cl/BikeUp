@@ -1,4 +1,4 @@
-package pl.akazoo.BikeUp.domain.model;
+package pl.akazoo.BikeUp.structure;
 
 import org.springframework.stereotype.Component;
 import java.util.HashMap;
