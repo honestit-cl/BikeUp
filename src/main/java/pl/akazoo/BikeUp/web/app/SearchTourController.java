@@ -21,7 +21,7 @@ public class SearchTourController {
 
     @GetMapping
     public String search() {
-        return "/app/tourSearching/searchTours";
+        return "/app/tourSearching/tourSearching";
     }
 
     @GetMapping("/data")
